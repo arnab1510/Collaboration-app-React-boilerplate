@@ -1,0 +1,22 @@
+.headerLayout {
+    background: white;
+    width: 100%;
+    z-index: 99;
+    @include flexbox($display: flex, $alignItems: center, $justifyContent: space-between);
+    .headerLogo {
+        height: 30px;
+    }
+}
+
+.headerFixed {
+  top: 0px;
+  position: sticky;
+  // -webkit-box-shadow: 0px 0px 26px 0px rgba(0,0,0,0.38);
+  // -moz-box-shadow: 0px 0px 26px 0px rgba(0,0,0,0.38);
+  // box-shadow: 0px 0px 26px 0px rgba(0,0,0,0.38);
+  z-index: 99;
+}
+
+.logo {
+    height: 30px;
+}

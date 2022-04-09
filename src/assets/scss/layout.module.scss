@@ -1,0 +1,67 @@
+.full_height {
+    height: 100vh;
+}
+.center_all {
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+.main_layout {
+    @include gridbox($display: grid, $justifyContent: center, $template: 0.8fr 4fr);
+}
+.fade_in_up {
+    -webkit-animation-duration: 0.45s;
+    animation-duration: 0.45s;
+    animation-fill-mode: both;
+    -webkit-animation-fill-mode: both;
+    -webkit-animation-name: fadeInUp;
+    animation-name: fadeInUp;
+}
+.fade_in_down {
+    -webkit-animation-duration: 0.45s;
+    animation-duration: 0.45s;
+    animation-fill-mode: both;
+    -webkit-animation-fill-mode: both;
+    -webkit-animation-name: fadeInDown;
+    animation-name: fadeInDown;
+}
+@keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+}
+@keyframes fadeInDown {
+    from {
+      opacity: 1;
+      transform: none;
+    }
+    to {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+}
+
+.commonSpace {
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.containerLayout {
+  @include flexbox($display: flex);
+  overflow: hidden;
+}
+
+.rightContainer {
+  @include flexbox($display: flex);
+  margin-left: 64px;
+  .rightContent {
+    overflow: hidden;
+    height: 100vh;
+    width: 100%;
+  }
+}

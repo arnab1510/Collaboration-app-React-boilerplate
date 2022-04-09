@@ -1,0 +1,69 @@
+.secondarySidebarContainer {
+    height: 100vh;
+    background: white;
+    width: 380px;
+    overflow-y: auto;
+}
+.sidebarHeader {
+    @include typography($weight: 7, $size: 18px);
+    padding: 0px 16px;
+    margin-top: 16px;
+    @include flexbox($display: flex, $justifyContent: space-between);
+}
+.sidebarSubhead {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    @include typography($weight: 7, $color: #B8B8B8, $size: 13px);
+    margin-top: 18px;
+    margin-bottom: 2px;
+    padding: 0px 16px;
+}
+.chatContainer {
+    @include flexbox($display: flex, $columnGap: 8px);
+    margin-bottom: 2px;
+    cursor: pointer;
+    width: 100%;
+    padding: 8px 16px;
+    @include transition;
+    &_avatar {
+        height: 40px;
+        width: 40px;
+        border-radius: 100px;
+        object-fit: cover;
+    }
+    .chatContainer_right {
+        width: 100%;
+        @include typography($color: #B8B8B8);
+        @include flexbox($display: flex, $direction: column, $justifyContent: space-between);
+        &_top {
+            @include flexbox($display: flex, $justifyContent: space-between);
+            @include typography($color: #B8B8B8);
+            &_name {
+                @include typography($color: $black2, $weight:5);
+            }
+            &_chatTime {
+                @include typography($size: 12px);
+            }
+        }
+        &_text {
+            @include typography($color: $black3);
+        }
+    }
+    &_active {
+        background-color: $primary_light;
+        @include transition;
+    }
+    &:hover {
+        background-color: $primary_light;
+        @include transition;
+    }
+}
+.collapseIcon {
+    @include typography($color: $black4);
+    cursor: pointer;
+    @include transition;
+    &:hover {
+        @include typography($color: $primary);
+        @include transition;
+    }
+}
