@@ -7,12 +7,14 @@ import Header from '../assets/components/header';
 import Home from '../pages/Home';
 import Sidebar from '../assets/components/sidebar';
 import SecondarySidebar from '../assets/components/secondary_sidebar';
+import Vault from '../pages/Vault';
 
 const AppRoute = {
 	home: "/",
 	auth: "/auth",
 	PageNotFound: "/page-not-found",
 	default: '/',
+	vault: '/vault',
 
 	//List
 	UsersList: '/users/list',
@@ -28,6 +30,7 @@ export default function AppRoutings() {
 				<div className={styles.rightContent}>
 					<Routes>
 						<Route path={AppRoute.default} element={<Home/>} />
+						<Route path={AppRoute.vault} element={<Vault/>} />
 					</Routes>
 				</div>
 			</div>

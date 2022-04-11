@@ -1,5 +1,7 @@
 import cx from "classnames";
 import React from "react";
+import { useNavigate } from 'react-router-dom';
+import { Route, Navigate } from 'react-router-dom';
 import { BsChatDots, BsClockHistory, BsFolder2Open, BsListUl } from 'react-icons/bs';
 import { FiUsers } from 'react-icons/fi';
 import {IoChatbubbleEllipsesOutline} from 'react-icons/io5';
@@ -10,48 +12,36 @@ import logo_white from "../images/prodjam_logo_white.svg";
 
 function Sidebar() {
 
-  const PMsidebar = () => {
-    return (
-      <div className={styles.sidebarContainer}>
-        <div className={cx(styles.sidebarMenu, styles.sidebarMenu_active)}>
-          <IoChatbubbleEllipsesOutline/>
-          <div className={styles.sidebarMenuName}>Chat</div>
-        </div>
-        <div className={styles.sidebarMenu}>
-          <BsClockHistory/>
-          <div className={styles.sidebarMenuName}>Sprint</div>
-        </div>
-        <div className={styles.sidebarMenu}>
-          <VscNotebook/>
-          <div className={styles.sidebarMenuName}>Roadmap</div>
-        </div>
-        <div className={styles.sidebarMenu}>
-          <BsListUl/>
-          <div className={styles.sidebarMenuName}>Features</div>
-        </div>
-        <div className={styles.sidebarMenu}>
-          <BsFolder2Open/>
-          <div className={styles.sidebarMenuName}>Vault</div>
-        </div>
-        <div className={styles.sidebarMenu}>
-          <RiPencilRuler2Line/>
-          <div className={styles.sidebarMenuName}>Build</div>
-        </div>
-        <div className={styles.sidebarMenu}>
-          <FiUsers/>
-          <div className={styles.sidebarMenuName}>Channels</div>
-        </div>
-      </div>
-    )
-  }
+  const history = useNavigate();
+
+  const route = (url) => {
+      history(url);
+  };
+
+  const PMsidebar = [
+    {name: 'Chat', url: '/', icon: <IoChatbubbleEllipsesOutline/>},
+    {name: 'Sprint', url: '', icon: <BsClockHistory/>},
+    {name: 'Roadmap', url: '', icon: <VscNotebook/>},
+    {name: 'Features', url: '', icon: <BsListUl/>},
+    {name: 'Vault', url: '/vault', icon: <BsFolder2Open/>},
+    {name: 'Build', url: '', icon: <RiPencilRuler2Line/>},
+    {name: 'Channels', url: '', icon: <FiUsers/>},
+  ];
 
   return (
     <div className={styles.mainSidebarFixed}>
       <div style={{textAlign: 'center'}}>
         <img src={logo_white}/>
       </div>
-      <div>
-        {PMsidebar()}
+      <div className={styles.sidebarContainer}>
+        {PMsidebar.map((items, index) => {
+          return (
+            <div className={styles.sidebarMenu} onClick={() => route(items.url)}>
+              {items.icon}
+              <div className={styles.sidebarMenuName}>{items.name}</div>
+            </div>
+          )
+        })}
       </div>
     </div>
   );
