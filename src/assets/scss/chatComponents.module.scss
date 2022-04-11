@@ -44,6 +44,7 @@
 .chatContent {
     overflow-y: auto;
     flex:auto;
+    @include scroll_hover;
     padding: 16px;
 }
 .chat_container {
@@ -109,4 +110,22 @@
     margin: 8px;
     padding: 0px 6px;
     padding-bottom: 8px;
+}
+.suggested_chats {
+    @include flexbox($display: flex, $columnGap: 12px, $alignItems: center);
+    margin-bottom: 10px;
+    .suggested_chip {
+        border-radius: 100px;
+        @include flexbox($display: flex, $alignItems: center);
+        border: 1px solid #C4C7FF;
+        background-color: white;
+        color: #8288FF;
+        padding: 3px 12px;
+        font-size: 12px;
+        cursor: pointer;
+        @include transition;
+        &:hover {
+            background-color: #ecedff;
+        }
+    }
 }

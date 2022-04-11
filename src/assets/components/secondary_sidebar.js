@@ -64,7 +64,7 @@ function SecondarySidebar() {
   }
 
   return (
-    <div className={styles.secondarySidebarContainer}>
+    <div className={cx(styles.secondarySidebarContainer, 'scrollShow')}>
       <div className={styles.sidebarHeader}>
         <span>
           Chat

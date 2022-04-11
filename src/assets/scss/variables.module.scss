@@ -382,6 +382,17 @@ $fontSizes: (
     -moz-box-shadow: 0px 0px 40px 0px rgba(0,0,0,0.04);
 }
 
+@mixin scroll_hover {
+	&::-webkit-scrollbar-thumb {
+        visibility: hidden;
+		@include transition;
+    }
+	&:hover::-webkit-scrollbar-thumb {
+        visibility: visible;
+		@include transition;
+	}
+}
+
 body {
 	font-family: $roboto !important;
 	font-style: normal;

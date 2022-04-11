@@ -3,6 +3,7 @@
     background: white;
     width: 380px;
     overflow-y: auto;
+    @include scroll_hover;
 }
 .sidebarHeader {
     @include typography($weight: 7, $size: 18px);

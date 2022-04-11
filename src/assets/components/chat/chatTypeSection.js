@@ -80,8 +80,21 @@ function Editor() {
     }
   }
 
+  const suggested_chats = [
+    {value: 1, msg: 'Hey, good morning!'},
+    {value: 2, msg: "Good morning Dev!"},
+    {value: 3, msg: "Quick call?"}
+  ];
+
   return (
     <div className={cx(styles.chatTypeContainer, styles.chat_fixed)}>
+      <div className={styles.suggested_chats}>
+        {suggested_chats.map((item, index) => {
+          return (
+            <span className={styles.suggested_chip}>{item.msg}</span>
+          )
+        })}
+      </div>
       <div className={cx(styles.chat_type_inner, 'chat_style')}>
         <ReactQuill theme="snow" value={value} onChange={setValue}
           placeholder="Type your message here"
