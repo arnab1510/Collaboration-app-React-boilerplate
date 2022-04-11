@@ -9,7 +9,7 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-color: #F7F7F7;
-    overflow: hidden;
+    // overflow: hidden;
 }
 
 code {
@@ -25,8 +25,4 @@ code {
     -webkit-box-shadow: 0px 9px 59px 0px rgba(0, 0, 0, 0.08);
     -moz-box-shadow: 0px 9px 59px 0px rgba(0, 0, 0, 0.08);
     border-radius: 10px;
-}
-
-.tox-notifications-container {
-    display: none !important;
 }

@@ -42,14 +42,71 @@
 
 //Chat Content
 .chatContent {
-    height: 100%;
     overflow-y: auto;
+    flex:auto;
+    padding: 16px;
+}
+.chat_container {
+    height: 100%;
+    display: flex;
+    margin: 0;
+	flex-flow: column nowrap;
+}
+.chat_fixed {
+    flex:none;
 }
 
 //Chat Type Section
+.chat_type_inner {
+    // padding: 6px;
+    border-radius: 8px;
+    flex:none;
+    background: white;
+}
+.chat_style {
+    .ql-toolbar.ql-snow {
+        border: none;
+    }
+    .ql-container.ql-snow {
+        border: none;
+        max-height: 300px;
+        overflow: auto;
+    }
+    // .ql-snow .ql-toolbar .ql-picker-item.ql-selected {
+    .ql-toolbar .ql-stroke {
+        fill: none;
+        stroke: $black4;
+    }
+    .ql-toolbar .ql-fill {
+        fill: $black4;
+        stroke: none;
+    }
+    .ql-toolbar .ql-picker {
+        color: $black4;
+    }
+}
 .chatTypeContainer {
-    position: sticky;
-    bottom: 0px;
-    padding: 14px;
-    border-radius: 6px;
+    padding: 16px;
+}
+.emojiPicker {
+    position: absolute;
+    bottom: 50px;
+}
+.toolbar_item {
+    width: fit-content;
+    @include flexbox($display: flex, $alignItems: center);
+    color: $black4;
+    cursor: pointer;
+    &:hover {
+        color: #06c;
+    }
+    svg {
+        font-size: 16px;
+    }
+}
+.footer_toolbar {
+    @include flexbox($display: flex, $columnGap: 16px, $alignItems: center);
+    margin: 8px;
+    padding: 0px 6px;
+    padding-bottom: 8px;
 }

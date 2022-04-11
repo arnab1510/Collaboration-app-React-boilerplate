@@ -7,7 +7,7 @@ import styles from "./../../scss/design.module.scss";
 function ChatHeader() {
 
   return (
-    <div className={styles.chatHeader}>
+    <div className={cx(styles.chatHeader, styles.chat_fixed)}>
       <div className={styles.section_left}>
         <img className={styles.chatAvatar} src='https://picsum.photos/400'/>
         <div className={styles.chatUserName}>Dev Team</div>
