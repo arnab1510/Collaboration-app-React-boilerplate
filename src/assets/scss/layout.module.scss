@@ -63,3 +63,12 @@
     width: 100%;
   }
 }
+.right_content_container {
+  padding: 20px;
+}
+.flex_row_layout {
+  @include flexbox($display: flex, $justifyContent: space-between, $alignItems: center);
+}
+.section_title {
+  @include typography($size: 18px, $weight: 6);
+}
