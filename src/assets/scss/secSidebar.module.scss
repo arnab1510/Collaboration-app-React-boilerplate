@@ -19,6 +19,8 @@
     margin-bottom: 2px;
     padding: 0px 16px;
 }
+
+//Chat
 .chatContainer {
     @include flexbox($display: flex, $columnGap: 8px);
     margin-bottom: 2px;
@@ -68,3 +70,5 @@
         @include transition;
     }
 }
+
+//Vault

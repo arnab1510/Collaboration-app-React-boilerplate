@@ -1,12 +1,10 @@
-import cx from "classnames";
 import React from "react";
-import { useNavigate } from 'react-router-dom';
-import { Route, Navigate } from 'react-router-dom';
-import { BsChatDots, BsClockHistory, BsFolder2Open, BsListUl } from 'react-icons/bs';
+import { BsClockHistory, BsFolder2Open, BsListUl } from 'react-icons/bs';
 import { FiUsers } from 'react-icons/fi';
-import {IoChatbubbleEllipsesOutline} from 'react-icons/io5';
+import { IoChatbubbleEllipsesOutline } from 'react-icons/io5';
 import { RiPencilRuler2Line } from 'react-icons/ri';
 import { VscNotebook } from 'react-icons/vsc';
+import { useNavigate } from 'react-router-dom';
 import styles from "../../assets/scss/design.module.scss";
 import logo_white from "../images/prodjam_logo_white.svg";
 
