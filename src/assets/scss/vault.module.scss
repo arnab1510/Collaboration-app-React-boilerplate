@@ -2,16 +2,43 @@
     box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.08);
     border-radius: 8px;
     overflow: hidden;
-    max-height: 200px;
+    max-height: 220px;
     background-color: white;
+    &:hover {
+        .menuDots {
+            opacity: 1;
+            @include transition;
+        }
+    }
 }
 .vaultCardPreview {
     width: 100%;
     height: auto;
     object-fit: cover;
+    cursor: pointer;
 }
 .fileRow {
     // @include flexbox($display: flex, $direction: row, $rowGap: 20px);
     // flex-wrap: wrap;
     @include gridbox($display: grid, $justifyContent: center, $template: repeat(5, 1fr), $gap: 20px);
+}
+.cardMenu {
+    position: absolute;
+    right: -3px;
+}
+.menuDots{
+    position: relative;
+    cursor: pointer;
+    opacity: 0;
+    @include transition;
+}
+.bottom_section {
+    border-top: 1px solid lightgray;
+    padding: 12px;
+    @include flexbox($display: flex, $direction: row, $columnGap: 10px, $alignItems: center);
+}
+.file_icon {
+    width: 26px;
+    height: 26px;
+    object-fit: contain;
 }

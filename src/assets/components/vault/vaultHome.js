@@ -1,8 +1,9 @@
 import cx from "classnames";
 import React from "react";
 import { BsChevronRight} from 'react-icons/bs';
-import { FiPhone } from 'react-icons/fi';
+import { FiMoreVertical } from 'react-icons/fi';
 import styles from "./../../scss/design.module.scss";
+import DocIcon from "../../images/doc_icon.svg";
 
 function VaultFavourites() {
 
@@ -14,10 +15,30 @@ function VaultFavourites() {
     {id: 1, type: 'folder', name: 'PRD requirements', poster: 'https://picsum.photos/410'},
   ];
 
+  const returnIcon = (type) => {
+    if (type === "doc") {
+      return {
+        DocIcon
+      }
+    }
+    else {
+      return {
+
+      }
+    }
+  }
+
   const vaultCard = (data) => {
     return (
       <div className={styles.vaultCard}>
-        <img className={styles.vaultCardPreview} src="https://prodjam-assets.s3.ap-south-1.amazonaws.com/doc_preview.png"/>
+        <div className={styles.padding_12}>
+          <div className={styles.menuDots}><FiMoreVertical className={styles.cardMenu}/></div>
+          <img className={styles.vaultCardPreview} src="https://prodjam-assets.s3.ap-south-1.amazonaws.com/doc_preview.png"/>
+        </div>
+        <div className={cx(styles.bottom_section)}>
+          <img className={styles.file_icon} src={DocIcon}/>
+          <span>{data.name}</span>
+        </div>
       </div>
     )
   };
