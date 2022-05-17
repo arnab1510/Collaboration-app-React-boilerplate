@@ -3,7 +3,7 @@ import { BASE_URL } from './environment';
 import { postDataOptions } from '../services/backendService';
 
 // APIs
-const LOGIN = 'api/v2/login';
+const SEND_OTP_API = 'api/v2/login';
 
 // Services
 export const sendOTPService = async payload => {

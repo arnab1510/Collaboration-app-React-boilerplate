@@ -1,0 +1,2 @@
+export const CHECK_MOBILE = 'CHECK_MOBILE';
+export const SET_ACTIVE_TAB = 'SET_ACTIVE_TAB';

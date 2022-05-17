@@ -5,26 +5,35 @@ import { IoChatbubbleEllipsesOutline } from 'react-icons/io5';
 import { RiPencilRuler2Line } from 'react-icons/ri';
 import { VscNotebook } from 'react-icons/vsc';
 import { useNavigate } from 'react-router-dom';
+import { SET_ACTIVE_TAB } from "../../actions/types";
 import styles from "../../assets/scss/design.module.scss";
 import logo_white from "../images/prodjam_logo_white.svg";
+import { useDispatch } from 'react-redux'
 
 function Sidebar() {
 
   const history = useNavigate();
+  
+  const dispatch = useDispatch();
 
   const route = (url) => {
       history(url);
   };
 
   const PMsidebar = [
-    {name: 'Chat', url: '/', icon: <IoChatbubbleEllipsesOutline/>},
-    {name: 'Sprint', url: '', icon: <BsClockHistory/>},
-    {name: 'Roadmap', url: '', icon: <VscNotebook/>},
-    {name: 'Features', url: '', icon: <BsListUl/>},
-    {name: 'Vault', url: '/vault', icon: <BsFolder2Open/>},
-    {name: 'Build', url: '', icon: <RiPencilRuler2Line/>},
-    {name: 'Channels', url: '', icon: <FiUsers/>},
+    {id: 1, name: 'Chat', url: '/', icon: <IoChatbubbleEllipsesOutline/>},
+    {id: 2, name: 'Sprint', url: '', icon: <BsClockHistory/>},
+    {id: 3, name: 'Roadmap', url: '', icon: <VscNotebook/>},
+    {id: 4, name: 'Features', url: '', icon: <BsListUl/>},
+    {id: 5, name: 'Vault', url: '/vault', icon: <BsFolder2Open/>},
+    {id: 6, name: 'Build', url: '', icon: <RiPencilRuler2Line/>},
+    {id: 7, name: 'Channels', url: '', icon: <FiUsers/>},
   ];
+
+  const updateTab = (item) => {
+    dispatch({ type: SET_ACTIVE_TAB, data: item.id });
+    route(item.url);
+  }
 
   return (
     <div className={styles.mainSidebarFixed}>
@@ -32,11 +41,11 @@ function Sidebar() {
         <img src={logo_white}/>
       </div>
       <div className={styles.sidebarContainer}>
-        {PMsidebar.map((items, index) => {
+        {PMsidebar.map((item, index) => {
           return (
-            <div className={styles.sidebarMenu} onClick={() => route(items.url)}>
-              {items.icon}
-              <div className={styles.sidebarMenuName}>{items.name}</div>
+            <div className={styles.sidebarMenu} onClick={() => updateTab(item)}>
+              {item.icon}
+              <div className={styles.sidebarMenuName}>{item.name}</div>
             </div>
           )
         })}
