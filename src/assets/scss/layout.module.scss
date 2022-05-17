@@ -6,6 +6,9 @@
     display: flex;
     align-items: center;
 }
+.text_center {
+	text-align: center;
+}
 .main_layout {
     @include gridbox($display: grid, $justifyContent: center, $template: 0.8fr 4fr);
 }

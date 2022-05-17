@@ -4,6 +4,8 @@
     overflow: hidden;
     max-height: 220px;
     background-color: white;
+    min-height: 100%;
+    @include flexbox($display: flex, $direction: column, $justifyContent: space-between);
     &:hover {
         .menuDots {
             opacity: 1;
@@ -24,7 +26,7 @@
 }
 .cardMenu {
     position: absolute;
-    right: -3px;
+    right: 5px;
 }
 .menuDots{
     position: relative;
@@ -32,13 +34,35 @@
     opacity: 0;
     @include transition;
 }
+.menuDots span {
+    position: absolute;
+    padding: 13px;
+    background: rgb(240, 240, 240);
+    border-radius: 100px;
+    right: 12px;
+    top: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .bottom_section {
     border-top: 1px solid lightgray;
-    padding: 12px;
+    padding: 10px 12px;
+    @include typography($size: 13px);
     @include flexbox($display: flex, $direction: row, $columnGap: 10px, $alignItems: center);
 }
 .file_icon {
     width: 26px;
     height: 26px;
     object-fit: contain;
+}
+.folderPreview {
+    flex: 1 1 0%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #FFF6D0;
+    img {
+        width: 70px;
+    }
 }
