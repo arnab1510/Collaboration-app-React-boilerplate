@@ -3,6 +3,7 @@ import React from "react";
 import styles from "../../assets/scss/design.module.scss";
 import { useNavigate, useLocation } from 'react-router-dom';
 import ChatSidebar from "./chat/chatSidebar";
+import VaultSidebar from "./vault/vaultSidebar";
 import { useSelector } from 'react-redux'
 
 function SecondarySidebar() {
@@ -16,6 +17,11 @@ function SecondarySidebar() {
         <ChatSidebar/>
       )
     }
+    else if (data.activeTab===5) {
+      return (
+        <VaultSidebar/>
+      )
+    }
     else {
       return (
         null
@@ -24,7 +30,7 @@ function SecondarySidebar() {
   }
 
   return (
-    <div className={cx(styles.secondarySidebarContainer, 'scrollShow')}>
+    <div className={cx(styles.secondarySidebarContainer, 'scroll_overlay')}>
       {sideBar(utilities)}
     </div>
   );

@@ -22,12 +22,7 @@
 
 //Chat
 .chatContainer {
-    @include flexbox($display: flex, $columnGap: 8px);
-    margin-bottom: 2px;
-    cursor: pointer;
-    width: 100%;
-    padding: 8px 16px;
-    @include transition;
+    @include optionHover;
     &_avatar {
         height: 40px;
         width: 40px;
@@ -52,14 +47,6 @@
             @include typography($color: $black3);
         }
     }
-    &_active {
-        background-color: $primary_light;
-        @include transition;
-    }
-    &:hover {
-        background-color: $primary_light;
-        @include transition;
-    }
 }
 .collapseIcon {
     @include typography($color: $black4);
@@ -72,3 +59,17 @@
 }
 
 //Vault
+.sec_sidebar_option {
+    @include optionHover;
+    padding: 14px 8px;
+    @include flexbox($display: flex, $justifyContent: start, $alignItems: center);
+    svg {
+        font-size: 20px;
+        margin-right: 4px;
+    }
+    @include typography($color: $black3, $size: 15px);
+}
+.optionList {
+    @include flexbox($display: flex, $direction: column);
+    margin: 16px 0px;
+}

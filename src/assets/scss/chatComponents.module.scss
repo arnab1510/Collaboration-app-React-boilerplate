@@ -34,6 +34,7 @@
         
         &:hover {
             background-color: $primary;
+            border: 1px solid $primary;
             color: white;
             @include transition;
         }
@@ -112,7 +113,7 @@
     padding-bottom: 8px;
 }
 .suggested_chats {
-    @include flexbox($display: flex, $columnGap: 12px, $alignItems: center);
+    @include flexbox($display: flex, $columnGap: 12px, $alignItems: center, $justifyContent: flex-end);
     margin-bottom: 10px;
     .suggested_chip {
         border-radius: 100px;

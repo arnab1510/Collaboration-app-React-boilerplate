@@ -33,7 +33,7 @@ function Sidebar() {
   const updateTab = (item) => {
     dispatch({ type: SET_ACTIVE_TAB, data: item.id });
     route(item.url);
-  }
+  };
 
   return (
     <div className={styles.mainSidebarFixed}>

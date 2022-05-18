@@ -4,7 +4,7 @@ import { BsChevronRight} from 'react-icons/bs';
 import { FiMoreVertical } from 'react-icons/fi';
 import styles from "./../../scss/design.module.scss";
 import DocIcon from "../../images/doc_icon.svg";
-import { vaultCard } from "./vaultCards";
+import { VaultCard } from "./vaultCards";
 
 function VaultRow({items,title}) {
 
@@ -18,7 +18,7 @@ function VaultRow({items,title}) {
         {
           items.map((item, index) => {
             return (
-              <div>{vaultCard(item)}</div>
+              <div>{VaultCard(item)}</div>
           )})
         }
       </div>

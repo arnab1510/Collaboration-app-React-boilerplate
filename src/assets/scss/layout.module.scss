@@ -75,3 +75,26 @@
 .section_title {
   @include typography($size: 17px, $weight: 5.5);
 }
+.scroll_overlay {
+  overflow: overlay !important;
+}
+
+@mixin optionHover {
+  @include flexbox($display: flex, $columnGap: 8px);
+  margin-bottom: 2px;
+  cursor: pointer;
+  width: 100%;
+  padding: 8px;
+  margin: 0px 8px;
+  width: auto;
+  border-radius: 6px;
+  @include transition;
+  &_active {
+      background-color: $primary_light;
+      @include transition;
+  }
+  &:hover {
+      background-color: $primary_light;
+      @include transition;
+  }
+}

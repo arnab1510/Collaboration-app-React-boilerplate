@@ -1,12 +1,15 @@
 .vaultCard {
-    box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.08);
+    box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.05);
     border-radius: 8px;
     overflow: hidden;
     max-height: 220px;
     background-color: white;
     min-height: 100%;
+    @include transition;
     @include flexbox($display: flex, $direction: column, $justifyContent: space-between);
     &:hover {
+        box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.16);
+        @include transition;
         .menuDots {
             opacity: 1;
             @include transition;
@@ -46,6 +49,7 @@
     align-items: center;
 }
 .bottom_section {
+    cursor: pointer;
     border-top: 1px solid lightgray;
     padding: 10px 12px;
     @include typography($size: 13px);
