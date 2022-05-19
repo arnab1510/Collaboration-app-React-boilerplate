@@ -1,10 +1,9 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-import cx from 'classnames';
+import { React } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import SecondarySidebar from '../assets/components/secondary_sidebar';
+import Sidebar from '../assets/components/sidebar';
 import styles from '../assets/scss/design.module.scss';
 import Home from '../pages/Home';
-import Sidebar from '../assets/components/sidebar';
-import SecondarySidebar from '../assets/components/secondary_sidebar';
 import Vault from '../pages/Vault';
 import VaultDoc from '../pages/VaultDoc';
 
@@ -22,14 +21,12 @@ const AppRoute = {
 
 export default function AppRoutings() {
 
-	const [showSidebar,setShowSidebar] = React.useState();
-
 	return (
 		<Router>
 			{/* <Header /> */}
 			<Sidebar/>
 			<div className={styles.rightContainer}>
-				{/* {showSecSidebar?<SecondarySidebar/>:null} */}
+				<SecondarySidebar/>
 				<div className={styles.rightContent}>
 					<Routes>
 						<Route path={AppRoute.default} element={<Home/>} />

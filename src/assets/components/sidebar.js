@@ -4,16 +4,15 @@ import { FiUsers } from 'react-icons/fi';
 import { IoChatbubbleEllipsesOutline } from 'react-icons/io5';
 import { RiPencilRuler2Line } from 'react-icons/ri';
 import { VscNotebook } from 'react-icons/vsc';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { SET_ACTIVE_TAB } from "../../actions/types";
 import styles from "../../assets/scss/design.module.scss";
 import logo_white from "../images/prodjam_logo_white.svg";
-import { useDispatch } from 'react-redux'
 
 function Sidebar() {
 
   const history = useNavigate();
-  
   const dispatch = useDispatch();
 
   const route = (url) => {
