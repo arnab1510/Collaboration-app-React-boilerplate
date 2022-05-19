@@ -7,11 +7,11 @@ import VaultRow from '../assets/components/vault/vaultRow';
 function Vault() {
 
     const favItems = [
-        {id: 1, type: 'doc', name: 'PRD requirements', poster: 'https://picsum.photos/370', url:''},
-        {id: 1, type: 'doc', name: 'PRD req', poster: 'https://picsum.photos/380', url:''},
-        {id: 1, type: 'folder', name: 'Design curriculum', poster: 'https://picsum.photos/390', url:''},
-        {id: 1, type: 'doc', name: 'PRD requirements', poster: 'https://picsum.photos/400', url:''},
-        {id: 1, type: 'folder', name: 'PRD requirements', poster: 'https://picsum.photos/410', url:''},
+        {id: 1, type: 'doc', name: 'PRD requirements', poster: 'https://picsum.photos/370', url:'/vault/doc/:doc_id'},
+        {id: 1, type: 'doc', name: 'PRD req', poster: 'https://picsum.photos/380', url:'/vault/doc/:doc_id'},
+        {id: 1, type: 'folder', name: 'Design curriculum', poster: 'https://picsum.photos/390', url:'/vault/doc/:doc_id'},
+        {id: 1, type: 'doc', name: 'PRD requirements', poster: 'https://picsum.photos/400', url:'/vault/doc/:doc_id'},
+        {id: 1, type: 'folder', name: 'PRD requirements', poster: 'https://picsum.photos/410', url:'/vault/doc/:doc_id'},
     ];
             
     return (

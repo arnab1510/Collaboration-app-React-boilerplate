@@ -1,2 +1,3 @@
 export const CHECK_MOBILE = 'CHECK_MOBILE';
 export const SET_ACTIVE_TAB = 'SET_ACTIVE_TAB';
+export const SET_HIDE_SECSIDEBAR = 'SET_HIDE_SECSIDEBAR';

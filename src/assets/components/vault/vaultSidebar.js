@@ -48,9 +48,7 @@ function VaultSidebar() {
               <FiChevronsLeft/>
           </span>
           </div>
-          <div>
-            {vaultOptions()}
-          </div>
+          {vaultOptions()}
           <ChatSidebar/>
       </div>
     );
