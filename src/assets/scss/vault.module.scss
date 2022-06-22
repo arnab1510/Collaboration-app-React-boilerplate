@@ -74,4 +74,16 @@
 .view_all {
     @include typography($size: 13px);
     cursor: pointer;
+    @include transition;
+    svg {
+        transform: translateX(0px);
+        @include transition;
+    }
+    &:hover {
+        color: $primary;
+        svg {
+            transform: translateX(4px);
+            @include transition;
+        }
+    }
 }
