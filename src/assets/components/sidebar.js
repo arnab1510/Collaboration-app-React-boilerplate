@@ -1,4 +1,3 @@
-import React from "react";
 import { BsClockHistory, BsFolder2Open, BsListUl } from 'react-icons/bs';
 import { FiUsers } from 'react-icons/fi';
 import { IoChatbubbleEllipsesOutline } from 'react-icons/io5';

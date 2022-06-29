@@ -1,11 +1,11 @@
 import cx from "classnames";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from 'react-redux';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { SET_CURRENT_URL, SET_HIDE_SECSIDEBAR, SET_HIDE_SIDEBAR, SET_SHOW_DOCHEADER, SET_SHOW_SECSIDEBAR } from "../../actions/types";
 import styles from "../../assets/scss/design.module.scss";
-import { useNavigate, useLocation } from 'react-router-dom';
 import ChatSidebar from "./chat/chatSidebar";
 import VaultSidebar from "./vault/vaultSidebar";
-import { useDispatch, useSelector } from 'react-redux'
-import { SET_CURRENT_URL, SET_HIDE_SECSIDEBAR, SET_SHOW_SECSIDEBAR } from "../../actions/types";
 
 function SecondarySidebar() {
 
@@ -25,6 +25,8 @@ function SecondarySidebar() {
     }
     else {
       dispatch({type: SET_HIDE_SECSIDEBAR});
+      dispatch({type: SET_HIDE_SIDEBAR});
+      dispatch({type: SET_SHOW_DOCHEADER});
       dispatch({type: SET_CURRENT_URL, data:location.pathname});
     }
   }, [history]);

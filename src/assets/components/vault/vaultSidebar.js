@@ -1,13 +1,10 @@
 import cx from "classnames";
-import React from "react";
-import {FiChevronsLeft} from 'react-icons/fi';
-import styles from "./../../scss/design.module.scss";
-import {IoIosAddCircleOutline} from 'react-icons/io';
+import { FiChevronsLeft, FiTrash2 } from 'react-icons/fi';
+import { IoIosAddCircleOutline } from 'react-icons/io';
+import { MdIosShare } from 'react-icons/md';
+import { RiHome2Line } from 'react-icons/ri';
 import ChatSidebar from '../chat/chatSidebar';
-import {FiTrash2} from 'react-icons/fi';
-import {AiOutlineStar} from 'react-icons/ai';
-import {MdIosShare} from 'react-icons/md';
-import {RiHome2Line} from 'react-icons/ri';
+import styles from "./../../scss/design.module.scss";
 
 function VaultSidebar() {
 

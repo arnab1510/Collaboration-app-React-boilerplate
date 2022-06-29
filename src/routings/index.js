@@ -1,4 +1,3 @@
-import { React } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import SecondarySidebar from '../assets/components/secondary_sidebar';
 import Sidebar from '../assets/components/sidebar';
