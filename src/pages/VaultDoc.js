@@ -6,8 +6,6 @@ import Picker from 'emoji-picker-react';
 import { Input } from 'antd';
 import cx from "classnames";
 import { useRef, useState } from 'react';
-import { saveAs } from 'file-saver';
-import * as quillToWord from 'quill-to-word';
 
 function VaultDoc() {
 
@@ -64,11 +62,6 @@ function VaultDoc() {
 
 
     const downloadDoc = () => {
-        const editor = quillRef.getContents();
-        // const unprivilegedEditor = quillRef.makeUnprivilegedEditor(editor);
-        // const contents = unprivilegedEditor.getContents();
-        const blob = quillToWord.generateWord(editor,{exportAs: "blob"});
-        saveAs(blob, "word-export.docx");
     };
     
     return (
