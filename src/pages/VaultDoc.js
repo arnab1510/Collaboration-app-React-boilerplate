@@ -1,19 +1,32 @@
 import styles from '../assets/scss/design.module.scss';
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
-import "quill-mention";
-import Picker from 'emoji-picker-react';
+import { useEditor, EditorContent } from '@tiptap/react'
+import StarterKit from '@tiptap/starter-kit'
+// import Picker from 'emoji-picker-react';
+import { FiShare } from 'react-icons/fi';
+import { HiOutlineSearch } from 'react-icons/hi';
 import { Input } from 'antd';
 import cx from "classnames";
 import { useRef, useState } from 'react';
+import DocEditor from '../assets/components/vault/docEditor';
+import TooltiipPJ from '../assets/components/common/Tooltip';
+import DocMenuBar from '../assets/components/vault/docMenuBar';
 
 function VaultDoc() {
 
     const [value, setValue] = useState('');
+    const [editorData, setEditorData] = useState(null);
     const [chosenEmoji, setChosenEmoji] = useState(null);
     const [showEmojiPicker, setShowEmojiPicker] = useState(false);
-    const quillRef = useRef();
+    
+    
+    const editor = useEditor({
+        extensions: [
+          StarterKit,
+        ],
+        content: '<p>Hello World!</p>',
+    });
 
+    
     const onEmojiClick = (event, emojiObject) => {
         setChosenEmoji(emojiObject);
     };
@@ -41,42 +54,31 @@ function VaultDoc() {
         }
     ];
 
-    VaultDoc.formats = [
-        'bold', 'italic', 'underline', 'strike',
-        'list', 'bullet', 'indent',
-        'link', 'color', 'code'
-    ];
-
-    VaultDoc.modules = {
-        toolbar: [
-          ['bold', 'italic', 'underline', 'strike','code'],
-          [{'list': 'ordered'}, {'list': 'bullet'}, 
-           {'indent': '-1'}, {'indent': '+1'}],
-          ['link'],
-          [{'color': ["#000000", "#e60000", "#ff9900", "#ffff00", "#008a00", "#0066cc", "#9933ff", "#ffffff", "#facccc", "#ffebcc", "#ffffcc", "#cce8cc", "#cce0f5", "#ebd6ff", "#bbbbbb", "#f06666", "#ffc266", "#ffff66", "#66b966", "#66a3e0", "#c285ff", "#888888", "#a10000", "#b26b00", "#b2b200", "#006100", "#0047b2", "#6b24b2", "#444444", "#5c0000", "#663d00", "#666600", "#003700", "#002966", "#3d1466", 'custom-color']}]
-        ],
-    clipboard: {
-        matchVisual: false,
-        }
+    const downloadDoc = () => {
     };
 
-
-    const downloadDoc = () => {
+    const editorComp = (editor) => {
+        setEditorData(editor);
     };
     
     return (
         <div>
-            <div className={cx(styles.doc_container, 'doc_container')}>
-                <div className={cx(styles.docHeader_top)}>
-                    <Input placeholder="New document" bordered={false} />
+            <div className={cx(styles.doc_container)}>
+                <div className={styles.docHeader}>
+                    <div className={cx(styles.flexRightHeader)}>
+                        <Input placeholder="New document" bordered={false} />
+                        <div className={styles.section_right}>
+                        <TooltiipPJ title="Share document">
+                            <span className={styles.headerActionIcon}><FiShare/></span>
+                        </TooltiipPJ>
+                        <TooltiipPJ title="Search Vault">
+                            <span className={styles.headerActionIcon}><HiOutlineSearch/></span>
+                        </TooltiipPJ>
+                        </div>
+                    </div>
+                    <DocMenuBar editor={editorData} />
                 </div>
-                <div>
-                    <ReactQuill ref={quillRef} theme="snow" value={value} onChange={setValue}
-                        placeholder="Type your message here"
-                        formats={VaultDoc.formats}
-                        modules={VaultDoc.modules}
-                    />
-                </div>
+                <DocEditor comp={editorComp}/>
                 <div>
                     <button onClick={() => downloadDoc()}>Download</button>
                 </div>
