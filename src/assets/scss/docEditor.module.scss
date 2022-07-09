@@ -1,6 +1,7 @@
 .menuToolbar {
     padding: 14px 16px;
     border-top: 1px solid rgb(226, 226, 226);
+    @include flexbox($display: flex, $alignItems: center, $columnGap: 4px);
 }
 .docHeader {
     background-color: white;
