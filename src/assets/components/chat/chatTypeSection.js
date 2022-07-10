@@ -91,7 +91,7 @@ function Editor() {
       <div className={styles.suggested_chats}>
         {suggested_chats.map((item, index) => {
           return (
-            <span className={styles.suggested_chip}>{item.msg}</span>
+            <span key={index} className={styles.suggested_chip}>{item.msg}</span>
           )
         })}
       </div>

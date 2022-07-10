@@ -54,9 +54,6 @@ function VaultDoc() {
         }
     ];
 
-    const downloadDoc = () => {
-    };
-
     const editorComp = (editor) => {
         setEditorData(editor);
     };
@@ -79,9 +76,6 @@ function VaultDoc() {
                     <DocMenuBar editor={editorData} />
                 </div>
                 <DocEditor comp={editorComp}/>
-                <div>
-                    <button onClick={() => downloadDoc()}>Download</button>
-                </div>
             </div>
         </div>
     )

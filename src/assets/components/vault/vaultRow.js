@@ -18,7 +18,7 @@ function VaultRow({items,title}) {
         {
           items.map((item, index) => {
             return (
-              <div>{VaultCard(item)}</div>
+              <div key={index}>{VaultCard(item)}</div>
           )})
         }
       </div>

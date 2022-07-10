@@ -15,7 +15,17 @@
     margin: 50px auto;
     border-radius: 12px;
     box-shadow: 0px 4px 54px rgba(0, 0, 0, 0.08);
+    margin-bottom: 40px;
 }
 .iconFlex {
     @include flexbox($display: flex);
+    cursor: pointer;
+    @include transition;
+    &:hover {
+        color: $primary;
+        @include transition;
+    }
+}
+.doc_container {
+    padding-bottom: 20px;
 }

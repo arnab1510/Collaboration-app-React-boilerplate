@@ -12,7 +12,7 @@ function TooltiipPJ(props) {
   };
 
   return (
-    <Tooltip {...props} title={title ? title : ''} color={type ? typeColor() : "#823cff"}>
+    <Tooltip {...props} title={title ? title : ''} color={type ? typeColor() : "#614aff"}>
       {children}
     </Tooltip>
   );

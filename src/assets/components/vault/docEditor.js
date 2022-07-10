@@ -1,6 +1,6 @@
 import cx from "classnames";
 import React, { useEffect } from "react";
-import { BsChevronRight} from 'react-icons/bs';
+import { BsChevronRight } from 'react-icons/bs';
 import styles from "./../../scss/design.module.scss";
 import { EditorContent, useEditor, BubbleMenu } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
@@ -10,6 +10,9 @@ import Highlight from '@tiptap/extension-highlight';
 import TextStyle from '@tiptap/extension-text-style'
 import { Color } from '@tiptap/extension-color';
 import Mention from '@tiptap/extension-mention';
+import Collaboration from '@tiptap/extension-collaboration';
+import { WebrtcProvider } from 'y-webrtc';
+import * as Y from 'yjs';
 import Link from '@tiptap/extension-link';
 import Table from '@tiptap/extension-table';
 import TableCell from '@tiptap/extension-table-cell';
@@ -21,9 +24,13 @@ import TextAlign from '@tiptap/extension-text-align';
 
 function DocEditor(props) {
 
+  // const ydoc = new Y.Doc();
+  // const provider = new WebrtcProvider('tiptap-collaboration-extension', ydoc);
   const editor = useEditor({
     extensions: [
-      StarterKit, Underline, TextStyle, Color, 
+      StarterKit.configure({
+        history: false}),
+      Underline, TextStyle, Color, 
       // FloatingMenu.configure({element: document.querySelector('.menu')})
       Highlight.configure({ multicolor: true }),
       Link.configure({
@@ -49,7 +56,10 @@ function DocEditor(props) {
       }),
       TextAlign.configure({
         types: ['heading', 'paragraph'],
-      })
+      }),
+      // Collaboration.configure({
+      //   document: provider.doc,
+      // })
     ],
     content: ``,
   });

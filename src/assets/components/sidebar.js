@@ -41,7 +41,7 @@ function Sidebar() {
       <div className={styles.sidebarContainer}>
         {PMsidebar.map((item, index) => {
           return (
-            <div className={styles.sidebarMenu} onClick={() => updateTab(item)}>
+            <div key={index} className={styles.sidebarMenu} onClick={() => updateTab(item)}>
               {item.icon}
               <div className={styles.sidebarMenuName}>{item.name}</div>
             </div>
