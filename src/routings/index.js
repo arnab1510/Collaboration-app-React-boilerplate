@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import SecondarySidebar from '../assets/components/secondary_sidebar';
 import Sidebar from '../assets/components/sidebar';
 import styles from '../assets/scss/design.module.scss';
+import Features from '../pages/Features';
 import Home from '../pages/Home';
 import Vault from '../pages/Vault';
 import VaultDoc from '../pages/VaultDoc';
@@ -12,6 +13,7 @@ const AppRoute = {
 	PageNotFound: "/page-not-found",
 	default: '/',
 	vault: '/vault',
+	features: '/features',
 	doc: '/vault/doc/:doc_id',
 
 	//List
@@ -31,6 +33,7 @@ export default function AppRoutings() {
 						<Route path={AppRoute.default} element={<Home/>} />
 						<Route path={AppRoute.vault} element={<Vault/>} />
 						<Route path={AppRoute.doc} element={<VaultDoc/>} />
+						<Route path={AppRoute.features} element={<Features/>} />
 					</Routes>
 				</div>
 			</div>

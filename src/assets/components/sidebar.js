@@ -22,7 +22,7 @@ function Sidebar() {
     {id: 1, name: 'Chat', url: '/', icon: <IoChatbubbleEllipsesOutline/>},
     {id: 2, name: 'Sprint', url: '', icon: <BsClockHistory/>},
     {id: 3, name: 'Roadmap', url: '', icon: <VscNotebook/>},
-    {id: 4, name: 'Features', url: '', icon: <BsListUl/>},
+    {id: 4, name: 'Features', url: '/features', icon: <BsListUl/>},
     {id: 5, name: 'Vault', url: '/vault', icon: <BsFolder2Open/>},
     {id: 6, name: 'Build', url: '', icon: <RiPencilRuler2Line/>},
     {id: 7, name: 'Channels', url: '', icon: <FiUsers/>},

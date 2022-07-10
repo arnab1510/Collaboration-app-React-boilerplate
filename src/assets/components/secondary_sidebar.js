@@ -32,7 +32,7 @@ function SecondarySidebar() {
   }, [history]);
 
   const sideBar = (data) => {
-    if (data.activeTab===1) {
+    if (data.activeTab===1 || data.activeTab===4) {
       return (
         <ChatSidebar/>
       );
