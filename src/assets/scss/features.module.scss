@@ -1,0 +1,15 @@
+.searchInput {
+    border-radius: 6px !important;
+    border: none !important;
+    width: 40% !important;
+    svg {
+        color: lightgrey;
+        margin-right: 6px;
+    }
+}
+.featureSubHeader {
+    @include flexbox($display: flex, $alignItems: center, $justifyContent: space-between);
+}
+.actionRow {
+    @include flexbox($display: flex, $alignItems: center, $columnGap: 14px);
+}

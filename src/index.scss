@@ -124,3 +124,23 @@ code {
     position: absolute;
     z-index: 2;
 }
+.ant-btn {
+  @include flexbox($display: flex, $alignItems: center, $columnGap: 6px);
+  font-size: 13px;
+  border-radius: 4px;
+  padding: 6px 16px;
+  height: fit-content;
+  &:hover {
+    border-color: $primaryDark;
+    color: $primary;
+  }
+}
+.ant-btn-primary {
+  color: white;
+  background: $primary;
+  &:hover {
+    background: $primaryDark;
+    color: white;
+    border-color: $primaryDark;
+  }
+}

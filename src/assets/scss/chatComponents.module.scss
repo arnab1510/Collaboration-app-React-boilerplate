@@ -4,7 +4,7 @@
     z-index: 2;
     top: 0px;
     background-color: white;
-    box-shadow: 0px 4px 44px rgba(0, 0, 0, 0.07);
+    box-shadow: 0px 4px 44px rgba(0, 0, 0, 0.05);
     padding: 10px 16px;
     width: 100%;
     @include flexbox($display: flex, $alignItems: center, $justifyContent: space-between);    
