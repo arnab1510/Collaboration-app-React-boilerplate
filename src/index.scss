@@ -144,3 +144,10 @@ code {
     border-color: $primaryDark;
   }
 }
+.featureTable {
+  .ant-table {
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #e7e7e7;
+  }
+}

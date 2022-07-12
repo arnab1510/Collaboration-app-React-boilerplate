@@ -13,3 +13,6 @@
 .actionRow {
     @include flexbox($display: flex, $alignItems: center, $columnGap: 14px);
 }
+.tableContainer {
+    margin-top: 30px;
+}
