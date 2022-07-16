@@ -15,9 +15,15 @@ function Features() {
 
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [frameworks, setFrameworks] = useState([    
+    {id: 0, name: 'Effort', desc: 'Lorem ipsum por amit', selected: false},
+    {id: 1, name: 'Value', desc: 'Lorem ipsum por amit', selected: false},
+    {id: 2, name: 'RICE', desc: 'Lorem ipsum por amit', selected: false},
+    {id: 3, name: 'Value-Effort', desc: 'Lorem ipsum por amit', selected: false}]
+  );
 
   const start = () => {
-    setLoading(true); // ajax request after empty completing
+    setLoading(true);
 
     setTimeout(() => {
       setSelectedRowKeys([]);
@@ -38,8 +44,11 @@ function Features() {
   const dataSource = [
     {
       id: '1',
+      feature: 'Metadata mapping of L2 categories on catalogue page',
       name: 'Mike',
-      age: 32,
+      page: 'Home page',
+      type: 'Bug',
+      score: 32,
       description: '10 Downing Street 10 Downing Street 10 Downing Street 10 Downing Street',
     },
     {
@@ -55,8 +64,9 @@ function Features() {
       title: 'ID',
       dataIndex: 'id',
       key: 'id',
-      width: 80,
+      width: 70,
       fixed: 'left',
+      render: text => <a>{text}</a>
     },
     {
       title: 'Feature',
@@ -73,13 +83,15 @@ function Features() {
     },
     {
       title: 'Type',
-      dataIndex: 'page',
-      key: 'page',
+      dataIndex: 'type',
+      key: 'type',
+      width: 100,
     },
     {
       title: 'Score',
-      dataIndex: 'page',
-      key: 'page',
+      dataIndex: 'score',
+      key: 'score',
+      width: 80,
     },
     {
       title: 'Reach',
@@ -111,21 +123,22 @@ function Features() {
       key: 'name',
     },
     {
-      title: 'Reportd by',
+      title: 'Reported by',
       dataIndex: 'address',
       key: 'address',
+      width: 160,
     }
   ];
 
-  const frameworkArray = [
-    {name: 'Effort', desc: 'Lorem ipsum por amit', selected: true},
-    {name: 'Value', desc: 'Lorem ipsum por amit', selected: false},
-    {name: 'RICE', desc: 'Lorem ipsum por amit', selected: false},
-    {name: 'Value-Effort', desc: 'Lorem ipsum por amit', selected: false}
-  ];
-
   const selectPriority = (index) => {
-    
+    let newArr = [...frameworks];
+    newArr[index].selected = !newArr[index].selected;
+    for (var i=0; i<=frameworks.length-1; i++) {
+      if (i!==index) {
+        newArr[i].selected = false;
+      }
+    }
+    setFrameworks(newArr);
   };
     
     return (
@@ -142,22 +155,23 @@ function Features() {
                 <div className={styles.frameworkRow}>
                   <span>Prioritize by</span>
                   <span className={styles.frameworkTagRow}>
-                    {frameworkArray.map((item,index) => {
+                    {frameworks.length!==0 ? frameworks.map((item,index) => {
                       return (
                         <TooltiipPJ title={item.desc}>
                           <span onClick={() => selectPriority(index)} className={cx(styles.frameworkTag, item.selected?styles.selected:null)} key={index}>{item.name}</span>
                         </TooltiipPJ>
                       )
-                    })}
+                    }) : null}
                   </span>
                 </div>
                 <div className={cx('featureTable')}>
                   <Table
                     rowSelection={rowSelection}
                     columns={columns}
+                    size={"middle"}
                     dataSource={dataSource}
                     pagination={{ pageSize: 50 }}
-                    scroll={{ y: 240, x: 1600 }}
+                    scroll={{ y: 240, x: 1400 }}
                     tableLayout="-"
                     bordered
                   />
