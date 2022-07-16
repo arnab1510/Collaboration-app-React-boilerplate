@@ -1,19 +1,19 @@
-import React, {  useState, useEffect, useRef, memo, useMemo } from 'react';
-import { BrowserRouter as Router, Route, Routes, Navigate, Link } from 'react-router-dom';
+import { Button, Input, Table, Select } from 'antd';
 import cx from 'classnames';
-import styles from '../assets/scss/design.module.scss';
-import { Input } from 'antd';
-import { Button } from 'antd';
+import React, { useState } from 'react';
+import { BsDownload } from 'react-icons/bs';
 import { HiOutlineSearch } from 'react-icons/hi';
 import { IoMdAdd } from 'react-icons/io';
-import { BsDownload } from 'react-icons/bs';
-import FeatureHeader from '../assets/components/features/featureHeader';
-import { Table } from "antd";
+import CustomModal from '../assets/components/common/Modal';
 import TooltiipPJ from '../assets/components/common/Tooltip';
+import FeatureHeader from '../assets/components/features/featureHeader';
+import { message, Upload } from 'antd';
+import styles from '../assets/scss/design.module.scss';
 
 function Features() {
 
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
+  const [addFeatureVisible, setAddFeatureVisible] = useState(false);
   const [loading, setLoading] = useState(false);
   const [frameworks, setFrameworks] = useState([    
     {id: 0, name: 'Effort', desc: 'Lorem ipsum por amit', selected: false},
@@ -21,6 +21,11 @@ function Features() {
     {id: 2, name: 'RICE', desc: 'Lorem ipsum por amit', selected: false},
     {id: 3, name: 'Value-Effort', desc: 'Lorem ipsum por amit', selected: false}]
   );
+  const { Option } = Select;
+  const handleChange = (value) => {
+    console.log(`selected ${value}`);
+  };
+  const { Dragger } = Upload;
 
   const start = () => {
     setLoading(true);
@@ -43,7 +48,7 @@ function Features() {
 
   const dataSource = [
     {
-      id: '1',
+      key: '1',
       feature: 'Metadata mapping of L2 categories on catalogue page',
       name: 'Mike',
       page: 'Home page',
@@ -52,7 +57,7 @@ function Features() {
       description: '10 Downing Street 10 Downing Street 10 Downing Street 10 Downing Street',
     },
     {
-      id: '2',
+      key: '2',
       name: 'John',
       age: 42,
       description: '10 Downing Street',
@@ -62,8 +67,8 @@ function Features() {
   const columns = [
     {
       title: 'ID',
-      dataIndex: 'id',
-      key: 'id',
+      dataIndex: 'key',
+      key: 'key',
       width: 70,
       fixed: 'left',
       render: text => <a>{text}</a>
@@ -103,13 +108,13 @@ function Features() {
       title: 'Importance',
       dataIndex: 'Name',
       key: 'name',
-      width: 120,
+      width: 100,
     },
     {
       title: 'Confidence',
       dataIndex: 'address',
       key: 'address',
-      width: 120,
+      width: 100,
     },
     {
       title: 'Effort',
@@ -126,7 +131,7 @@ function Features() {
       title: 'Reported by',
       dataIndex: 'address',
       key: 'address',
-      width: 160,
+      width: 250,
     }
   ];
 
@@ -140,15 +145,33 @@ function Features() {
     }
     setFrameworks(newArr);
   };
-    
+
+  const addFeatureModal = () => {
+    return (
+      <CustomModal width={'50vw'} visible={addFeatureVisible} title="Create request" setVisible={setAddFeatureVisible}>
+        <div>
+          <Select defaultValue="feature" onChange={handleChange} style={{width: 200}}>
+            <Option value="feature">Feature</Option>
+            <Option value="bug">Bug</Option>
+          </Select>
+            <Input placeholder="Feature summary" />
+          <div>
+            <Input placeholder="Feature summary" />
+          </div>
+        </div>
+      </CustomModal>
+    )
+  };
+
     return (
         <div>
+            {addFeatureModal()}
             <FeatureHeader/>
             <div className={styles.right_content_container}>
                 <div className={styles.featureSubHeader}>
                     <Input className={styles.searchInput} size="large" placeholder="Search feature requests" prefix={<HiOutlineSearch />} />
                     <div className={styles.actionRow}>
-                        <Button type="primary"><IoMdAdd/>Add new</Button>
+                        <Button type="primary" onClick={() => setAddFeatureVisible(true)}><IoMdAdd/>Add new</Button>
                         <Button><BsDownload/>Export</Button>
                     </div>
                 </div>
@@ -171,7 +194,7 @@ function Features() {
                     size={"middle"}
                     dataSource={dataSource}
                     pagination={{ pageSize: 50 }}
-                    scroll={{ y: 240, x: 1400 }}
+                    scroll={{ y: 240, x: 1450 }}
                     tableLayout="-"
                     bordered
                   />

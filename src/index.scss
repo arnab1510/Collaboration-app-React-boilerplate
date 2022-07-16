@@ -44,9 +44,6 @@ code {
 .ant-tooltip-inner {
     font-size: 13px;
 }
-.ant-input {
-    padding: initial;
-}
 
 .ProseMirror {
     min-height: 1200px;
@@ -145,10 +142,26 @@ code {
     border-color: $primaryDark;
   }
 }
+.ant-btn:focus {
+  color: $primary;
+  border-color: $primary;
+}
+.ant-btn-primary:focus {
+  color: white;
+  border-color: $primary;
+  background: $primary;
+}
 .featureTable {
   .ant-table {
     border-radius: 10px;
     overflow: hidden;
     border: 1px solid #e7e7e7;
   }
+}
+.ant-modal-content {
+  border-radius: 8px;
+  overflow: hidden;
+}
+.ant-modal-body, .ant-modal-header {
+  padding: 18px;
 }
