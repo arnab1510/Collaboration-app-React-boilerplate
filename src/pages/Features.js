@@ -1,13 +1,14 @@
-import { Button, Input, Table, Select } from 'antd';
+import { Button, Input, Table, Select, Checkbox, Form, Row, Col } from 'antd';
 import cx from 'classnames';
 import React, { useState } from 'react';
 import { BsDownload } from 'react-icons/bs';
 import { HiOutlineSearch } from 'react-icons/hi';
 import { IoMdAdd } from 'react-icons/io';
+import CustomTextArea from '../assets/components/common/CustomTextArea';
 import CustomModal from '../assets/components/common/Modal';
 import TooltiipPJ from '../assets/components/common/Tooltip';
+import UploadArea from '../assets/components/common/UploadArea';
 import FeatureHeader from '../assets/components/features/featureHeader';
-import { message, Upload } from 'antd';
 import styles from '../assets/scss/design.module.scss';
 
 function Features() {
@@ -15,6 +16,7 @@ function Features() {
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
   const [addFeatureVisible, setAddFeatureVisible] = useState(false);
   const [loading, setLoading] = useState(false);
+  const children = [];
   const [frameworks, setFrameworks] = useState([    
     {id: 0, name: 'Effort', desc: 'Lorem ipsum por amit', selected: false},
     {id: 1, name: 'Value', desc: 'Lorem ipsum por amit', selected: false},
@@ -22,10 +24,15 @@ function Features() {
     {id: 3, name: 'Value-Effort', desc: 'Lorem ipsum por amit', selected: false}]
   );
   const { Option } = Select;
+  for (let i = 10; i < 36; i++) {
+    children.push(<Option key={i.toString(36) + i}>{i.toString(36) + i}</Option>);
+  };
   const handleChange = (value) => {
     console.log(`selected ${value}`);
   };
-  const { Dragger } = Upload;
+  const onChange = (e) => {
+    console.log(`checked = ${e.target.checked}`);
+  };
 
   const start = () => {
     setLoading(true);
@@ -149,17 +156,56 @@ function Features() {
   const addFeatureModal = () => {
     return (
       <CustomModal width={'50vw'} visible={addFeatureVisible} title="Create request" setVisible={setAddFeatureVisible}>
-        <div>
-          <Select defaultValue="feature" onChange={handleChange} style={{width: 200}}>
-            <Option value="feature">Feature</Option>
-            <Option value="bug">Bug</Option>
-          </Select>
-            <Input placeholder="Feature summary" />
-          <div>
-            <Input placeholder="Feature summary" />
+        <div className={styles.requestFormflex}>
+          <Form layout='vertical' initialValues={{ remember: true }} autoComplete="off">
+            <Row gutter={[24, 0]}>
+              <Col span={8}>
+                <Form.Item label="Type" name="type">
+                  <Select defaultValue="feature" onChange={handleChange} style={{width: '100%'}}>
+                    <Option value="feature">Feature</Option>
+                    <Option value="bug">Bug</Option>
+                  </Select>
+                </Form.Item>
+              </Col>
+              <Col span={8}>
+                <Form.Item label="Module/Page" name="type">
+                  <Select defaultValue="feature" onChange={handleChange} style={{width: '100%'}}>
+                    <Option value="feature">Feature</Option>
+                    <Option value="bug">Bug</Option>
+                  </Select>
+                </Form.Item>
+              </Col>
+              <Col span={8}>
+                <Form.Item label="Tags" name="type">
+                  <Select mode="multiple" placeholder="Select tags" allowClear onChange={handleChange} style={{width: '100%'}}>
+                    {children}
+                  </Select>
+                </Form.Item>
+              </Col>
+            </Row>
+            <Form.Item label="Summary" name="summary" valuePropName="checked">
+              <Input placeholder="Feature summary" />
+            </Form.Item>
+            <Form.Item label="Description" name="description" valuePropName="checked">
+              <CustomTextArea/>
+            </Form.Item>
+            <Row gutter={[24, 0]}>
+              <Col span={24}>
+                <Form.Item label="Attachments" name="attachments">
+                  <UploadArea/>
+                </Form.Item>
+              </Col>
+            </Row>
+          </Form>
+          <div className={styles.flexApart}>
+            <span className={styles.dangerButton}>Cancel</span>
+            <span className={cx(styles.displayFlex, styles.columnGap_14)}>
+              <Checkbox onChange={onChange}>Create another request</Checkbox>
+              <Button type="primary" onClick={() => setAddFeatureVisible(true)}><IoMdAdd/>Add new</Button>
+            </span>
           </div>
         </div>
-      </CustomModal>
+      </CustomModal> 
     )
   };
 

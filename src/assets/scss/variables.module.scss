@@ -232,6 +232,15 @@ $breakpoints: (
 	}
 }
 
+@each $size in $sizes {
+	.columnGap_#{$size} {
+		column-gap: #{$size}px;
+	}
+	.rowGap_#{$size} {
+		row-gap: #{$size}px;
+	}
+}
+
 @each $bold in $bolds {
 	.bold_#{$bold} {
 		font-weight: #{$bold};

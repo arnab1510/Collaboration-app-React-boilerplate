@@ -2,8 +2,8 @@ import cx from "classnames";
 import React, { useEffect } from "react";
 import { BsChevronRight } from 'react-icons/bs';
 import styles from "./../../scss/design.module.scss";
-import { EditorContent, useEditor, BubbleMenu } from '@tiptap/react'
-import StarterKit from '@tiptap/starter-kit'
+import { EditorContent, useEditor, BubbleMenu } from '@tiptap/react';
+import StarterKit from '@tiptap/starter-kit';
 import FloatingMenu from '@tiptap/extension-floating-menu'
 import Underline from '@tiptap/extension-underline';
 import Highlight from '@tiptap/extension-highlight';
@@ -69,7 +69,7 @@ function DocEditor(props) {
   }, [editor]);
 
   return (
-    <div className={styles.editorPage}>
+    <div className={cx(styles.editorPage, 'editorPage')}>
       {editor && <BubbleMenu editor={editor} tippyOptions={{ duration: 100 }}>
         <button
           onClick={() => editor.chain().focus().toggleBold().run()}
