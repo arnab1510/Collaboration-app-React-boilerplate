@@ -7,6 +7,9 @@
         margin-right: 6px;
     }
 }
+.featureContainer {
+    width: calc(100% - 320px);
+}
 .featureSubHeader {
     @include flexbox($display: flex, $alignItems: center, $justifyContent: space-between);
 }

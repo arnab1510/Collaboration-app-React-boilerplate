@@ -1,0 +1,33 @@
+.excalidrawWrapper {
+    height: calc(100vh - 56px);
+    width: 100%;
+}
+.designToolbar {
+    background: white;
+    border-radius: 8px;
+    padding: 6px;
+    box-shadow: 0px 4px 44px rgba(0,0,0,0.07);
+    width: fit-content;
+    @include flexbox($display: flex, $direction: row, $alignItems: center, $columnGap: 10px);
+    z-index: 999;
+    position: absolute;
+    left: 40%;
+    top: 70px;
+    .toolIcon {
+        padding: 6px;
+        border-radius: 6px;
+        font-size: 20px;
+        @include transition;
+        &:hover {
+            cursor: pointer;
+            color: $primary;
+            background: $primary_light;
+            @include transition;
+        }
+    }
+    .activeTool {
+        color: $primary;
+        background: $primary_light;
+        @include transition;
+    }
+}

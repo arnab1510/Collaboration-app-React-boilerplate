@@ -16,6 +16,7 @@ function SecondarySidebar() {
 
   const hideSidebarURLs = [
     '/vault/doc/:doc_id',
+    '/build'
   ];
 
   useEffect(() => {

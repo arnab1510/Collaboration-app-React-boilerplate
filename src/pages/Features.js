@@ -133,6 +133,7 @@ function Features() {
       title: 'Status',
       dataIndex: 'Name',
       key: 'name',
+      width: 100,
     },
     {
       title: 'Reported by',
@@ -210,7 +211,7 @@ function Features() {
   };
 
     return (
-        <div>
+        <div className={styles.featureContainer}>
             {addFeatureModal()}
             <FeatureHeader/>
             <div className={styles.right_content_container}>
