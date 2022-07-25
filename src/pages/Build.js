@@ -1,17 +1,16 @@
-import React, {  useState, useEffect, useRef, memo } from 'react';
-import { BrowserRouter as Router, Route, Routes, Navigate, Link } from 'react-router-dom';
-import cx from 'classnames';
-import styles from '../assets/scss/design.module.scss';
 import { Input } from 'antd';
-import TooltiipPJ from '../assets/components/common/Tooltip';
+import cx from 'classnames';
+import React, { useEffect, useState } from 'react';
+import { BsDownload, BsEmojiHeartEyes, BsEraser, BsImage, BsPencil } from 'react-icons/bs';
+import { CgRedo, CgUndo } from 'react-icons/cg';
 import { FiShare, FiTrash2 } from 'react-icons/fi';
-import { IoShapesOutline } from 'react-icons/io5';
+import { HiCursorClick, HiOutlineSearch } from 'react-icons/hi';
+import { IoShapesOutline, IoTextOutline } from 'react-icons/io5';
 import { MdHorizontalRule } from 'react-icons/md';
-import { BsDownload, BsEmojiHeartEyes, BsEraser, BsGear, BsImage, BsPencil } from 'react-icons/bs';
-import { CgUndo, CgRedo } from 'react-icons/cg';
 import { RiAppsLine } from 'react-icons/ri';
-import { HiCursorClick, HiOutlineFolderDownload, HiOutlineSearch } from 'react-icons/hi';
-import { Stage, Layer, Line, Text, Transformer, Rect } from 'react-konva';
+import { Layer, Line, Rect, Stage, Transformer } from 'react-konva';
+import TooltiipPJ from '../assets/components/common/Tooltip';
+import styles from '../assets/scss/design.module.scss';
 
 function Home() {
 
@@ -117,6 +116,7 @@ function Home() {
         <Rect
           onClick={onSelect}
           onTap={onSelect}
+          perfectDrawEnabled={false}
           ref={shapeRef}
           {...shapeProps}
           draggable
@@ -136,22 +136,15 @@ function Home() {
             });
           }}
           onTransformEnd={(e) => {
-            // transformer is changing scale of the node
-            // and NOT its width or height
-            // but in the store we have only width and height
-            // to match the data better we will reset scale on transform end
             const node = shapeRef.current;
             const scaleX = node.scaleX();
             const scaleY = node.scaleY();
-  
-            // we will reset it back
             node.scaleX(1);
             node.scaleY(1);
             onChange({
               ...shapeProps,
               x: node.x(),
               y: node.y(),
-              // set minimal value
               width: Math.max(5, node.width() * scaleX),
               height: Math.max(node.height() * scaleY),
             });
@@ -161,7 +154,6 @@ function Home() {
           <Transformer
             ref={trRef}
             boundBoxFunc={(oldBox, newBox) => {
-              // limit resize
               if (newBox.width < 5 || newBox.height < 5) {
                 return oldBox;
               }
@@ -198,6 +190,7 @@ function Home() {
               {iconOption(<BsPencil/>, 'pen', 'toolSelect')}
               {iconOption(<BsEraser/>, 'eraser', 'toolSelect')}
               {iconOption(<IoShapesOutline/>, 'shape', 'toolSelect')}
+              {iconOption(<IoTextOutline/>, 'shape', 'toolSelect')}
               {iconOption(<RiAppsLine/>, 'clear', 'clear')}
               {iconOption(<BsImage/>, 'clear', 'clear')}
               {iconOption(<BsEmojiHeartEyes/>, 'clear', 'clear')}
@@ -220,10 +213,10 @@ function Home() {
             <Stage
               width={window.innerWidth}
               height={window.innerHeight}
+              ref={stageRef}
               onMouseDown={handleMouseDown}
               onMousemove={handleMouseMove}
-              onMouseup={handleMouseUp}
-              ref={stageRef}>
+              onMouseup={handleMouseUp}>
               <Layer ref={layerRef}>
                 {lines.map((line, i) => (
                   <Line
@@ -231,6 +224,7 @@ function Home() {
                     points={line.points}
                     stroke="#010101"
                     strokeWidth={1}
+                    perfectDrawEnabled={false}
                     tension={0.5}
                     lineCap="round"
                     lineJoin="round"
