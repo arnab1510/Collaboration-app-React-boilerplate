@@ -11,7 +11,7 @@
     @include flexbox($display: flex, $direction: row, $alignItems: center, $columnGap: 10px);
     z-index: 999;
     position: absolute;
-    left: 40%;
+    left: 35%;
     top: 70px;
     .toolIcon {
         padding: 6px;
@@ -30,4 +30,24 @@
         background: $primary_light;
         @include transition;
     }
+}
+.designOptions {
+    background: white;
+    border-radius: 8px;
+    padding: 18px;
+    box-shadow: 0px 4px 44px rgba(0,0,0,0.07);
+    width: fit-content;
+    min-width: 250px;
+    @include flexbox($display: flex, $direction: column, $rowGap: 10px);
+    z-index: 999;
+    position: absolute;
+    right: 14px;
+    top: 70px;
+}
+.twoGrid {
+    @include gridbox($display: grid, $template: 1fr 1fr, $rowGap: 10px);
+}
+.optionHeader {
+    @include typography($weight: 6);
+    margin-bottom: 10px;
 }

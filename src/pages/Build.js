@@ -7,8 +7,10 @@ import TooltiipPJ from '../assets/components/common/Tooltip';
 import { FiShare, FiTrash2 } from 'react-icons/fi';
 import { IoShapesOutline } from 'react-icons/io5';
 import { MdHorizontalRule } from 'react-icons/md';
-import { BsEraser, BsPencil } from 'react-icons/bs';
-import { HiCursorClick, HiOutlineSearch } from 'react-icons/hi';
+import { BsDownload, BsEmojiHeartEyes, BsEraser, BsGear, BsImage, BsPencil } from 'react-icons/bs';
+import { CgUndo, CgRedo } from 'react-icons/cg';
+import { RiAppsLine } from 'react-icons/ri';
+import { HiCursorClick, HiOutlineFolderDownload, HiOutlineSearch } from 'react-icons/hi';
 import { Stage, Layer, Line, Text, Transformer, Rect } from 'react-konva';
 
 function Home() {
@@ -20,15 +22,28 @@ function Home() {
   const isDrawing = React.useRef(false);
   const stageRef = React.useRef(null);
   const layerRef = React.useRef(null);
+  const [cursor, setCursor] = useState('crosshair');
+
+  useEffect(() => {
+    if (tool==="select") {
+      setCursor('pointer');
+    }
+    else if (tool!=="select") {
+      setCursor('crosshair');
+    }
+  }, [tool]);
 
   const handleMouseDown = (e) => {
-    isDrawing.current = true;
-    const pos = e.target.getStage().getPointerPosition();
-    setLines([...lines, { tool, points: [pos.x, pos.y] }]);
-    if (tool==="shape") {
-      let newRect = null;
-      newRect = {x: pos.x, y: pos.y, width: 0, height: 0, fill: 'green', stroke: 'black', strokeWidth: 4};
-      setRect(rectangles => [...rectangles, newRect]);
+    checkDeselect(e);
+    if (tool!=="select") {
+      isDrawing.current = true;
+      const pos = e.target.getStage().getPointerPosition();
+      setLines([...lines, { tool, points: [pos.x, pos.y] }]);
+      if (tool==="shape") {
+        let newRect = null;
+        newRect = {x: pos.x, y: pos.y, width: 0, height: 0, fill: '#e6edff', stroke: '#b8ccff', strokeWidth: 1};
+        setRect(rectangles => [...rectangles, newRect]);
+      }
     }
   };
 
@@ -105,6 +120,14 @@ function Home() {
           ref={shapeRef}
           {...shapeProps}
           draggable
+          fill={shapeProps.fill}
+          stroke={shapeProps.stroke}
+          strokeWidth={shapeProps.strokeWidth}
+          // cornerRadius={4}
+          shadowBlur={0}
+          // shadowOffset={0}
+          shadowEnabled={false}
+          // shadowColor={0}
           onDragEnd={(e) => {
             onChange({
               ...shapeProps,
@@ -156,23 +179,43 @@ function Home() {
             <div className={cx(styles.flexRightHeader)}>
                 <Input placeholder="New document" bordered={false} />
                 <div className={styles.section_right}>
-                <TooltiipPJ title="Share document">
-                    <span className={styles.headerActionIcon}><FiShare/></span>
-                </TooltiipPJ>
-                <TooltiipPJ title="Search Vault">
-                    <span className={styles.headerActionIcon}><HiOutlineSearch/></span>
-                </TooltiipPJ>
+                  <TooltiipPJ title="Download PNG">
+                      <span className={styles.headerActionIcon}><BsDownload/></span>
+                  </TooltiipPJ>
+                  <TooltiipPJ title="Share document">
+                      <span className={styles.headerActionIcon}><FiShare/></span>
+                  </TooltiipPJ>
+                  <TooltiipPJ title="Search Vault">
+                      <span className={styles.headerActionIcon}><HiOutlineSearch/></span>
+                  </TooltiipPJ>
                 </div>
             </div>
           </div>
-          <div className={styles.excalidrawWrapper}>
+          <div className={styles.excalidrawWrapper} style={{ cursor: cursor }}>
             <div className={styles.designToolbar}>
               {iconOption(<HiCursorClick/>, 'select', 'toolSelect')}
               {iconOption(<MdHorizontalRule/>, 'line', 'toolSelect')}
               {iconOption(<BsPencil/>, 'pen', 'toolSelect')}
               {iconOption(<BsEraser/>, 'eraser', 'toolSelect')}
               {iconOption(<IoShapesOutline/>, 'shape', 'toolSelect')}
+              {iconOption(<RiAppsLine/>, 'clear', 'clear')}
+              {iconOption(<BsImage/>, 'clear', 'clear')}
+              {iconOption(<BsEmojiHeartEyes/>, 'clear', 'clear')}
+              |
               {iconOption(<FiTrash2/>, 'clear', 'clear')}
+              {iconOption(<CgUndo/>, 'clear', 'clear')}
+              {iconOption(<CgRedo/>, 'clear', 'clear')}
+            </div>
+            <div className={styles.designOptions}>
+              <div>
+                <div className={styles.optionHeader}>Position &amp; dimensions</div>
+                <div className={styles.twoGrid}>
+                  <div>X 348</div>
+                  <div>Y 110</div>
+                  <div>W 348</div>
+                  <div>H 348</div>
+                </div>
+              </div>
             </div>
             <Stage
               width={window.innerWidth}
@@ -186,8 +229,8 @@ function Home() {
                   <Line
                     key={i}
                     points={line.points}
-                    stroke="#df4b26"
-                    strokeWidth={2}
+                    stroke="#010101"
+                    strokeWidth={1}
                     tension={0.5}
                     lineCap="round"
                     lineJoin="round"
@@ -202,17 +245,16 @@ function Home() {
                     shapeProps={rectangle}
                     height={rectangle.height}
                     width={rectangle.width}
-                    stroke="#df4b26"
-                    strokeWidth={2}
                     isSelected={rectangle.id === selectedId}
-              onSelect={() => {
-                selectShape(rectangle.id);
-              }}
-              onChange={(newAttrs) => {
-                const rects = rectangles.slice();
-                rects[i] = newAttrs;
-                setRect(rects);
-              }}
+                    onSelect={() => {
+                      selectShape(rectangle.id);
+                      console.log(selectedId);
+                    }}
+                    onChange={(newAttrs) => {
+                      const rects = rectangles.slice();
+                      rects[i] = newAttrs;
+                      setRect(rects);
+                    }}
                   />
                 ))}
               </Layer>
