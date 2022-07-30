@@ -5,10 +5,10 @@ import { BsDownload, BsEmojiHeartEyes, BsEraser, BsImage, BsPencil } from 'react
 import { CgRedo, CgUndo } from 'react-icons/cg';
 import { FiShare, FiTrash2 } from 'react-icons/fi';
 import { HiCursorClick, HiOutlineSearch } from 'react-icons/hi';
-import { IoShapesOutline, IoTextOutline } from 'react-icons/io5';
+import { IoHandRightOutline, IoShapesOutline, IoTextOutline } from 'react-icons/io5';
 import { MdHorizontalRule } from 'react-icons/md';
 import { RiAppsLine, RiSubtractFill, RiAddLine } from 'react-icons/ri';
-import { Layer, Line, Rect, Stage, Transformer } from 'react-konva';
+import { Arrow, Layer, Line, Rect, Stage, Transformer } from 'react-konva';
 import TooltiipPJ from '../assets/components/common/Tooltip';
 import styles from '../assets/scss/design.module.scss';
 
@@ -23,13 +23,13 @@ function Home() {
   const layerRef = React.useRef(null);
   const [cursor, setCursor] = useState('crosshair');
   const [stage, setStage] = useState({
-    scale: 0.6,
+    scale: 1,
     x: 0,
     y: 0
   });
 
   useEffect(() => {
-    if (tool==="select") {
+    if (tool==="select" || tool==="pan") {
       setCursor('pointer');
     }
     else if (tool!=="select") {
@@ -41,11 +41,10 @@ function Home() {
     checkDeselect(e);
     if (tool!=="select") {
       isDrawing.current = true;
-      const pos = e.target.getStage().getPointerPosition();
-      setLines([...lines, { tool, points: [pos.x, pos.y] }]);
+      setLines([...lines, { tool, points: [getAbsoluteTransform().x, getAbsoluteTransform().y] }]);
       if (tool==="shape") {
         let newRect = null;
-        newRect = {x: pos.x, y: pos.y, width: 0, height: 0, fill: '#e6edff', stroke: '#b8ccff', strokeWidth: 1};
+        newRect = {x: getAbsoluteTransform().x, y: getAbsoluteTransform().y, width: 0, height: 0, fill: '#e6edff', stroke: '#b8ccff', strokeWidth: 1};
         setRect(rectangles => [...rectangles, newRect]);
       }
     }
@@ -69,24 +68,24 @@ function Home() {
     });
   };
 
-  const handleWheel = (e) => {
-    e.evt.preventDefault();
-    scaleRelativeToPoint(
-      e.target.getStage().getPointerPosition(),
-      e.evt.deltaY < 0
-    );
-  };
+  const getPointerPosition = () => {
+    return stageRef.current.getPointerPosition();
+  }
+
+  const getAbsoluteTransform = () => {
+    let transform = stageRef.current.getAbsoluteTransform().copy();
+    transform.invert();
+    return transform.point(getPointerPosition());
+  }
 
   const handleMouseMove = (e) => {
     if (!isDrawing.current) {
       return;
     }
-    const stage = e.target.getStage();
-    const point = stage.getPointerPosition();
     if (tool==="pen" || tool==="eraser") {
       let lastLine = lines[lines.length - 1];
       // add point
-      lastLine.points = lastLine.points.concat([point.x, point.y]);
+      lastLine.points = lastLine.points.concat([getAbsoluteTransform().x, getAbsoluteTransform().y]);
   
       // replace last
       lines.splice(lines.length - 1, 1, lastLine);
@@ -95,8 +94,8 @@ function Home() {
     else if (tool==="shape" || tool==="eraser") {
       const rectCopy = [...rectangles];
       const index = rectangles.length - 1;
-      rectCopy[index].width = point.x - rectCopy[index].x;
-      rectCopy[index].height = point.y - rectCopy[index].y;
+      rectCopy[index].width = getAbsoluteTransform().x - rectCopy[index].x;
+      rectCopy[index].height = getAbsoluteTransform().y - rectCopy[index].y;
       setRect(rectCopy);
     }
   };
@@ -123,11 +122,58 @@ function Home() {
   };
 
   const checkDeselect = (e) => {
-    // deselect when clicked on empty area
     const clickedOnEmpty = e.target === e.target.getStage();
     if (clickedOnEmpty) {
       selectShape(null);
     }
+  };
+
+  const CustomArrow = ({ startNode, endNode }) => {
+    const dx = startNode.x - endNode.x;
+    const dy = startNode.y - endNode.y;
+    let angle = Math.atan2(-dy, dx);
+
+    const radius = 20;
+    const curvePower = 30;
+
+    const arrowStart = {
+      x: endNode.x + -radius * Math.cos(angle + Math.PI),
+      y: endNode.y + radius * Math.sin(angle + Math.PI)
+    };
+  
+    const arrowEnd = {
+      x: startNode.x + -radius * Math.cos(angle),
+      y: startNode.y + radius * Math.sin(angle)
+    };
+
+    const arrowCurve = {
+      x:
+        (arrowStart.x + arrowEnd.x) / 2 +
+        curvePower * Math.cos(angle + Math.PI / 2),
+      y:
+        (arrowStart.y + arrowEnd.y) / 2 +
+        curvePower * Math.sin(angle - Math.PI / 2)
+    };
+
+    return (
+      <React.Fragment>
+        <Arrow
+          tension={0.2}
+          points={[
+            arrowStart.x,
+            arrowStart.y,
+            arrowCurve.x,
+            arrowCurve.y,
+            arrowEnd.x,
+            arrowEnd.y
+          ]}
+          stroke="#000"
+          fill="#000"
+          strokeWidth={3}
+          pointerWidth={6}
+        />
+      </React.Fragment>
+    )
   };
 
   const Rectangle = ({ shapeProps, isSelected, onSelect, onChange }) => {
@@ -150,15 +196,12 @@ function Home() {
           perfectDrawEnabled={false}
           ref={shapeRef}
           {...shapeProps}
-          draggable
+          draggable={tool!=="pan"}
           fill={shapeProps.fill}
           stroke={shapeProps.stroke}
           strokeWidth={shapeProps.strokeWidth}
-          // cornerRadius={4}
           shadowBlur={0}
-          // shadowOffset={0}
           shadowEnabled={false}
-          // shadowColor={0}
           onDragEnd={(e) => {
             onChange({
               ...shapeProps,
@@ -245,13 +288,16 @@ function Home() {
               <div className={styles.toolIcon} onClick={() => {scaleRelativeToPoint({x: window.innerWidth / 2,y: window.innerHeight / 2},false)}}><RiSubtractFill/></div>
               <div className={cx(styles.toolIcon, styles.zoomInput)}>{Math.round(stage.scale*100)}%</div>
               <div className={styles.toolIcon} onClick={() => {scaleRelativeToPoint({x: window.innerWidth / 2,y: window.innerHeight / 2},true)}}><RiAddLine/></div>
+              <div className={styles.toolIcon} onClick={(() => toolBarAction("pan", "toolSelect"))}><IoHandRightOutline/></div>
             </div>
             <Stage
               width={window.innerWidth}
               height={window.innerHeight}
+              // x={stage.x}
+              // y={stage.y}
+              draggable={tool==="pan"}
               ref={stageRef}
               scaleX={stage.scale}
-              onWheel={handleWheel}
               scaleY={stage.scale}
               onMouseDown={handleMouseDown}
               onMousemove={handleMouseMove}
@@ -272,20 +318,29 @@ function Home() {
                     }
                   />
                 ))}
-                {rectangles.map((rectangle, i) => (
+                <CustomArrow startNode={'rect1'} endNode={'rect2'} />
+                {rectangles.map((rectangle, index) => (
                   <Rectangle
-                    key={i}
+                    key={index}
+                    getKey={index}
                     shapeProps={rectangle}
                     height={rectangle.height}
                     width={rectangle.width}
                     isSelected={rectangle.id === selectedId}
-                    onSelect={() => {
-                      selectShape(rectangle.id);
-                      console.log(selectedId);
+                    onSelect={(e) => {
+                      if (e.current !== undefined) {
+                        let temp = nodesArray;
+                        if (!nodesArray.includes(e.current)) temp.push(e.current);
+                        setNodes(temp);
+                        trRef.current.nodes(nodesArray);
+                        trRef.current.nodes(nodesArray);
+                        trRef.current.getLayer().batchDraw();
+                      }
+                      selectShape(rect.id);
                     }}
                     onChange={(newAttrs) => {
                       const rects = rectangles.slice();
-                      rects[i] = newAttrs;
+                      rects[index] = newAttrs;
                       setRect(rects);
                     }}
                   />
