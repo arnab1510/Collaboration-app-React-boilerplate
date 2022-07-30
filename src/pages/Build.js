@@ -7,7 +7,7 @@ import { FiShare, FiTrash2 } from 'react-icons/fi';
 import { HiCursorClick, HiOutlineSearch } from 'react-icons/hi';
 import { IoShapesOutline, IoTextOutline } from 'react-icons/io5';
 import { MdHorizontalRule } from 'react-icons/md';
-import { RiAppsLine } from 'react-icons/ri';
+import { RiAppsLine, RiSubtractFill, RiAddLine } from 'react-icons/ri';
 import { Layer, Line, Rect, Stage, Transformer } from 'react-konva';
 import TooltiipPJ from '../assets/components/common/Tooltip';
 import styles from '../assets/scss/design.module.scss';
@@ -22,6 +22,11 @@ function Home() {
   const stageRef = React.useRef(null);
   const layerRef = React.useRef(null);
   const [cursor, setCursor] = useState('crosshair');
+  const [stage, setStage] = useState({
+    scale: 0.6,
+    x: 0,
+    y: 0
+  });
 
   useEffect(() => {
     if (tool==="select") {
@@ -44,6 +49,32 @@ function Home() {
         setRect(rectangles => [...rectangles, newRect]);
       }
     }
+  };
+
+  const scaleRelativeToPoint = (point, increaseScale) => {
+    const scaleBy = 1.02;
+    const stage = stageRef.current;
+    const oldScale = stage.scaleX();
+    const mousePointTo = {
+      x: point.x / oldScale - stage.x() / oldScale,
+      y: point.y / oldScale - stage.y() / oldScale
+    };
+
+    const newScale = increaseScale ? oldScale * scaleBy : oldScale / scaleBy;
+
+    setStage({
+      scale: newScale,
+      x: (point.x / newScale - mousePointTo.x) * newScale,
+      y: (point.y / newScale - mousePointTo.y) * newScale
+    });
+  };
+
+  const handleWheel = (e) => {
+    e.evt.preventDefault();
+    scaleRelativeToPoint(
+      e.target.getStage().getPointerPosition(),
+      e.evt.deltaY < 0
+    );
   };
 
   const handleMouseMove = (e) => {
@@ -210,10 +241,18 @@ function Home() {
                 </div>
               </div>
             </div>
+            <div className={styles.zoomToolbar}>
+              <div className={styles.toolIcon} onClick={() => {scaleRelativeToPoint({x: window.innerWidth / 2,y: window.innerHeight / 2},false)}}><RiSubtractFill/></div>
+              <div className={cx(styles.toolIcon, styles.zoomInput)}>{Math.round(stage.scale*100)}%</div>
+              <div className={styles.toolIcon} onClick={() => {scaleRelativeToPoint({x: window.innerWidth / 2,y: window.innerHeight / 2},true)}}><RiAddLine/></div>
+            </div>
             <Stage
               width={window.innerWidth}
               height={window.innerHeight}
               ref={stageRef}
+              scaleX={stage.scale}
+              onWheel={handleWheel}
+              scaleY={stage.scale}
               onMouseDown={handleMouseDown}
               onMousemove={handleMouseMove}
               onMouseup={handleMouseUp}>
