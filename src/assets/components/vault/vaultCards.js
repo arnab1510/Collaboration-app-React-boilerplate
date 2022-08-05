@@ -16,7 +16,7 @@ export const VaultCard = (data) => {
     if (type==="doc") {
       return (
         <div className={cx(styles.padding_12, styles.text_center)} onClick={() => redirectURL(type,url)}>
-          <img className={styles.vaultCardPreview} src="https://prodjam-assets.s3.ap-south-1.amazonaws.com/doc_preview.png"/>
+          <img className={styles.vaultCardPreview} src="https://prodj-assets.s3.ap-south-1.amazonaws.com/images/doc_preview.png"/>
         </div>
       )
     }

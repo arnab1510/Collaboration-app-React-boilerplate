@@ -1,0 +1,9 @@
+.sprintTask {
+    padding: 10px 20px;
+    background: white;
+    border-radius: 8px;
+    width: 100%;
+}
+.taskList {
+    @include flexbox($display: flex, $direction: column, $alignItems: center, $columnGap: 20px);    
+}

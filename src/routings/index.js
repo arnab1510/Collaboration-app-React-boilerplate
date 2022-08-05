@@ -5,6 +5,7 @@ import styles from '../assets/scss/design.module.scss';
 import Build from '../pages/Build';
 import Features from '../pages/Features';
 import Home from '../pages/Home';
+import Sprint from '../pages/Sprint';
 import Vault from '../pages/Vault';
 import VaultDoc from '../pages/VaultDoc';
 
@@ -15,6 +16,7 @@ const AppRoute = {
 	default: '/',
 	vault: '/vault',
 	features: '/features',
+	sprint: '/sprint',
 	build: '/build',
 	doc: '/vault/doc/:doc_id',
 
@@ -37,6 +39,7 @@ export default function AppRoutings() {
 						<Route path={AppRoute.doc} element={<VaultDoc/>} />
 						<Route path={AppRoute.features} element={<Features/>} />
 						<Route path={AppRoute.build} element={<Build/>} />
+						<Route path={AppRoute.sprint} element={<Sprint/>} />
 					</Routes>
 				</div>
 			</div>

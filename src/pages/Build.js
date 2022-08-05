@@ -1,7 +1,7 @@
 import { Input } from 'antd';
 import cx from 'classnames';
 import React, { useEffect, useState } from 'react';
-import { BsDownload, BsEmojiHeartEyes, BsEraser, BsImage, BsPencil } from 'react-icons/bs';
+import { BsDownload, BsEmojiHeartEyes, BsEraser, BsImage, BsPencil, BsArrow90DegRight } from 'react-icons/bs';
 import { CgRedo, CgUndo } from 'react-icons/cg';
 import { FiShare, FiTrash2 } from 'react-icons/fi';
 import { HiCursorClick, HiOutlineSearch } from 'react-icons/hi';
@@ -18,8 +18,10 @@ function Home() {
   const [lines, setLines] = React.useState([]);
   const [selectedId, selectShape] = React.useState(null);
   const [rectangles, setRect] = React.useState([]);
+  const [drawLine, setDrawLine] = React.useState(false);
   const isDrawing = React.useRef(false);
   const stageRef = React.useRef(null);
+  const shapeRef = React.useRef();
   const layerRef = React.useRef(null);
   const [cursor, setCursor] = useState('crosshair');
   const [stage, setStage] = useState({
@@ -39,14 +41,15 @@ function Home() {
 
   const handleMouseDown = (e) => {
     checkDeselect(e);
-    if (tool!=="select") {
+    if (tool==="pen") {
       isDrawing.current = true;
-      setLines([...lines, { tool, points: [getAbsoluteTransform().x, getAbsoluteTransform().y] }]);
-      if (tool==="shape") {
-        let newRect = null;
-        newRect = {x: getAbsoluteTransform().x, y: getAbsoluteTransform().y, width: 0, height: 0, fill: '#e6edff', stroke: '#b8ccff', strokeWidth: 1};
-        setRect(rectangles => [...rectangles, newRect]);
-      }
+      setLines([...lines, { tool, points: [getAbsoluteTransform(stageRef).x, getAbsoluteTransform(stageRef).y] }]);
+    }
+    else if (tool==="shape") {
+      isDrawing.current = true;
+      let newRect = null;
+      newRect = {x: getAbsoluteTransform(stageRef).x, y: getAbsoluteTransform(stageRef).y, width: 0, height: 0, fill: '#e6edff', stroke: '#b8ccff', strokeWidth: 1, id: 'rect'+rectangles.length};
+      setRect(rectangles => [...rectangles, newRect]);
     }
   };
 
@@ -72,8 +75,8 @@ function Home() {
     return stageRef.current.getPointerPosition();
   }
 
-  const getAbsoluteTransform = () => {
-    let transform = stageRef.current.getAbsoluteTransform().copy();
+  const getAbsoluteTransform = (element) => {
+    let transform = element.current.getAbsoluteTransform().copy();
     transform.invert();
     return transform.point(getPointerPosition());
   }
@@ -82,20 +85,18 @@ function Home() {
     if (!isDrawing.current) {
       return;
     }
-    if (tool==="pen" || tool==="eraser") {
+    else if (tool==="pen" || tool==="eraser") {
       let lastLine = lines[lines.length - 1];
-      // add point
-      lastLine.points = lastLine.points.concat([getAbsoluteTransform().x, getAbsoluteTransform().y]);
-  
-      // replace last
+      lastLine.points = lastLine.points.concat([getAbsoluteTransform(stageRef).x, getAbsoluteTransform(stageRef).y]);
+
       lines.splice(lines.length - 1, 1, lastLine);
       setLines(lines.concat());
     }
     else if (tool==="shape" || tool==="eraser") {
       const rectCopy = [...rectangles];
       const index = rectangles.length - 1;
-      rectCopy[index].width = getAbsoluteTransform().x - rectCopy[index].x;
-      rectCopy[index].height = getAbsoluteTransform().y - rectCopy[index].y;
+      rectCopy[index].width = getAbsoluteTransform(stageRef).x - rectCopy[index].x;
+      rectCopy[index].height = getAbsoluteTransform(stageRef).y - rectCopy[index].y;
       setRect(rectCopy);
     }
   };
@@ -176,13 +177,19 @@ function Home() {
     )
   };
 
+  const rectMouseDown = (e) => {
+    console.log(e)
+  }
+
+  const shapeHover = () => {
+
+  }
+
   const Rectangle = ({ shapeProps, isSelected, onSelect, onChange }) => {
-    const shapeRef = React.useRef();
     const trRef = React.useRef();
   
     React.useEffect(() => {
       if (isSelected) {
-        // we need to attach transformer manually
         trRef.current.nodes([shapeRef.current]);
         trRef.current.getLayer().batchDraw();
       }
@@ -202,6 +209,8 @@ function Home() {
           strokeWidth={shapeProps.strokeWidth}
           shadowBlur={0}
           shadowEnabled={false}
+          onMouseEnter={shapeHover}
+          onMouseDown={(e) => rectMouseDown(e)}
           onDragEnd={(e) => {
             onChange({
               ...shapeProps,
@@ -221,12 +230,14 @@ function Home() {
               y: node.y(),
               width: Math.max(5, node.width() * scaleX),
               height: Math.max(node.height() * scaleY),
+              rotation: node.rotation()
             });
           }}
         />
         {isSelected && (
           <Transformer
             ref={trRef}
+            keepRatio={false}
             boundBoxFunc={(oldBox, newBox) => {
               if (newBox.width < 5 || newBox.height < 5) {
                 return oldBox;
@@ -264,7 +275,8 @@ function Home() {
               {iconOption(<BsPencil/>, 'pen', 'toolSelect')}
               {iconOption(<BsEraser/>, 'eraser', 'toolSelect')}
               {iconOption(<IoShapesOutline/>, 'shape', 'toolSelect')}
-              {iconOption(<IoTextOutline/>, 'shape', 'toolSelect')}
+              {iconOption(<IoTextOutline/>, 'text', 'toolSelect')}
+              {iconOption(<BsArrow90DegRight/>, 'arrow', 'toolSelect')}
               {iconOption(<RiAppsLine/>, 'clear', 'clear')}
               {iconOption(<BsImage/>, 'clear', 'clear')}
               {iconOption(<BsEmojiHeartEyes/>, 'clear', 'clear')}
@@ -318,25 +330,18 @@ function Home() {
                     }
                   />
                 ))}
-                <CustomArrow startNode={'rect1'} endNode={'rect2'} />
+                {/* <CustomArrow startNode={'rect1'} endNode={'rect2'} /> */}
                 {rectangles.map((rectangle, index) => (
                   <Rectangle
                     key={index}
+                    id={'rect'+index}
                     getKey={index}
                     shapeProps={rectangle}
                     height={rectangle.height}
                     width={rectangle.width}
                     isSelected={rectangle.id === selectedId}
-                    onSelect={(e) => {
-                      if (e.current !== undefined) {
-                        let temp = nodesArray;
-                        if (!nodesArray.includes(e.current)) temp.push(e.current);
-                        setNodes(temp);
-                        trRef.current.nodes(nodesArray);
-                        trRef.current.nodes(nodesArray);
-                        trRef.current.getLayer().batchDraw();
-                      }
-                      selectShape(rect.id);
+                    onSelect={() => {
+                      selectShape(rectangle.id);
                     }}
                     onChange={(newAttrs) => {
                       const rects = rectangles.slice();
