@@ -1,7 +1,6 @@
 import cx from "classnames";
-import { FiChevronsLeft, FiTrash2 } from 'react-icons/fi';
+import { FiChevronsLeft, FiShare, FiTrash2 } from 'react-icons/fi';
 import { IoIosAddCircleOutline } from 'react-icons/io';
-import { MdIosShare } from 'react-icons/md';
 import { RiHome2Line } from 'react-icons/ri';
 import ChatSidebar from '../chat/chatSidebar';
 import styles from "./../../scss/design.module.scss";
@@ -24,7 +23,7 @@ function VaultSidebar() {
             Favourites
           </div> */}
           <div className={styles.sec_sidebar_option}>
-            <MdIosShare/>
+            <FiShare/>
             Shared with me
           </div>
           <div className={styles.sec_sidebar_option}>

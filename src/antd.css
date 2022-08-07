@@ -13887,7 +13887,7 @@ textarea.ant-input-affix-wrapper {
   background-color: #fff;
   background-image: none;
   border: 1px solid #d9d9d9;
-  border-radius: 2px;
+  border-radius: 6px;
   transition: all 0.3s;
   /* stylelint-disable-next-line selector-no-vendor-prefix */
 }
