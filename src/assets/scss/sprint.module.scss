@@ -140,3 +140,21 @@
         }
     }
 }
+
+//Drawer
+.taskDetailsdDrawerHeader {
+    @include flexbox($display: flex, $alignItems: center, $justifyContent: space-between);
+    .task_section_left {
+        .taskTitle {
+            font-weight: 600;
+            margin-top: 2px;
+            font-size: 20px;
+        }
+        .taskID {
+            color: $black4;
+            margin-left: 10px;
+        }
+    }
+    .section_right {
+    }
+}

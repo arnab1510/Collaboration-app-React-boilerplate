@@ -1,4 +1,4 @@
-import { Avatar } from "antd";
+import { Avatar, Drawer } from "antd";
 import cx from "classnames";
 import React, { useState } from "react";
 import { AiOutlineBug } from "react-icons/ai";
@@ -6,25 +6,52 @@ import { BiComment } from "react-icons/bi";
 import styles from "../../../assets/scss/design.module.scss";
 import CustomModal from "../../../assets/components/common/Modal";
 import { priorityTag } from "../../../services/common";
+import CustomDrawer from "../common/CustomDrawer";
+import { BsFillBookmarkFill } from 'react-icons/bs'
+import { MdClose, MdContentCopy } from 'react-icons/md'
+import TooltiipPJ from "../common/Tooltip";
+import { HiOutlineDotsVertical } from "react-icons/hi";
 
 function Task({task, index, snapshot, provided}) {
 
     const [taskDetailsVisible, setTaskDetailsVisible] = useState(false);
+    const [createType, setCreateType] = useState('feature');
+    const [taskDetails, setTaskDetails] = useState(null);
 
     const taskDetailsModal = () => {
         return (
-          <CustomModal top={'30'} width={'80vw'} visible={taskDetailsVisible} title="Create request" setVisible={setTaskDetailsVisible}>
-            <div>
+            <CustomModal hideClose={true} width={'85vw'} setVisible={setTaskDetailsVisible} visible={taskDetailsVisible}>
+                <div className={styles.taskDetailsdDrawerHeader}>
+                    <span className={styles.task_section_left}>
+                        <div><BsFillBookmarkFill style={{color: '#00d200'}}/> <span className={styles.taskID}>FE ID: 246</span></div>
+                        <div className={styles.taskTitle}>{task.title}</div>
+                    </span>
+                    <div className={styles.section_right}>
+                        <TooltiipPJ title={"Copy "+createType+" link"}>
+                            <span className={styles.headerActionIcon}><MdContentCopy/></span>
+                        </TooltiipPJ>
+                        <TooltiipPJ title={"Options"}>
+                            <span className={styles.headerActionIcon}><HiOutlineDotsVertical/></span>
+                        </TooltiipPJ>
+                        <span className={styles.headerActionIcon}><MdClose/></span>
+                    </div>
+                </div>
+                <div>
+                    adass
+                </div>
+            </CustomModal>
+        );
+    };
 
-            </div>
-        </CustomModal>
-        )
+    const openTaskDrawer = (data) => {
+        setTaskDetails(data);
+        setTaskDetailsVisible(true);
     };
 
     return (
         <>
             {taskDetailsModal()}
-            <div onClick={() => setTaskDetailsVisible(true)} className={styles.kanbanItem} style={{...provided.draggableProps.style, opacity: snapshot.isDragging ? '0.5' : '1'}} ref={provided.innerRef} {...provided.dragHandleProps} {...provided.draggableProps}>
+            <div onClick={() => openTaskDrawer(task)} className={styles.kanbanItem} style={{...provided.draggableProps.style, opacity: snapshot.isDragging ? '0.5' : '1'}} ref={provided.innerRef} {...provided.dragHandleProps} {...provided.draggableProps}>
                 <div className={styles.taskTitle}>{task.title}</div>
                 <div className={styles.taskDesc}>{task.description}</div>
                 <div className={styles.taskTagRow}>
