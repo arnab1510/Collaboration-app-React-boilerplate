@@ -16,7 +16,6 @@
 }
 .kanbanBoard {
     @include flexbox($display: flex, $alignItems: flex-start, $columnGap: 24px);
-    margin-top: 24px;
     &_section {
         width: 300px;
         border-radius: 10px;
@@ -47,7 +46,8 @@
     }   
 }
 .kanbanActionHeader {
-    margin: 16px;
+    margin: 22px 16px;
+    margin-bottom: 14px;
     @include flexbox($display: flex, $alignItems: center, $justifyContent: space-between);    
     .menuItem {
         cursor: pointer;
@@ -59,6 +59,14 @@
         &:hover {
             color: $primary;
             @include transition;
+        }
+    }
+    & > * ~ * {
+        @include flexbox($display: flex, $alignItems: center, $columnGap: 14px);
+        button {
+            svg {
+                font-size: 16px;
+            }
         }
     }
 }
@@ -84,23 +92,28 @@
     }
     .taskTitle {
         font-weight: 600;
-        margin-bottom: 4px;
-        // font-size: 15px;
+        margin-bottom: 10px;
     }
     .taskDesc {
         margin-bottom: 12px;
         font-size: 13px;
+        color: $black4;
     }
     .taskTagRow {
         @include flexbox($display: flex, $alignItems: center, $columnGap: 10px);
         padding-bottom: 16px;
         // border-bottom: 1px solid #ededed;
         .taskTag {
+            @include flexbox($display: flex, $alignItems: center, $columnGap: 4px);
             cursor: pointer;
             padding: 3px 9px;
             font-size: 12px;
             border-radius: 4px;
             background: #f2f2f2;
+            &_bug {
+                color: red;
+                background-color: hsla(0, 100%, 50%, 0.1);
+            }
         }
     }
     .taskFooter {

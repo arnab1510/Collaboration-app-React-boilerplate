@@ -156,7 +156,7 @@ function Features() {
 
   const addFeatureModal = () => {
     return (
-      <CustomModal width={'50vw'} visible={addFeatureVisible} title="Create request" setVisible={setAddFeatureVisible}>
+      <CustomModal top={'30'} width={'50vw'} visible={addFeatureVisible} title="Create request" setVisible={setAddFeatureVisible}>
         <div className={styles.requestFormflex}>
           <Form layout='vertical' initialValues={{ remember: true }} autoComplete="off">
             <Row gutter={[24, 0]}>

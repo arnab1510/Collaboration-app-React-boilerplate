@@ -3,7 +3,7 @@ import { Modal } from 'antd';
 
 function CustomModal(props) {
     
-  const { width, title, children, visible, setVisible } = props;
+  const { width, top, title, children, visible, setVisible } = props;
 
   const handleOk = (ev) => {
     ev.stopPropagation();
@@ -16,7 +16,7 @@ function CustomModal(props) {
   };
     
   return (
-    <Modal width={width ? width : null} {...props} title={title ? title : ''} visible={visible} onOk={handleOk} onCancel={handleCancel} footer={null}>
+    <Modal style={top?{top: top+'px'}:null} width={width ? width : null} {...props} title={title ? title : ''} visible={visible} onOk={handleOk} onCancel={handleCancel} footer={null}>
       {children}
     </Modal>
   );
