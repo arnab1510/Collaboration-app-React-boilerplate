@@ -141,9 +141,10 @@
     }
 }
 
-//Drawer
-.taskDetailsdDrawerHeader {
-    @include flexbox($display: flex, $alignItems: center, $justifyContent: space-between);
+//Popup
+.taskDetailsdPopupHeader {
+    @include flexbox($display: flex, $alignItems: flex-start, $justifyContent: space-between);
+    margin-bottom: 18px;
     .task_section_left {
         .taskTitle {
             font-weight: 600;
@@ -156,5 +157,40 @@
         }
     }
     .section_right {
+    }
+}
+.task_popup {
+    @include gridbox($display: grid, $template: 1.5fr 1fr, $gap: 30px);
+    .formLabel {
+        @include flexbox($display: flex, $alignItems: center);
+        margin-bottom: 8px;
+        svg {
+            margin-right: 6px;
+        }
+    }
+}
+.task_popup_section_left {
+    .taskDesc {
+        padding: 10px 12px;
+        background-color: #f8f8f8;
+        border-radius: 6px;
+        cursor: pointer;
+        @include transition;
+        &:hover {
+            background-color: #ededed;
+            @include transition;
+        }
+    }
+}
+.task_popup_section_right {
+    @include flexbox($display: flex, $direction: column, $rowGap: 14px);
+}
+.inlineForm{
+    @include flexbox($display: flex, $alignItems: center);
+    .formLabel {
+        margin-bottom: 0px;
+        margin-left: 6px;
+        margin-right: 16px;
+        width: 140px;
     }
 }
