@@ -13872,7 +13872,6 @@ textarea.ant-input-affix-wrapper {
 .ant-input {
   box-sizing: border-box;
   margin: 0;
-  padding: 0;
   font-variant: tabular-nums;
   list-style: none;
   font-feature-settings: 'tnum';
@@ -13880,14 +13879,14 @@ textarea.ant-input-affix-wrapper {
   display: inline-block;
   width: 100%;
   min-width: 0;
-  padding: 4px 11px;
+  padding: 6px 12px;
   color: rgba(0, 0, 0, 0.85);
   font-size: 14px;
   line-height: 1.5715;
   background-color: #fff;
   background-image: none;
   border: 1px solid #d9d9d9;
-  border-radius: 6px;
+  border-radius: 4px;
   transition: all 0.3s;
   /* stylelint-disable-next-line selector-no-vendor-prefix */
 }
@@ -19651,7 +19650,7 @@ span.ant-radio + * {
   position: relative;
   background-color: #fff;
   border: 1px solid #d9d9d9;
-  border-radius: 2px;
+  border-radius: 4px;
   transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 .ant-select:not(.ant-select-customize-input) .ant-select-selector input {

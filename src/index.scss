@@ -162,8 +162,21 @@ code {
 .ant-modal-body, .ant-modal-header {
   padding: 18px;
 }
+// .ant-modal-body {
+//   max-height: 86vh;
+//   overflow: scroll;
+// }
 .ant-btn {
   .ant-space-item {
     display: flex;
+  }
+}
+.commentContainer {
+  .ant-tabs-tab-btn {
+    font-size: 13px;
+    font-weight: 500;
+  }
+  .ant-tabs-tab {
+    padding: 8px 0px;
   }
 }

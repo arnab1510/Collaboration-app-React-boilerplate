@@ -1,7 +1,7 @@
-import { Avatar, Drawer, Select } from "antd";
+import { Avatar, Comment, Drawer, Input, InputNumber, message, Select, Tabs, Tag, Timeline } from "antd";
 import cx from "classnames";
 import React, { useState } from "react";
-import { AiOutlineBug } from "react-icons/ai";
+import { AiOutlineBug, AiOutlineInfoCircle } from "react-icons/ai";
 import { BiComment } from "react-icons/bi";
 import styles from "../../../assets/scss/design.module.scss";
 import CustomModal from "../../../assets/components/common/Modal";
@@ -11,14 +11,21 @@ import { BsFillBookmarkFill, BsTextLeft } from 'react-icons/bs'
 import { MdClose, MdContentCopy } from 'react-icons/md'
 import TooltiipPJ from "../common/Tooltip";
 import { HiOutlineDotsVertical } from "react-icons/hi";
+import Moment from "react-moment";
+import ChatTypeSection from '../../../assets/components/chat/chatTypeSection';
 
 function Task({task, index, snapshot, provided}) {
 
     const { Option } = Select;
     const [taskDetailsVisible, setTaskDetailsVisible] = useState(false);
-    const [createType, setCreateType] = useState('feature');
+    const [createType, setCreateType] = useState('Feature');
     const [taskDetails, setTaskDetails] = useState(null);
     const [editing, setEditing] = useState(null);
+    const { TabPane } = Tabs;
+
+    const onChange = (key) => {
+        console.log(key);
+    };
 
     const showEdit = (type) => {
         if (type==="desc") {
@@ -33,31 +40,163 @@ function Task({task, index, snapshot, provided}) {
     const statusDropdown = () => {
         return (
             <Select
-            style={{
-                width: '100%',
-              }}
+                style={{ width: '100%' }}
                 defaultValue="lucy"
                 onChange={handleChange}
                 >
                 <Option value="jack">To Do</Option>
                 <Option value="lucy">In Progress</Option>
-                <Option value="Yiminghe">Quality Assurance</Option>
-                <Option value="Yiminghe">Deployed to production</Option>
+                <Option value="Yiminghe">In QA</Option>
+                <Option value="Yiminghe">Released</Option>
             </Select>
+        );
+    };
+
+    const priorityDropdown = () => {
+        return (
+            <Select
+                style={{ width: '100%' }}
+                onChange={handleChange}
+                >
+                <Option value="jack">
+                    <div className={styles.assigneeOption}>
+                        {priorityTag(0)}
+                    </div>
+                </Option>
+                <Option value="lucy"><div className={styles.assigneeOption}>
+                        {priorityTag(1)}
+                    </div></Option>
+                <Option value="Yiminghe"><div className={styles.assigneeOption}>
+                        {priorityTag(2)}
+                    </div></Option>
+                <Option value="Yiminsghe"><div className={styles.assigneeOption}>
+                        {priorityTag(3)}
+                    </div></Option>
+            </Select>
+        );
+    };
+
+    const fixVersionDropdown = () => {
+        return (
+            <Select
+                style={{ width: '100%' }}
+                onChange={handleChange}
+                >
+                <Option value="jack">v1.4.02</Option>
+                <Option value="july">v2.4.02</Option>
+                <Option value="ace">v4.0.00</Option>
+                <Option value="Yiminghe">Create new release</Option>
+            </Select>
+        );
+    };
+
+    const assigneeDropdown = () => {
+        return (
+            <Select
+                style={{ width: '100%' }}
+                defaultValue="lucy"
+                size="large"
+                onChange={handleChange}
+                >
+                <Option value="jack">
+                    <div className={styles.assigneeOption}><img src='https://picsum.photos/400' alt="profile"/>Rishabh Pant</div>
+                </Option>
+                <Option value="lucy">
+                    <div className={styles.assigneeOption}><img src='https://picsum.photos/200' alt="profile"/>Dev 1</div>
+                </Option>
+                <Option value="Yiminghe">
+                    <div className={styles.assigneeOption}><img src='https://picsum.photos/300' alt="profile"/>Lorem ipsum john doe dev</div>
+                </Option>
+                <Option value="Yiminghe">
+                    <div className={styles.assigneeOption}><img src='https://picsum.photos/600' alt="profile"/>Rishabh Pant</div>
+                </Option>
+            </Select>
+        );
+    };
+
+    const tagDropdown = () => {
+
+        const options = [{ value: 'gold' }, { value: 'lime' }, { value: 'green' }, { value: 'cyan' }];
+        const tagRender = (props) => {
+        const { label, value, closable, onClose } = props;
+          
+        const onPreventMouseDown = (event) => {
+              event.preventDefault();
+              event.stopPropagation();
+        };
+          
+        return (
+              <Tag
+                color={value}
+                onMouseDown={onPreventMouseDown}
+                closable={closable}
+                onClose={onClose}
+                style={{
+                  marginRight: 3,
+                }}
+              >
+                {label}
+              </Tag>
+            );
+        };
+
+        return (
+            <Select
+                mode="multiple"
+                showArrow
+                className={styles.dropdown}
+                tagRender={tagRender}
+                style={{ width: '100%' }}
+                options={options}
+            />
+        );
+    };
+
+    const copyLink = () => {
+        message.success(createType+' link has been copied to clipboard');
+    };
+
+    const commentSection = () => {
+        return (
+            <>
+                <Comment
+                    actions={[<span key="comment-basic-reply-to">Reply to</span>]}
+                    author={<a>Han Solo</a>}
+                    avatar={<Avatar src="https://joeschmoe.io/api/v1/random" alt="Han Solo" />}
+                    content={
+                        <p>
+                        We supply a series of design principles, practical patterns and high quality design
+                        resources (Sketch and Axure), to help people create their product prototypes beautifully
+                        and efficiently.
+                        </p>
+                    }
+                    datetime={
+                        <TooltiipPJ title={<Moment format="DD MMM YYYY, hh:mm A"></Moment>}>
+                            <span><Moment fromNow></Moment></span>
+                        </TooltiipPJ>
+                    }
+                />
+                <Comment
+                    avatar={<Avatar src="https://joeschmoe.io/api/v1/random" alt="Han Solo" />}
+                    content={
+                    <ChatTypeSection/>
+                    }
+                />
+            </>
         );
     };
 
     const taskDetailsModal = () => {
         return (
-            <CustomModal hideClose={true} width={'85vw'} setVisible={setTaskDetailsVisible} visible={taskDetailsVisible}>
+            <CustomModal top={'40'} hideClose={true} width={'85vw'} setVisible={setTaskDetailsVisible} visible={taskDetailsVisible}>
                 <div className={styles.taskDetailsdPopupHeader}>
                     <span className={styles.task_section_left}>
-                        <div><BsFillBookmarkFill style={{color: '#00d200'}}/> <span className={styles.taskID}>FE ID: 246</span></div>
+                        <div className={styles.displayFlex}><BsFillBookmarkFill style={{color: '#00d200'}}/> <span className={styles.taskID}>FE-ID: 246</span></div>
                         <div className={styles.taskTitle}>{task.title}</div>
                     </span>
                     <div className={styles.section_right}>
                         <TooltiipPJ title={"Copy "+createType+" link"}>
-                            <span className={styles.headerActionIcon}><MdContentCopy/></span>
+                            <span onClick={() => copyLink()} className={styles.headerActionIcon}><MdContentCopy/></span>
                         </TooltiipPJ>
                         <TooltiipPJ title={"Options"}>
                             <span className={styles.headerActionIcon}><HiOutlineDotsVertical/></span>
@@ -71,25 +210,45 @@ function Task({task, index, snapshot, provided}) {
                             <div className={styles.formLabel}><BsTextLeft/> Description</div>
                             <div className={styles.taskDesc} onClick={() => showEdit('desc')}>{task.description}</div>
                         </div>
+
+                        <div className={cx(styles.commentContainer, 'commentContainer')}>
+                            <Tabs defaultActiveKey="1" onChange={onChange}>
+                                <TabPane tab="Comments" key="1">
+                                    {commentSection()}
+                                </TabPane>
+                                <TabPane tab="History" key="2">
+                                    <Timeline className={styles.mt_20}>
+                                        <Timeline.Item>Create a services site 2015-09-01</Timeline.Item>
+                                        <Timeline.Item>Solve initial network problems 2015-09-01</Timeline.Item>
+                                        <Timeline.Item>Technical testing 2015-09-01</Timeline.Item>
+                                        <Timeline.Item>Network problems being solved 2015-09-01</Timeline.Item>
+                                        <Timeline.Item>Create a services site 2015-09-01</Timeline.Item>
+                                    </Timeline>
+                                </TabPane>
+                            </Tabs>
+                        </div>
                     </div>
                     <div className={styles.task_popup_section_right}>
                         <div  className={styles.inlineForm}>
-                            <span className={styles.formLabel}>Status</span><span className={styles.formLabell}>{statusDropdown()}</span>
+                            <span className={styles.formLabel}>Status</span><span>{statusDropdown()}</span>
                         </div>
                         <div  className={styles.inlineForm}>
-                            <span className={styles.formLabel}>Story points</span><span className={styles.formLabell}>Selected for development</span>
+                            <span className={styles.formLabel}>Priority</span><span>{priorityDropdown()}</span>
                         </div>
                         <div  className={styles.inlineForm}>
-                            <span className={styles.formLabel}>Assignee</span><span className={styles.formLabell}>Selected for development</span>
+                            <span className={styles.formLabel}>Story points</span><span className={styles.displayFlex}><InputNumber style={{flexGrow: 1}} step="0.1" min={0}/><span className={styles.storyInfo}><AiOutlineInfoCircle/>1 story point = 2 hours</span></span>
                         </div>
                         <div  className={styles.inlineForm}>
-                            <span className={styles.formLabel}>Tags</span><span className={styles.formLabell}>Selected for development</span>
+                            <span className={styles.formLabel}>Assignee</span><span>{assigneeDropdown()}</span>
                         </div>
                         <div  className={styles.inlineForm}>
-                            <span className={styles.formLabel}>Fix version</span><span className={styles.formLabell}>Selected for development</span>
+                            <span className={styles.formLabel}>Tags</span><span>{tagDropdown()}</span>
                         </div>
                         <div  className={styles.inlineForm}>
-                            <span className={styles.formLabel}>Created on</span><span className={styles.formLabell}>Selected for development</span>
+                            <span className={styles.formLabel}>Fix version</span><span>{fixVersionDropdown()}</span>
+                        </div>
+                        <div  className={styles.inlineForm}>
+                            <span className={styles.formLabel}>Created on</span><span style={{color: "#a7a7a7"}}>24th August 2021, 4:41 AM</span>
                         </div>
                     </div>
                 </div>

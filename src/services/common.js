@@ -34,16 +34,16 @@ export const priorityTag = (value) => {
 	}
 	else if (value===2) {
 		return (
-			<TooltiipPJ title="Medium">
-				<span className={styles.priorityTag} style={{color: '#ef9b00'}}><HiOutlineMenuAlt4/></span>
-			</TooltiipPJ>
+			// <TooltiipPJ title="Medium">
+				<span className={styles.priorityTag} style={{color: '#ef9b00'}}><HiOutlineMenuAlt4/>Medium</span>
+			// </TooltiipPJ>
 		)
 	}
 	else if (value===3) {
 		return (
-			<TooltiipPJ title="Low">
-				<span className={styles.priorityTag} style={{color: 'green'}}><FiChevronDown/></span>
-			</TooltiipPJ>
+			// <TooltiipPJ title="Low">
+				<span className={styles.priorityTag} style={{color: 'green'}}><FiChevronDown/>Low</span>
+			// </TooltiipPJ>
 		)
 	}
 };

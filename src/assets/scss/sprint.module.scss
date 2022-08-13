@@ -130,15 +130,16 @@
         .flex_row_layout {
             column-gap: 14px;
         }
-        .priorityTag {
-            svg {
-                font-size: 17px;
-                margin-right: 2px;
-            }
-            font-size: 13px;
-            @include flexbox($display: flex, $alignItems: center);
-        }
     }
+}
+
+.priorityTag {
+    @include flexbox($display: flex, $alignItems: center);
+    svg {
+        font-size: 17px;
+        margin-right: 2px;
+    }
+    font-size: 13px;
 }
 
 //Popup
@@ -153,16 +154,16 @@
         }
         .taskID {
             color: $black4;
-            margin-left: 10px;
+            margin-left: 6px;
         }
-    }
-    .section_right {
     }
 }
 .task_popup {
     @include gridbox($display: grid, $template: 1.5fr 1fr, $gap: 30px);
     .formLabel {
         @include flexbox($display: flex, $alignItems: center);
+        font-size: 13px;
+        font-weight: 500;
         margin-bottom: 8px;
         svg {
             margin-right: 6px;
@@ -170,9 +171,12 @@
     }
 }
 .task_popup_section_left {
+    max-height: 72vh;
+    overflow: scroll;
+    padding-right: 20px;
     .taskDesc {
         padding: 10px 12px;
-        background-color: #f8f8f8;
+        background-color: $greyButtonBackground;
         border-radius: 6px;
         cursor: pointer;
         @include transition;
@@ -181,9 +185,21 @@
             @include transition;
         }
     }
+    .commentContainer {
+        margin-top: 10px;
+        .suggested_chats {
+            display: none;
+        }
+        .chatTypeContainer {
+            padding: 0px;
+        }
+        .chat_type_inner {
+            background-color: #f8f8f8;
+        }
+    }
 }
 .task_popup_section_right {
-    @include flexbox($display: flex, $direction: column, $rowGap: 14px);
+    @include flexbox($display: flex, $direction: column, $rowGap: 22px);
 }
 .inlineForm{
     @include flexbox($display: flex, $alignItems: center);
@@ -191,6 +207,30 @@
         margin-bottom: 0px;
         margin-left: 6px;
         margin-right: 16px;
-        width: 140px;
+        width: 170px;
+        font-size: 13px;
+        font-weight: 500;
     }
+    & > * ~ * {
+        width: 100%;
+    }
+    .storyInfo {
+        margin-left: 10px;
+        color: $black4;
+        @include flexbox($display: flex, $alignItems: center);
+        svg {
+            margin-right: 4px;
+        }
+    }
+}
+.assigneeOption {
+    @include flexbox($display: flex, $alignItems: center);
+    img {
+        width: 30px;
+        height: 30px;
+        border-radius: 100px;
+        object-fit: cover;
+        margin-right: 6px;
+    }
+    font-size: 14px;
 }
