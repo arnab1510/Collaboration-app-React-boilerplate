@@ -269,7 +269,7 @@ function TaskCard({task, index, snapshot, provided}) {
     return (
         <>
             {taskDetailsModal()}
-            <div onClick={() => openTaskDrawer(task)} className={styles.kanbanItem} style={{...provided.draggableProps.style, opacity: snapshot.isDragging ? '0.5' : '1'}} ref={provided.innerRef} {...provided.dragHandleProps} {...provided.draggableProps}>
+            <div onClick={() => openTaskDrawer(task)} className={styles.kanbanItem} style={{...provided.draggableProps.style, opacity: snapshot.isDragging ? '0.5' : '1', transform: snapshot.isDragging ? "transform: rotate(35deg)" : null}} ref={provided.innerRef} {...provided.dragHandleProps} {...provided.draggableProps}>
                 <div className={styles.taskTitle}>{task.title}</div>
                 <div className={styles.taskDesc}>{task.description}</div>
                 <div className={styles.taskTagRow}>
