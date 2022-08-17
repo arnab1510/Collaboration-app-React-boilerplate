@@ -9,7 +9,7 @@ import { MdClose, MdContentCopy } from 'react-icons/md';
 import Moment from "react-moment";
 import ChatTypeSection from '../../chat/chatTypeSection';
 import CustomModal from "../../common/Modal";
-import styles from "../../../assets/scss/design.module.scss";
+import styles from "../../../../assets/scss/design.module.scss";
 import { priorityTag } from "../../../../services/common";
 import TooltiipPJ from "../../common/Tooltip";
 

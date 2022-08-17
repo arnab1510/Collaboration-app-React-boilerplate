@@ -40,7 +40,7 @@
         }
         &_content {
             & > * ~ * {
-                margin-top: 18px;
+                // margin-top: 18px;
             }
         }
     }   
@@ -84,11 +84,12 @@
 .kanbanItem {
     background: white;
     padding: 14px 16px;
+    margin-bottom: 20px;
     border-radius: 8px;
-    @include transition;
+    @include transition($property: box-shadow);
     &:hover {
         box-shadow: 0px 4px 44px rgba(0, 0, 0, 0.07);
-        @include transition;
+        @include transition($property: box-shadow);
     }
     .taskTitle {
         font-weight: 600;

@@ -1,6 +1,6 @@
 import { Button } from 'antd';
 import cx from 'classnames';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import { BiCheckDouble } from 'react-icons/bi';
 import { BsFilter } from 'react-icons/bs';
@@ -12,31 +12,34 @@ import styles from '../assets/scss/design.module.scss';
 function Sprint() {
 
     const [data, setData] = useState(initialData.columns);
-    const [frameworks, setFrameworks] = useState([    
+    const [frameworks, setFrameworks] = useState([
         {id: 0, name: 'Current Sprint', desc: 'Lorem ipsum por amit', selected: true},
         {id: 1, name: 'My tasks', desc: 'Lorem ipsum por amit', selected: false},
         {id: 2, name: 'Bugs only', desc: 'Lorem ipsum por amit', selected: false},
         {id: 2, name: 'Critical priority', desc: 'Lorem ipsum por amit', selected: false}]
     );
 
-    const onDragEnd = (result) => {
-        if (!result.destination) return
-        const {source, destination} = result;
+    const onDragEnd = async ({ source, destination }) => {
+        if (!destination) return
+        const sourceColIndex = data.findIndex(e => e.id === source.droppableId)
+        const destinationColIndex = data.findIndex(e => e.id === destination.droppableId)
+        const sourceCol = data[sourceColIndex]
+        const destinationCol = data[destinationColIndex]
 
+        const sourceTasks = [...sourceCol.tasks]
+        const destinationTasks = [...destinationCol.tasks]
+    
         if (source.droppableId !== destination.droppableId) {
-            const sourceColIndex = data.findIndex(e => e.id === source.droppableId);
-            const destinationColIndex = data.findIndex(e => e.id === destination.droppableId);
-            const sourceCol = data[sourceColIndex];
-            const destinationCol = data[destinationColIndex];
+          const [removed] = sourceTasks.splice(source.index, 1)
+          destinationTasks.splice(destination.index, 0, removed)
+          data[sourceColIndex].tasks = sourceTasks
+          data[destinationColIndex].tasks = destinationTasks
+        } else {
+          const [removed] = destinationTasks.splice(source.index, 1)
+          destinationTasks.splice(destination.index, 0, removed)
+          data[destinationColIndex].tasks = destinationTasks
+        }          setData(data)
 
-            const sourceTasks = [...sourceCol.tasks];
-            const destinationTasks = [...destinationCol.tasks];
-            const [removed] = sourceTasks.splice(source.index, 1);
-            destinationTasks.splice(destination.index, 0, removed);
-            data[sourceColIndex].tasks = sourceTasks;
-            data[destinationColIndex].tasks = destinationTasks;
-            setData(data);
-        };
     };
 
     const selectPriority = (index) => {
@@ -71,7 +74,7 @@ function Sprint() {
                     </div>
                 </div>
                 <div className={styles.boardContainer}>
-                    <DragDropContext onDragEnd={onDragEnd}>
+                    <DragDropContext onDragEnd={result => onDragEnd(result)}>
                         <div className={styles.kanbanBoard}>
                             {data && data.map((section, index) => {
                                 return (
