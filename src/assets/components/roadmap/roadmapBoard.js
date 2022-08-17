@@ -6,7 +6,7 @@ import { RiHome2Line } from 'react-icons/ri';
 import ChatSidebar from '../chat/chatSidebar';
 import styles from "./../../scss/design.module.scss";
 
-function kanbanBoard() {
+function RoadmapBoard() {
 
     const vaultOptions = () => {
       return (
@@ -51,4 +51,4 @@ function kanbanBoard() {
     );
 }
 
-export default kanbanBoard;
+export default RoadmapBoard;

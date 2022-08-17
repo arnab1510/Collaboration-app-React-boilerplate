@@ -1,13 +1,12 @@
 import { Button } from 'antd';
 import cx from 'classnames';
-import React, { useEffect, useState } from 'react';
-import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
+import React, { useState } from 'react';
+import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import { BiCheckDouble } from 'react-icons/bi';
 import { BsFilter } from 'react-icons/bs';
 import Column from '../assets/components/sprint/column';
 import initialData from '../assets/components/sprint/initialData';
 import KanbanHeader from '../assets/components/sprint/kanbanHeader';
-import Task from '../assets/components/sprint/task';
 import styles from '../assets/scss/design.module.scss';
 
 function Sprint() {

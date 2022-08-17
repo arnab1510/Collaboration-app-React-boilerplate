@@ -21,7 +21,7 @@ function Sidebar() {
   const PMsidebar = [
     {id: 1, name: 'Chat', url: '/', icon: <IoChatbubbleEllipsesOutline/>},
     {id: 2, name: 'Sprint', url: '/sprint', icon: <BsClockHistory/>},
-    {id: 3, name: 'Roadmap', url: '', icon: <VscNotebook/>},
+    {id: 3, name: 'Roadmap', url: '/roadmap', icon: <VscNotebook/>},
     {id: 4, name: 'Features', url: '/features', icon: <BsListUl/>},
     {id: 5, name: 'Vault', url: '/vault', icon: <BsFolder2Open/>},
     {id: 6, name: 'Build', url: '/build', icon: <RiPencilRuler2Line/>},

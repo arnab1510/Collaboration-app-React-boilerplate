@@ -4,7 +4,7 @@ import styles from "../../../assets/scss/design.module.scss";
 import {FiSearch,FiLogIn} from 'react-icons/fi';
 import {MdOutlineMobileFriendly} from 'react-icons/md';
 import {BsBriefcase} from 'react-icons/bs';
-import Task from "./task";
+import TaskCard from "./Task/taskCard";
 import { Draggable, Droppable } from 'react-beautiful-dnd';
 
 function Column({section, provided, index}) {
@@ -22,7 +22,7 @@ function Column({section, provided, index}) {
                   <Draggable key={task.id} draggableId={task.id} index={index}>
                       {(provided, snapshot) => {
                           return (
-                              <Task task={task} index={index} provided={provided} snapshot={snapshot}/>
+                              <TaskCard task={task} index={index} provided={provided} snapshot={snapshot}/>
                           )
                       }}
                   </Draggable>

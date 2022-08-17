@@ -1,4 +1,4 @@
-import { Avatar, Comment, Drawer, Input, InputNumber, message, Select, Tabs, Tag, Timeline } from "antd";
+import { Avatar, Button, Comment, Drawer, Input, InputNumber, message, Select, Tabs, Tag, Timeline } from "antd";
 import cx from "classnames";
 import React, { useState } from "react";
 import { AiOutlineBug, AiOutlineInfoCircle } from "react-icons/ai";
@@ -160,7 +160,7 @@ function Task({task, index, snapshot, provided}) {
         return (
             <>
                 <Comment
-                    actions={[<span key="comment-basic-reply-to">Reply to</span>]}
+                    // actions={[<span key="comment-basic-reply-to">Reply to</span>]}
                     author={<a>Han Solo</a>}
                     avatar={<Avatar src="https://joeschmoe.io/api/v1/random" alt="Han Solo" />}
                     content={
@@ -179,7 +179,13 @@ function Task({task, index, snapshot, provided}) {
                 <Comment
                     avatar={<Avatar src="https://joeschmoe.io/api/v1/random" alt="Han Solo" />}
                     content={
-                    <ChatTypeSection/>
+                        <>
+                            <ChatTypeSection/>
+                            <div className={styles.flexApart} style={{marginTop: '14px'}}>
+                                <Button type="outline">Cancel</Button>
+                                <Button type="primary">Submit comment</Button>
+                            </div>
+                        </>
                     }
                 />
             </>
