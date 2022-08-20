@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import RoadmapBoard from '../assets/components/roadmap/roadmapBoard';
 import initialData from '../assets/components/sprint/initialData';
 import KanbanHeader from '../assets/components/sprint/kanbanHeader';
 import styles from '../assets/scss/design.module.scss';
@@ -17,7 +18,7 @@ function Roadmap() {
         <div className={styles.kanban_container}>
             <KanbanHeader/>
             <div className={styles.kanbanBody}>
-                
+                <RoadmapBoard/>
             </div>
         </div>
     )

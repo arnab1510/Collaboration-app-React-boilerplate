@@ -8,6 +8,15 @@
     padding: 0px 8px;
     overflow-y: auto;
     @include scroll_hover;
+    @include transition($property: width);
+}
+.minSecSidebar {
+    width: 66px;
+    @include transition($property: width);
+    &:hover{
+        width: 320px;
+        @include transition($property: width);
+    }
 }
 .sidebarHeader {
     @include typography($weight: 7, $size: 18px);

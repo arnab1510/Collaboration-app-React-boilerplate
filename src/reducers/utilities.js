@@ -1,4 +1,4 @@
-import { SET_ACTIVE_TAB, SET_CURRENT_URL, SET_HIDE_DOCHEADER, SET_HIDE_SECSIDEBAR, SET_HIDE_SIDEBAR, SET_SHOW_DOCHEADER, SET_SHOW_SECSIDEBAR, SET_SHOW_SIDEBAR } from "../actions/types";
+import { SET_ACTIVE_TAB, SET_CURRENT_URL, SET_HIDE_DOCHEADER, SET_HIDE_SECSIDEBAR, SET_HIDE_SIDEBAR, SET_MAX_SEC_SIDEBAR, SET_MIN_SEC_SIDEBAR, SET_SHOW_DOCHEADER, SET_SHOW_SECSIDEBAR, SET_SHOW_SIDEBAR } from "../actions/types";
 
 const utilities = (
   state = {
@@ -7,6 +7,7 @@ const utilities = (
     showSecSidebar: true,
     showSidebar: true,
     showDocheader: false,
+    minSecSidebar: false,
     url: '/'
   },
   action
@@ -22,6 +23,10 @@ const utilities = (
         return Object.assign({}, state, { status: 'success', showSidebar: false });
     case SET_SHOW_SIDEBAR:
       return Object.assign({}, state, { status: 'success', showSidebar: true});
+    case SET_MIN_SEC_SIDEBAR:
+        return Object.assign({}, state, { status: 'success', minSecSidebar: true});
+    case SET_MAX_SEC_SIDEBAR:
+        return Object.assign({}, state, { status: 'success', minSecSidebar: false});
     case SET_HIDE_DOCHEADER:
         return Object.assign({}, state, { status: 'success', showDocheader: false });
     case SET_SHOW_DOCHEADER:

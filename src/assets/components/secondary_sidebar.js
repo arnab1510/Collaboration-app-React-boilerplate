@@ -2,7 +2,7 @@ import cx from "classnames";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { SET_CURRENT_URL, SET_HIDE_SECSIDEBAR, SET_HIDE_SIDEBAR, SET_SHOW_DOCHEADER, SET_SHOW_SECSIDEBAR } from "../../actions/types";
+import { SET_CURRENT_URL, SET_HIDE_SECSIDEBAR, SET_HIDE_SIDEBAR, SET_MAX_SEC_SIDEBAR, SET_MIN_SEC_SIDEBAR, SET_SHOW_DOCHEADER, SET_SHOW_SECSIDEBAR } from "../../actions/types";
 import styles from "../../assets/scss/design.module.scss";
 import ChatSidebar from "./chat/chatSidebar";
 import VaultSidebar from "./vault/vaultSidebar";
@@ -18,6 +18,10 @@ function SecondarySidebar() {
     '/vault/doc/:doc_id',
     '/build'
   ];
+  
+  const minSidebarURLs = [
+    '/roadmap',
+  ];
 
   useEffect(() => {
     if(hideSidebarURLs.indexOf(location.pathname) === -1) {
@@ -29,6 +33,15 @@ function SecondarySidebar() {
       dispatch({type: SET_HIDE_SIDEBAR});
       dispatch({type: SET_SHOW_DOCHEADER});
       dispatch({type: SET_CURRENT_URL, data:location.pathname});
+    }
+  }, [history]);
+
+  useEffect(() => {
+    if(minSidebarURLs.indexOf(location.pathname) !== -1) {
+      dispatch({type: SET_MIN_SEC_SIDEBAR});
+    }
+    else {
+      dispatch({type: SET_MAX_SEC_SIDEBAR});
     }
   }, [history]);
 
@@ -52,7 +65,7 @@ function SecondarySidebar() {
 
   return (
     <div>
-      {utilities.showSecSidebar ? <div className={cx(styles.secondarySidebarContainer, 'scroll_overlay')}>
+      {utilities.showSecSidebar ? <div className={cx(styles.secondarySidebarContainer, 'scroll_overlay', utilities.minSecSidebar?styles.minSecSidebar:null)}>
         {sideBar(utilities)}
       </div>:null}
     </div>
