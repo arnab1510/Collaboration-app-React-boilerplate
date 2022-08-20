@@ -6,78 +6,61 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RiHome2Line } from 'react-icons/ri';
 import ChatSidebar from '../chat/chatSidebar';
 import styles from "./../../scss/design.module.scss";
-import { GanttOriginal, Task, ViewMode } from "react-gantt-chart";
 import { useEffect, useState } from "react";
 import { SET_MIN_SEC_SIDEBAR } from "../../../actions/types";
+import { BsFilter, BsZoomIn, BsZoomOut } from "react-icons/bs";
+import { GanttComponent } from "@syncfusion/ej2-react-gantt";
 
 function RoadmapBoard() {
 
-  // const dispatch = useDispatch();
+	const GanttData = [
+		{
+			TaskID: 1,
+			TaskName: 'Project Initiation',
+			StartDate: new Date('04/02/2019'),
+			EndDate: new Date('04/21/2019'),
+			subtasks: [
+				{ TaskID: 2, TaskName: 'Identify Site location', StartDate: new Date('04/02/2019'), Duration: 4, Progress: 50 },
+				{ TaskID: 3, TaskName: 'Perform Soil test', StartDate: new Date('04/02/2019'), Duration: 4, Progress: 50 },
+				{ TaskID: 4, TaskName: 'Soil test approval', StartDate: new Date('04/02/2019'), Duration: 4, Progress: 50 },
+			]
+		},
+		{
+			TaskID: 5,
+			TaskName: 'Project Estimation',
+			StartDate: new Date('04/02/2019'),
+			EndDate: new Date('04/21/2019'),
+			subtasks: [
+				{ TaskID: 6, TaskName: 'Develop floor plan for estimation', StartDate: new Date('04/04/2019'), Duration: 3, Progress: 50 },
+				{ TaskID: 7, TaskName: 'List materials', StartDate: new Date('04/04/2019'), Duration: 3, Progress: 50 },
+				{ TaskID: 8, TaskName: 'Estimation approval', StartDate: new Date('04/04/2019'), Duration: 3, Progress: 50 }
+			]
+		},
+	];
 
-  // useEffect(() => {
-  //     dispatch({type: SET_MIN_SEC_SIDEBAR});
-  // }, []);
-
-  const [tasks] = useState([
-		{
-			type: "project",
-			id: "ProjectSample",
-			name: "1.Project",
-			start: new Date(2021, 6, 1),
-			end: new Date(2021, 9, 30),
-			progress: 25,
-			hideChildren: false,
-		},
-		{
-			type: "task",
-			id: "Task 0",
-			name: "1.1 Task",
-			start: new Date(2021, 6, 1),
-			end: new Date(2021, 6, 30),
-			progress: 45,
-			project: "ProjectSample",
-		},
-		{
-			type: "task",
-			id: "Task 1",
-			name: "1.2 Task",
-			start: new Date(2021, 7, 1),
-			end: new Date(2021, 7, 30),
-			progress: 25,
-			dependencies: ["Task 0"],
-			project: "ProjectSample",
-		},
-		{
-			type: "task",
-			id: "Task 2",
-			name: "1.3 Task",
-			start: new Date(2021, 6, 1),
-			end: new Date(2021, 7, 30),
-			progress: 10,
-			dependencies: ["Task 1"],
-			project: "ProjectSample",
-		},
-		{
-			type: "milestone",
-			id: "Task 6",
-			name: "1.3.1 MileStone (KT)",
-			start: new Date(2021, 6, 1),
-			end: new Date(2021, 6, 30),
-			progress: 100,
-			dependencies: ["Task 2"],
-			project: "ProjectSample",
-		},
-	]);
+	const [taskFields] = useState({
+		id: 'TaskID',
+		name: 'TaskName',
+		startDate: 'StartDate',
+		duration: 'Duration',
+		progress: 'Progress',
+		child: 'subtasks',
+	});
 
     return (
-      <div>
-        <GanttOriginal
-          tasks={tasks}
-          viewMode={ViewMode.Month}
-          columnWidth={200}
-          ganttHeight={200}
-        />
-      </div>
+		<div className="">
+			<div className={styles.kanbanActionHeader}>
+				<div className={cx(styles.section_title)}>Epic 3 Roadmap</div>
+				<div className={styles.displayFlex}>
+					<span className={styles.menuItem}><BsFilter/>More filters</span>
+					<span className={styles.menuItem}><BsZoomIn/></span>
+					<span className={styles.menuItem}><BsZoomOut/></span>
+				</div>
+			</div>
+			<div className={styles.roadmapContainer}>
+				<GanttComponent dataSource={GanttData} height="450px" taskFields={taskFields}/>
+			</div>
+		</div>
     );
 }
 

@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@excalidraw/excalidraw": "^0.12.0",
+    "@syncfusion/ej2-react-gantt": "^20.2.44",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
@@ -38,7 +39,6 @@
     "react-beautiful-dnd": "^13.1.0",
     "react-color": "^2.19.3",
     "react-dom": "^18.0.0",
-    "react-gantt-chart": "^0.3.0-rc.11",
     "react-icons": "^4.3.1",
     "react-konva": "^18.2.1",
     "react-moment": "^1.1.2",

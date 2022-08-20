@@ -16,7 +16,8 @@ function SecondarySidebar() {
 
   const hideSidebarURLs = [
     '/vault/doc/:doc_id',
-    '/build'
+    '/build',
+    '/roadmap'
   ];
   
   const minSidebarURLs = [
@@ -65,7 +66,8 @@ function SecondarySidebar() {
 
   return (
     <div>
-      {utilities.showSecSidebar ? <div className={cx(styles.secondarySidebarContainer, 'scroll_overlay', utilities.minSecSidebar?styles.minSecSidebar:null)}>
+      {/* {utilities.showSecSidebar ? <div className={cx(styles.secondarySidebarContainer, 'scroll_overlay', utilities.minSecSidebar?styles.minSecSidebar:null)}> */}
+      {utilities.showSecSidebar ? <div className={cx(styles.secondarySidebarContainer, 'scroll_overlay')}>
         {sideBar(utilities)}
       </div>:null}
     </div>
