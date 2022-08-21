@@ -8,7 +8,7 @@ import TooltiipPJ from "../common/Tooltip";
 import { Button, Dropdown, Input, Menu, Space } from "antd";
 import { AiOutlineBug, AiOutlineBuild } from "react-icons/ai";
 
-function RoadmapHeader() {
+function KanbanHeader() {
 
   const handleMenuClick = (e) => {
     console.log('click', e);
@@ -32,14 +32,14 @@ function RoadmapHeader() {
     <div className={cx(styles.flexRightHeader, styles.chat_fixed)}>
       <div className={styles.section_left}>
         <img className={styles.chatAvatar} src='https://picsum.photos/400' alt="profile"/>
-        <div className={styles.chatUserName}>Roadmap</div>
+        <div className={styles.chatUserName}>Mobile Team</div>
       </div>
       <div className={styles.section_right}>
-        <Input placeholder="Search ProdJam" style={{ width: '340px' }}/>
-        <TooltiipPJ title="Share roadmap">
+        <Input placeholder="Search board"/>
+        <TooltiipPJ title="Share board">
           <span className={styles.headerActionIcon}><FiShare/></span>
         </TooltiipPJ>
-        <TooltiipPJ title="Roadmap settings">
+        <TooltiipPJ title="Board settings">
           <span className={styles.headerActionIcon}><IoSettingsOutline/></span>
         </TooltiipPJ>
         <Dropdown overlay={dropdownMenu}>
@@ -55,4 +55,4 @@ function RoadmapHeader() {
   );
 }
 
-export default RoadmapHeader;
+export default KanbanHeader;

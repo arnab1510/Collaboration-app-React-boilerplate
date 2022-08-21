@@ -1,15 +1,10 @@
-import cx from "classnames";
-import { FiChevronsLeft, FiTrash2 } from 'react-icons/fi';
-import { IoIosAddCircleOutline } from 'react-icons/io';
-import { MdIosShare } from 'react-icons/md';
-import { useDispatch, useSelector } from 'react-redux';
-import { RiHome2Line } from 'react-icons/ri';
-import ChatSidebar from '../chat/chatSidebar';
-import styles from "./../../scss/design.module.scss";
-import { useEffect, useRef, useState } from "react";
-import { SET_MIN_SEC_SIDEBAR } from "../../../actions/types";
-import { BsFilter, BsZoomIn, BsZoomOut } from "react-icons/bs";
 import { ColumnDirective, ColumnsDirective, DayMarkers, Edit, GanttComponent, Inject, Selection } from "@syncfusion/ej2-react-gantt";
+import { Input, Dropdown, Button, Space, Menu } from 'antd';
+import { useRef, useState } from "react";
+import { BsDownload } from "react-icons/bs";
+import { ImFilePdf } from "react-icons/im";
+import { SiMicrosoftexcel } from "react-icons/si";
+import styles from "./../../scss/design.module.scss";
 
 function RoadmapBoard() {
 
@@ -23,8 +18,8 @@ function RoadmapBoard() {
 			EndDate: new Date('04/21/2019'),
 			subtasks: [
 				{ TaskID: 2, TaskName: 'Identify Site location', StartDate: new Date('04/02/2019'), Duration: 4, Progress: 50 },
-				{ TaskID: 3, TaskName: 'Perform Soil test', StartDate: new Date('04/02/2019'), Duration: 4, Progress: 50 },
-				{ TaskID: 4, TaskName: 'Soil test approval', StartDate: new Date('04/02/2019'), Duration: 4, Progress: 50 },
+				{ TaskID: 3, TaskName: 'Perform Soil test', StartDate: new Date('04/02/2019'), Duration: 4, Progress: 10 },
+				{ TaskID: 4, TaskName: 'Soil test approval', StartDate: new Date('04/02/2019'), Duration: 4, Progress: 5 },
 			]
 		},
 		{
@@ -34,8 +29,8 @@ function RoadmapBoard() {
 			EndDate: new Date('04/21/2019'),
 			subtasks: [
 				{ TaskID: 6, TaskName: 'Develop floor plan for estimation', StartDate: new Date('04/04/2019'), Duration: 3, Progress: 50 },
-				{ TaskID: 7, TaskName: 'List materials', StartDate: new Date('04/04/2019'), Duration: 3, Progress: 50 },
-				{ TaskID: 8, TaskName: 'Estimation approval', StartDate: new Date('04/04/2019'), Duration: 3, Progress: 50 }
+				{ TaskID: 7, TaskName: 'List materials', StartDate: new Date('04/04/2019'), Duration: 3, Progress: 70 },
+				{ TaskID: 8, TaskName: 'Estimation approval', StartDate: new Date('04/04/2019'), Duration: 3, Progress: 100 }
 			]
 		},
 	];
@@ -43,9 +38,9 @@ function RoadmapBoard() {
 	const [taskFields] = useState({
 		id: 'TaskID',
 		name: 'TaskName',
-		startDate: 'StartDate',
-		duration: 'Duration',
 		progress: 'Progress',
+		duration: 'Duration',
+		startDate: 'StartDate',
 		child: 'subtasks',
 	});
 
@@ -55,38 +50,60 @@ function RoadmapBoard() {
 	};
 
 	const collapsing = (args) => {
-        if (ganttInstance.ganttChartModule.isExpandCollapseFromChart) {
+        if (ganttInstance.current.ganttChartModule.isExpandCollapseFromChart) {
             args.cancel = true;
         }
     };
 
-	// const holidays = [{
-	// 	// from: "04/04/2019",
-	// 	// to: "04/05/2019",
-	// 	// label: "",
-	// 	// cssClass: "e-custom-holiday"
-	// 	// }
-	// ];
+	const dropdownMenu = (
+		<Menu>
+		  <Menu.Item>
+			<div className={styles.menuItem}><SiMicrosoftexcel />CSV</div>
+		  </Menu.Item>
+		  <Menu.Item>
+			<div className={styles.menuItem}><ImFilePdf />PDF</div>
+		  </Menu.Item>
+		</Menu>
+	);
 
+	const customizeCell = (args) => {
+        if (args.column.field === "Progress") {
+            if (args.data.Progress < 60)
+                args.cell.style.backgroundColor = "lightgreen";
+            else
+                args.cell.style.backgroundColor = "yellow";
+        }
+		console.log(args)
+    };
+
+	const splitterSettings = {
+		position: "40%"
+	};
+	
     return (
 		<div className="">
 			<div className={styles.kanbanActionHeader}>
-				<div className={cx(styles.section_title)}>Epic 3 Roadmap</div>
+				<Input placeholder="Search roadmap" style={{ width: '340px' }}/>
 				<div className={styles.displayFlex}>
-					<span className={styles.menuItem}><BsFilter/>More filters</span>
-					<span className={styles.menuItem}><BsZoomIn/></span>
-					<span className={styles.menuItem}><BsZoomOut/></span>
+					<Dropdown overlay={dropdownMenu}>
+						<Button type="outline">
+							<Space>
+							Export
+							<BsDownload />
+							</Space>
+						</Button>
+					</Dropdown>
 				</div>
 			</div>
 			<div className={styles.roadmapContainer}>
-				<GanttComponent ref={ganttInstance} collapsing={() => collapsing()} highlightWeekends={true} allowSelection={true} editSettings={editSettings} dataSource={GanttData} height="450px" taskFields={taskFields}>
+				<GanttComponent ref={ganttInstance} collapsing={(args) => collapsing(args)} highlightWeekends={true} allowSelection={true} editSettings={editSettings} dataSource={GanttData} height="450px" splitterSettings={splitterSettings} taskFields={taskFields} queryCellInfo={(args) => customizeCell(args)}>
 				<Inject services={[Selection, DayMarkers, Edit]}/>
 				<ColumnsDirective>
-					<ColumnDirective field='TaskID' width='100'></ColumnDirective>
+					{/* <ColumnDirective field='TaskID' width='100'></ColumnDirective> */}
 					<ColumnDirective field='TaskName' width='250'></ColumnDirective>
-					<ColumnDirective field='StartDate' width='100'></ColumnDirective>
-					<ColumnDirective field='Duration'></ColumnDirective>
 					<ColumnDirective field='Progress'></ColumnDirective>
+					<ColumnDirective field='Duration'></ColumnDirective>
+					<ColumnDirective field='StartDate' width='100'></ColumnDirective>
           		</ColumnsDirective>
 				</GanttComponent>
 			</div>
