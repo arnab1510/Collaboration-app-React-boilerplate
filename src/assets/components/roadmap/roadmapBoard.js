@@ -6,12 +6,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RiHome2Line } from 'react-icons/ri';
 import ChatSidebar from '../chat/chatSidebar';
 import styles from "./../../scss/design.module.scss";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { SET_MIN_SEC_SIDEBAR } from "../../../actions/types";
 import { BsFilter, BsZoomIn, BsZoomOut } from "react-icons/bs";
 import { GanttComponent } from "@syncfusion/ej2-react-gantt";
 
 function RoadmapBoard() {
+
+	const ganttInstance = useRef();
 
 	const GanttData = [
 		{
@@ -47,6 +49,12 @@ function RoadmapBoard() {
 		child: 'subtasks',
 	});
 
+	const collapsing = (args) => {
+        if (ganttInstance.ganttChartModule.isExpandCollapseFromChart) {
+            args.cancel = true;
+        }
+    };
+
     return (
 		<div className="">
 			<div className={styles.kanbanActionHeader}>
@@ -58,7 +66,7 @@ function RoadmapBoard() {
 				</div>
 			</div>
 			<div className={styles.roadmapContainer}>
-				<GanttComponent dataSource={GanttData} height="450px" taskFields={taskFields}/>
+				<GanttComponent ref={ganttInstance} collapsing={() => collapsing()}  allowSelection dataSource={GanttData} height="450px" taskFields={taskFields}/>
 			</div>
 		</div>
     );
