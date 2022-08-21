@@ -9,7 +9,7 @@ import styles from "./../../scss/design.module.scss";
 import { useEffect, useRef, useState } from "react";
 import { SET_MIN_SEC_SIDEBAR } from "../../../actions/types";
 import { BsFilter, BsZoomIn, BsZoomOut } from "react-icons/bs";
-import { GanttComponent } from "@syncfusion/ej2-react-gantt";
+import { ColumnDirective, ColumnsDirective, DayMarkers, Edit, GanttComponent, Inject, Selection } from "@syncfusion/ej2-react-gantt";
 
 function RoadmapBoard() {
 
@@ -49,11 +49,24 @@ function RoadmapBoard() {
 		child: 'subtasks',
 	});
 
+	const editSettings = {
+		editMode: 'Auto',
+		allowTaskbarEditing: true
+	};
+
 	const collapsing = (args) => {
         if (ganttInstance.ganttChartModule.isExpandCollapseFromChart) {
             args.cancel = true;
         }
     };
+
+	// const holidays = [{
+	// 	// from: "04/04/2019",
+	// 	// to: "04/05/2019",
+	// 	// label: "",
+	// 	// cssClass: "e-custom-holiday"
+	// 	// }
+	// ];
 
     return (
 		<div className="">
@@ -66,7 +79,16 @@ function RoadmapBoard() {
 				</div>
 			</div>
 			<div className={styles.roadmapContainer}>
-				<GanttComponent ref={ganttInstance} collapsing={() => collapsing()}  allowSelection dataSource={GanttData} height="450px" taskFields={taskFields}/>
+				<GanttComponent ref={ganttInstance} collapsing={() => collapsing()} highlightWeekends={true} allowSelection={true} editSettings={editSettings} dataSource={GanttData} height="450px" taskFields={taskFields}>
+				<Inject services={[Selection, DayMarkers, Edit]}/>
+				<ColumnsDirective>
+					<ColumnDirective field='TaskID' width='100'></ColumnDirective>
+					<ColumnDirective field='TaskName' width='250'></ColumnDirective>
+					<ColumnDirective field='StartDate' width='100'></ColumnDirective>
+					<ColumnDirective field='Duration'></ColumnDirective>
+					<ColumnDirective field='Progress'></ColumnDirective>
+          		</ColumnsDirective>
+				</GanttComponent>
 			</div>
 		</div>
     );
