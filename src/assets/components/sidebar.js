@@ -19,7 +19,7 @@ function Sidebar() {
   };
 
   const PMsidebar = [
-    {id: 1, name: 'Chat', url: '/', icon: <IoChatbubbleEllipsesOutline/>},
+    {id: 1, name: 'Chat', url: '/chat', icon: <IoChatbubbleEllipsesOutline/>},
     {id: 2, name: 'Sprint', url: '/sprint', icon: <BsClockHistory/>},
     {id: 3, name: 'Roadmap', url: '/roadmap', icon: <VscNotebook/>},
     {id: 4, name: 'Features', url: '/features', icon: <BsListUl/>},

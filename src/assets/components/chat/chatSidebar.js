@@ -1,18 +1,31 @@
 import cx from "classnames";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {FiChevronsLeft} from 'react-icons/fi';
+import { useNavigate, useParams } from "react-router-dom";
 import styles from "./../../scss/design.module.scss";
 
 function ChatSidebar() {
 
     const chatItems = [
-        {image: 'https://picsum.photos/310', name: 'Rishabh Ray', lastChat: 'sdf', status: 'active'},
-        {image: 'https://picsum.photos/320', name: 'Rishabh Ray', lastChat: 'sdf', status: 'active'},
-        {image: 'https://picsum.photos/330', name: 'Rishabh Ray', lastChat: 'sdf', status: 'active'},
-        {image: 'https://picsum.photos/340', name: 'Rishabh Ray', lastChat: 'sdf', status: 'active'},
-        {image: 'https://picsum.photos/350', name: 'Rishabh Ray', lastChat: 'sdf', status: 'active'},
-        {image: 'https://picsum.photos/360', name: 'Rishabh Ray', lastChat: 'sdf', status: 'active'}
+        {userID: 123, image: 'https://picsum.photos/310', name: 'Rishabh Ray', lastChat: 'sdf', status: 'active', },
+        {userID: 1515, image: 'https://picsum.photos/320', name: 'Rishabh Ray', lastChat: 'sdf', status: 'away'},
+        {userID: 23, image: 'https://picsum.photos/330', name: 'Rishabh Ray', lastChat: 'sdf', status: 'offline'},
+        {userID: 474, image: 'https://picsum.photos/340', name: 'Rishabh Ray', lastChat: 'sdf', status: 'busy'},
+        {userID: 93, image: 'https://picsum.photos/350', name: 'Rishabh Ray', lastChat: 'sdf', status: 'presenting'},
+        {userID: 151, image: 'https://picsum.photos/360', name: 'Rishabh Ray', lastChat: 'sdf', status: 'focusing'}
     ];
+    const history = useNavigate();
+    const { user_id } = useParams();
+    const [selectedUser, setSelectedChat] = useState(chatItems[0].userID);
+
+    useEffect(() => {
+        console.log(user_id);
+    }, [])
+
+    const openChat = (userID) => {
+        setSelectedChat(userID);
+        history("chat/"+userID);
+    };
 
     const pinnedChat = () => {
         return (
@@ -20,7 +33,7 @@ function ChatSidebar() {
             <div className={styles.sidebarSubhead}>Pinned</div>
             {chatItems.map((item, index) => {
                 return (
-                <div key={index} className={cx(styles.chatContainer)}>
+                <div key={index} className={cx(styles.chatContainer, selectedUser===item.userID ? styles.chatContainer_active : null)} onClick={() => openChat(item.userID)}>
                     <img className={styles.chatContainer_avatar} src={item.image} alt="chat_avatar"/>
                     <div className={styles.chatContainer_right}>
                     <div className={styles.chatContainer_right_top}>

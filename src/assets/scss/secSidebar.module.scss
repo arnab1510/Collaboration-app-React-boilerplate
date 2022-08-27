@@ -60,6 +60,9 @@
             @include typography($color: $black3);
         }
     }
+    &_active {
+        @include optionHover;
+    }
 }
 .collapseIcon {
     @include typography($color: $black4);

@@ -9,20 +9,7 @@ function Home() {
             
     return (
         <div className={styles.chat_container}>
-            <ChatHeader/>
-            <div className={styles.chatContent}>
-                <div>sdfsdfnkjnkjbkj</div>
-                <div> sfsd</div>
-                <div>sdfsdfnkjnkjbkj</div>
-                <div> sfsd</div>
-                <div>sdfsdfnkjnkjbkj</div>
-                <div> sfsd</div>
-                <div>sdfsdfnkjnkjbkj</div>
-                <div> sfsd</div>
-                <div>sdfsdfnkjnkjbkj</div>
-                <div> sfsd</div>
-            </div>
-            <ChatTypeSection/>
+            Home
         </div>
     )
 }

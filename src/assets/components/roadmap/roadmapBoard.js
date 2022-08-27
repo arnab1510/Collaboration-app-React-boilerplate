@@ -1,5 +1,5 @@
 import { ColumnDirective, ColumnsDirective, DayMarkers, Edit, GanttComponent, Inject, Selection } from "@syncfusion/ej2-react-gantt";
-import { Input, Dropdown, Button, Space, Menu } from 'antd';
+import { Input, Dropdown, Button, Space, Menu, Progress } from 'antd';
 import { useRef, useState } from "react";
 import { BsDownload } from "react-icons/bs";
 import { ImFilePdf } from "react-icons/im";
@@ -17,8 +17,8 @@ function RoadmapBoard() {
 			StartDate: new Date('04/02/2019'),
 			EndDate: new Date('04/21/2019'),
 			subtasks: [
-				{ TaskID: 2, TaskName: 'Identify Site location', StartDate: new Date('04/02/2019'), Duration: 4, Progress: 50 },
-				{ TaskID: 3, TaskName: 'Perform Soil test', StartDate: new Date('04/02/2019'), Duration: 4, Progress: 10 },
+				{ TaskID: 2, TaskName: 'Identify Site location', StartDate: new Date('04/02/2019'), Duration: 4, Progress: 50, as: "dfs" },
+				{ TaskID: 3, TaskName: 'Perform Soil test', StartDate: new Date('04/02/2019'), Duration: 4, Progress: 10, as: "dfs" },
 				{ TaskID: 4, TaskName: 'Soil test approval', StartDate: new Date('04/02/2019'), Duration: 4, Progress: 5 },
 			]
 		},
@@ -39,6 +39,7 @@ function RoadmapBoard() {
 		id: 'TaskID',
 		name: 'TaskName',
 		progress: 'Progress',
+		as: 'as',
 		duration: 'Duration',
 		startDate: 'StartDate',
 		child: 'subtasks',
@@ -67,17 +68,23 @@ function RoadmapBoard() {
 	);
 
 	const customizeCell = (args) => {
-        if (args.column.field === "Progress") {
-            if (args.data.Progress < 60)
-                args.cell.style.backgroundColor = "lightgreen";
-            else
-                args.cell.style.backgroundColor = "yellow";
+        if (args.data.hasChildRecords) {
+            args.cell.style.fontWeight = "bold";
+			args.cell.style.backgroundColor = "#f4f3f3";
         }
-		console.log(args)
     };
 
 	const splitterSettings = {
 		position: "40%"
+	};
+
+	const customProg = (progress) => {
+		return (
+			<div className={styles.Taskprogress}>
+				<span>{progress}%</span>
+				<Progress width={20} strokeWidth={13} type="circle" percent={progress} format={() => null} />
+			</div>
+		)
 	};
 	
     return (
@@ -88,8 +95,8 @@ function RoadmapBoard() {
 					<Dropdown overlay={dropdownMenu}>
 						<Button type="outline">
 							<Space>
-							Export
-							<BsDownload />
+								Export
+								<BsDownload />
 							</Space>
 						</Button>
 					</Dropdown>
@@ -97,11 +104,12 @@ function RoadmapBoard() {
 			</div>
 			<div className={styles.roadmapContainer}>
 				<GanttComponent ref={ganttInstance} collapsing={(args) => collapsing(args)} highlightWeekends={true} allowSelection={true} editSettings={editSettings} dataSource={GanttData} height="450px" splitterSettings={splitterSettings} taskFields={taskFields} queryCellInfo={(args) => customizeCell(args)}>
+				{/* queryCellInfo={(args) => customizeCell(args) */}
 				<Inject services={[Selection, DayMarkers, Edit]}/>
 				<ColumnsDirective>
-					{/* <ColumnDirective field='TaskID' width='100'></ColumnDirective> */}
 					<ColumnDirective field='TaskName' width='250'></ColumnDirective>
-					<ColumnDirective field='Progress'></ColumnDirective>
+					<ColumnDirective template={args => customProg(args.Progress)} field='Progress'></ColumnDirective>
+					{/* <ColumnDirective template={(args) => } field='AS'></ColumnDirective> */}
 					<ColumnDirective field='Duration'></ColumnDirective>
 					<ColumnDirective field='StartDate' width='100'></ColumnDirective>
           		</ColumnsDirective>

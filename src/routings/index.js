@@ -3,6 +3,7 @@ import SecondarySidebar from '../assets/components/secondary_sidebar';
 import Sidebar from '../assets/components/sidebar';
 import styles from '../assets/scss/design.module.scss';
 import Build from '../pages/Build';
+import Chat from '../pages/Chat';
 import Features from '../pages/Features';
 import Home from '../pages/Home';
 import Roadmap from '../pages/Roadmap';
@@ -12,6 +13,7 @@ import VaultDoc from '../pages/VaultDoc';
 
 const AppRoute = {
 	home: "/",
+	chat: "/chat/:user_id",
 	auth: "/auth",
 	PageNotFound: "/page-not-found",
 	default: '/',
@@ -37,6 +39,7 @@ export default function AppRoutings() {
 				<div className={styles.rightContent}>
 					<Routes>
 						<Route path={AppRoute.default} element={<Home/>} />
+						<Route path={AppRoute.chat} element={<Chat/>} />
 						<Route path={AppRoute.vault} element={<Vault/>} />
 						<Route path={AppRoute.doc} element={<VaultDoc/>} />
 						<Route path={AppRoute.features} element={<Features/>} />
