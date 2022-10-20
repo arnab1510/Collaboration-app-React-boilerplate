@@ -1,4 +1,4 @@
-import { BsClockHistory, BsFolder2Open, BsListUl } from 'react-icons/bs';
+import { BsClockHistory, BsFileRichtext, BsFolder2Open, BsListUl } from 'react-icons/bs';
 import { FiUsers } from 'react-icons/fi';
 import { IoChatbubbleEllipsesOutline } from 'react-icons/io5';
 import { RiPencilRuler2Line } from 'react-icons/ri';
@@ -19,13 +19,14 @@ function Sidebar() {
   };
 
   const PMsidebar = [
-    {id: 1, name: 'Chat', url: '/chat', icon: <IoChatbubbleEllipsesOutline/>},
-    {id: 2, name: 'Sprint', url: '/sprint', icon: <BsClockHistory/>},
-    {id: 3, name: 'Roadmap', url: '/roadmap', icon: <VscNotebook/>},
-    {id: 4, name: 'Features', url: '/features', icon: <BsListUl/>},
-    {id: 5, name: 'Vault', url: '/vault', icon: <BsFolder2Open/>},
-    {id: 6, name: 'Build', url: '/build', icon: <RiPencilRuler2Line/>},
-    {id: 7, name: 'Channels', url: '', icon: <FiUsers/>},
+    {id: 1, name: 'Wall', url: '/wall', icon: <BsFileRichtext/>},
+    {id: 2, name: 'Chat', url: '/chat', icon: <IoChatbubbleEllipsesOutline/>},
+    {id: 3, name: 'Sprint', url: '/sprint', icon: <BsClockHistory/>},
+    {id: 4, name: 'Roadmap', url: '/roadmap', icon: <VscNotebook/>},
+    {id: 5, name: 'Features', url: '/features', icon: <BsListUl/>},
+    {id: 6, name: 'Vault', url: '/vault', icon: <BsFolder2Open/>},
+    {id: 7, name: 'Build', url: '/build', icon: <RiPencilRuler2Line/>},
+    {id: 8, name: 'Channels', url: '', icon: <FiUsers/>},
   ];
 
   const updateTab = (item) => {

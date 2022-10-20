@@ -47,12 +47,12 @@ function SecondarySidebar() {
   }, [history]);
 
   const sideBar = (data) => {
-    if (data.activeTab===1 || data.activeTab===4 || data.activeTab===2 || data.activeTab===3) {
+    if (data.activeTab===1 || data.activeTab===5 || data.activeTab===3 || data.activeTab===4) {
       return (
         <ChatSidebar/>
       );
     }
-    else if (data.activeTab===5) {
+    else if (data.activeTab===6) {
       return (
         <VaultSidebar/>
       );

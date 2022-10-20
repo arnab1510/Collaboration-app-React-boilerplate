@@ -236,3 +236,9 @@
     }
     font-size: 14px;
 }
+.timelineItem {
+    @include flexbox($display: flex, $columnGap: 20px);
+    color: $black3;
+    font-size: 13px;
+    margin-top: 4px;
+}

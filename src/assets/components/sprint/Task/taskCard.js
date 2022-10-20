@@ -191,6 +191,19 @@ function TaskCard({task, index, snapshot, provided}) {
         );
     };
 
+    const timelineItem = (data,name,date) => {
+        return (
+            <Timeline.Item>
+                <div>
+                    <div>{data}</div>
+                    <div className={styles.timelineItem}>
+                        <span>{name}</span><span>{date}</span>
+                    </div>
+                </div>
+            </Timeline.Item>
+        )
+    }
+
     const taskDetailsModal = () => {
         return (
             <CustomModal top={'40'} hideClose={true} width={'85vw'} setVisible={setTaskDetailsVisible} visible={taskDetailsVisible}>
@@ -223,11 +236,11 @@ function TaskCard({task, index, snapshot, provided}) {
                                 </TabPane>
                                 <TabPane tab="History" key="2">
                                     <Timeline className={styles.mt_20}>
-                                        <Timeline.Item>Create a services site 2015-09-01</Timeline.Item>
-                                        <Timeline.Item>Solve initial network problems 2015-09-01</Timeline.Item>
-                                        <Timeline.Item>Technical testing 2015-09-01</Timeline.Item>
-                                        <Timeline.Item>Network problems being solved 2015-09-01</Timeline.Item>
-                                        <Timeline.Item>Create a services site 2015-09-01</Timeline.Item>
+                                        {timelineItem('Removed title from ticket','Aanchal Roy','24-05-2022, 07:23 PM')}
+                                        {timelineItem('Removed title from ticket','Aanchal Roy','24-05-2022, 07:23 PM')}
+                                        {timelineItem('Removed title from ticket','Aanchal Roy','24-05-2022, 07:23 PM')}
+                                        {timelineItem('Removed title from ticket','Aanchal Roy','24-05-2022, 07:23 PM')}
+                                        {timelineItem('Removed title from ticket','Aanchal Roy','24-05-2022, 07:23 PM')}
                                     </Timeline>
                                 </TabPane>
                             </Tabs>

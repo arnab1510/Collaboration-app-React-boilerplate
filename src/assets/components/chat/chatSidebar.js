@@ -4,8 +4,9 @@ import {FiChevronsLeft} from 'react-icons/fi';
 import { useNavigate, useParams } from "react-router-dom";
 import styles from "./../../scss/design.module.scss";
 
-function ChatSidebar() {
-
+function ChatSidebar(props) {
+    
+    // const { isCMEWebinar, courseSlug, chapterIdProps } = props;
     const chatItems = [
         {userID: 123, image: 'https://picsum.photos/310', name: 'Rishabh Ray', lastChat: 'sdf', status: 'active', },
         {userID: 1515, image: 'https://picsum.photos/320', name: 'Rishabh Ray', lastChat: 'sdf', status: 'away'},
@@ -15,14 +16,12 @@ function ChatSidebar() {
         {userID: 151, image: 'https://picsum.photos/360', name: 'Rishabh Ray', lastChat: 'sdf', status: 'focusing'}
     ];
     const history = useNavigate();
-    const { user_id } = useParams();
+    let { user_id } = useParams();
+    
     const [selectedUser, setSelectedChat] = useState(chatItems[0].userID);
 
-    useEffect(() => {
-        console.log(user_id);
-    }, [])
-
     const openChat = (userID) => {
+        console.log(user_id);
         setSelectedChat(userID);
         history("chat/"+userID);
     };
