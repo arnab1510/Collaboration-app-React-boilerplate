@@ -1,0 +1,64 @@
+.wall_container {
+    @include gridbox($display: grid, $template: 2fr 1fr, $justifyContent: space-between, $gap: 30px);
+}
+.wall_left_container {
+    @include flexbox($display: flex, $direction: column, $rowGap: 30px);
+}
+
+//New post
+.newPost {
+    padding: 9px 11px;
+    background: white;
+    border-radius: 100px;
+    cursor: pointer;
+    @include flexbox($display: flex, $direction: row, $alignItems: center, $columnGap: 10px);
+    @include transition;
+    color: $black4;
+    &:hover {
+        box-shadow: 0px 4px 44px rgba(0, 0, 0, 0.07);
+        @include transition;
+    }
+}
+.post_modal {
+    &_title {
+        margin-bottom: 10px;
+        font-weight: 500;
+        @include flexbox($display: flex, $direction: row, $alignItems: center, $columnGap: 10px);
+        svg {
+            padding: 6px;
+            font-size: 30px;
+            background-color: $primary_light;
+            color: $primary;
+            border-radius: 100px;
+        }
+    }
+    &_actions{
+        @include flexbox($display: flex, $direction: row, $alignItems: center, $justifyContent: space-between);
+        margin-top: 18px;
+    }
+}
+.action_left {
+    @include flexbox($display: flex, $direction: row, $alignItems: center, $columnGap: 24px);
+    .actionBtn {
+        padding: 9px 10px;
+        border-radius: 6px;
+        @include flexbox($display: flex, $direction: row, $alignItems: center, $columnGap: 6px);
+        svg {
+            font-size: 20px;
+        }
+        font-weight: 500;
+        cursor: pointer;
+    }
+    .photoBtn {
+        background-color: #ECF3FF;
+        color: #044FEA;
+    }
+    .videoBtn {
+        background-color: #FFEFF2;
+        color: #FE4153;
+    }
+    .docBtn {
+        background-color: #FFFBEC;
+        color: #ecb100;
+    }
+}

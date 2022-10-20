@@ -2,6 +2,5 @@
     margin: 12px 14px;
 }
 .Taskprogress {
-    @include gridbox($display: grid, $template: 34px 1fr, $alignItems: center);
-    column-gap: 12px;
+    @include gridbox($display: grid, $template: 34px 1fr, $alignItems: center, $gap: 12px);
 }
