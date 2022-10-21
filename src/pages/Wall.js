@@ -6,17 +6,30 @@ import ChatHeader from '../assets/components/chat/chatHeader';
 import ChatTypeSection from '../assets/components/chat/chatTypeSection';
 import WallHeader from '../assets/components/wall/wallHeader';
 import NewPost from '../assets/components/wall/newPost';
-import ImageCard from '../assets/components/wall/postCards/imageCard';
+import PostCard from '../assets/components/wall/postCards/postCard';
 
 function Wall() {
+
+    const postItems = [
+        {id: 12, content: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.", attachment: null, image: null},
+        {id: 122, content: "Lorem Ipsum is simply dummy text of to", attachment: null, image: null},
+        {id: 122, content: "Lorem Ipsum is simply dummy text of to", attachment: null, image: null},
+        {id: 122, content: "Lorem Ipsum is simply dummy text of to", attachment: null, image: null},
+        {id: 122, content: "Lorem Ipsum is simply dummy text of to", attachment: null, image: null},
+        {id: 122, content: "Lorem Ipsum is simply dummy text of to", attachment: null, image: null},
+    ];
             
     return (
-        <div>
+        <div className={styles.kanban_container}>
             <WallHeader/>
             <div className={cx(styles.right_content_container, styles.wall_container)}>
                 <div className={styles.wall_left_container}>
                     <NewPost/>
-                    <ImageCard/>
+                    {postItems.map((post, index) => {
+                        return (
+                            <PostCard post={post} index={index}/>
+                        )
+                    })}
                 </div>
             </div>
         </div>

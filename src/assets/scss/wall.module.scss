@@ -1,12 +1,22 @@
 .wall_container {
     @include gridbox($display: grid, $template: 2fr 1fr, $justifyContent: space-between, $gap: 30px);
+    padding-top: 0px;
 }
 .wall_left_container {
     @include flexbox($display: flex, $direction: column, $rowGap: 30px);
+    overflow: scroll;
+    height: calc(100vh - 56px);
+    padding-bottom: 20px;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    &::-webkit-scrollbar {
+        display: none;
+    }
 }
 
 //New post
 .newPost {
+    margin-top: 20px;
     padding: 9px 11px;
     background: white;
     border-radius: 100px;
@@ -62,3 +72,76 @@
         color: #ecb100;
     }
 }
+
+//Post Card
+.postCard {
+    padding: 14px;
+    border-radius: 8px;
+    background-color: white;
+    .postCard_header {
+        @include flexbox($display: flex, $direction: row, $alignItems: center, $columnGap: 14px); 
+        margin-bottom: 16px;
+    }
+    &_userName {
+        font-weight: 600;
+        margin-bottom: 4px;
+    }
+    &_postTime {
+        color: $black3;
+        font-size: 13px;
+        @include flexbox($display: flex, $direction: row, $alignItems: center, $columnGap: 5px);
+    }
+    &_cardFooter {
+        margin-top: 14px;
+        padding-top: 8px;
+        border-top: 1px solid #e2e2e2;
+        @include flexbox($display: flex, $direction: row, $alignItems: center, $justifyContent: space-between);
+        &_reactBtn {
+            padding: 7px 14px;
+            @include flexbox($display: flex, $direction: row, $alignItems: center, $columnGap: 6px);
+            cursor: pointer;
+            color: $black2;
+        }
+        &_shareBtn {
+            padding: 7px 14px;
+            @include flexbox($display: flex, $direction: row, $alignItems: center, $columnGap: 6px);
+            border-radius: 6px;
+            cursor: pointer;
+            color: $black2;
+            @include transition;
+            &:hover {
+                background-color: $primary;
+                color: white;
+                @include transition;
+            }
+        }
+    }
+}
+.emojiRow {
+    @include flexbox($display: flex, $direction: row, $alignItems: center, $columnGap: 14px);
+    &_emoji {
+        height: 24px;
+        @include transition;
+        &:hover {
+            cursor: pointer;
+            transform: scale(1.5);
+            @include transition;
+        }
+    }
+}
+//Text Card
+.clamp {
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    overflow-wrap: break-word;
+    margin-bottom: 6px;
+}
+.seeMore {
+    color: $primary;
+    font-style: italic;
+    cursor: pointer;
+}
+//Reactions
