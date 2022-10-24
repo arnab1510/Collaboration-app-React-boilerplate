@@ -15,6 +15,8 @@ function Wall() {
         {id: 122, content: "Lorem Ipsum is simply dummy text of to", attachment: null, images: ["https://picsum.photos/500","https://picsum.photos/450","https://picsum.photos/470","https://picsum.photos/570"]},
         {id: 122, content: "Lorem Ipsum is simply dummy text of to", attachment: null, images: ["https://picsum.photos/500","https://picsum.photos/450","https://picsum.photos/470","https://picsum.photos/570","https://picsum.photos/670"]},
         {id: 122, content: "Lorem Ipsum is simply dummy text of to", attachment: null, images: ["https://picsum.photos/500","https://picsum.photos/450","https://picsum.photos/470","https://picsum.photos/570","https://picsum.photos/650","https://picsum.photos/660"]},
+        {id: 122, content: "Lorem Ipsum is simply dummy text of to", attachment: {link: "ssdfsdf", type: "pdf"}, images: null},
+        {id: 122, content: "Lorem Ipsum is simply dummy text of to", attachment: {link: "ssdfsdf", type: "zip"}, images: null},
     ];
             
     return (

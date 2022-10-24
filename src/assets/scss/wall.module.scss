@@ -182,4 +182,68 @@
             max-height: 250px;
         }
     }
+    .overlayImg {
+        position: relative;
+        border-radius: 8px;
+        overflow: hidden;
+        max-height: 100px;
+        min-height: 250px;
+    }
+    .imageLength {
+        position: absolute;
+        z-index: 3;
+        height: 100%;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.55);
+        color: white;
+        font-size: 22px;
+        font-weight: 600;
+        @include flexbox($display: flex, $alignItems: center, $justifyContent: center);
+        cursor: pointer;
+        @include transition;
+        &:hover {
+            background: rgba(0, 0, 0, 0.75);
+            @include transition;
+        }
+    }
+}
+//Attachment
+.attachment_container {
+    margin-top: 10px;
+    @include flexbox($display: flex, $alignItems: center, $justifyContent: space-between);
+    padding: 14px 16px;
+    background-color: $primary_light;
+    border-radius: 8px;
+    border: solid 2px $primary_light2;
+    border-style: dashed;
+    color: $primary;
+    cursor: pointer;
+    @include transition;
+    &:hover {
+        background-color: #e6e8ff;
+        @include transition;
+    }
+    svg {
+        height: 32px;
+        width: 32px;
+    }
+    .attachment_left {
+        @include flexbox($display: flex, $alignItems: center, $columnGap: 12px);
+        .fileData {
+            @include flexbox($display: flex, $direction: column, $rowGap: 2px);
+            .fileName {
+                font-weight: 500;
+            }
+            .fileSize {
+                opacity: 0.8;
+                font-size: 13px;
+            }
+        }
+    }
+    .attachment_right {
+        svg {
+            height: 20px;
+            width: 20px;
+        }
+    }
 }

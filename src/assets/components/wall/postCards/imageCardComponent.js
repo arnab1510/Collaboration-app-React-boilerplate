@@ -6,6 +6,7 @@ import styles from "./../../../scss/design.module.scss";
 function ImageComponent(props) {
 
   const { data } = props;
+  const [visible, setVisible] = useState(false);
 
   const singleImage = () => {
     return (
@@ -58,10 +59,22 @@ function ImageComponent(props) {
   const fiveImages = () => {
     return (
       <div className={'fourImages'}>
-        <Image.PreviewGroup>
+        <Image.PreviewGroup preview={{
+          visible,
+          current: 3,
+          onVisibleChange: value => {
+            setVisible(value);
+        }}}>
+          <Image src={data.images[0]}/>
+          <Image src={data.images[1]}/>
+          <Image src={data.images[2]}/>
+          <div className={"overlayImg"} onClick={() => setVisible(true)}>
+            <span className={"imageLength"} onClick={() => setVisible(true)}>+ {data.images.length-3}</span>
+            <Image src={data.images[3]}/>
+          </div>
           {data.images.map((item, index) => {
             return (
-              index < 4 ? <Image src={data.images[index]}/> : null
+              index > 3 ? <Image style={{display: 'none'}} src={data.images[index]}/> : null
             )
           })}
         </Image.PreviewGroup>
@@ -71,7 +84,6 @@ function ImageComponent(props) {
 
   const renderImage = () => {
     if (data.images.length===1) {
-      console.log('kjbhhj')
       return (singleImage())
     }
     else if (data.images.length===2) {

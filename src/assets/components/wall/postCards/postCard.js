@@ -11,6 +11,7 @@ import PostCardHeader from "./postCardHeader";
 import TextComponent from "./textCardComponent";
 import PostFooter from "./postFooter";
 import ImageComponent from "./imageCardComponent";
+import AttachmentComponent from "./attachmentComponent";
 
 function PostCard(props) {
 
@@ -21,6 +22,7 @@ function PostCard(props) {
       <PostCardHeader/>
       {post.content ? <TextComponent data={post}/> : null}
       {post.images ? <ImageComponent data={post}/> : null}
+      {post.attachment ? <AttachmentComponent data={post}/> : null}
       <PostFooter/>
     </div>   
   );
