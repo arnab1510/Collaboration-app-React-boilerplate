@@ -1,7 +1,7 @@
 import React from 'react';
 import { Tooltip } from 'antd';
 
-function TooltiipPJ(props) {
+function TooltipCustom(props) {
     
   const { title, children, type } = props;
 
@@ -18,4 +18,4 @@ function TooltiipPJ(props) {
   );
 }
 
-export default TooltiipPJ;
+export default TooltipCustom;

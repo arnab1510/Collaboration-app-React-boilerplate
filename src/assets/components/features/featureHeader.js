@@ -3,7 +3,7 @@ import React from "react";
 import { BsCameraVideo, BsBoxArrowUpRight} from 'react-icons/bs';
 import { FiPhone } from 'react-icons/fi';
 import styles from "./../../scss/design.module.scss";
-import TooltiipPJ from "../common/Tooltip";
+import TooltipCustom from "../common/Tooltip";
 
 function FeatureHeader() {
 
@@ -14,9 +14,9 @@ function FeatureHeader() {
         <div className={styles.chatUserName}>Feature Requests</div>
       </div>
       <div className={styles.section_right}>
-        <TooltiipPJ title="Video call">
+        <TooltipCustom title="Video call">
           <span className={styles.headerActionIcon}><BsCameraVideo/></span>
-        </TooltiipPJ>
+        </TooltipCustom>
       </div>
     </div>
   );

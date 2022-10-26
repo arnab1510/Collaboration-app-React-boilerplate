@@ -4,7 +4,7 @@ import { BsCameraVideo, BsBoxArrowUpRight, BsChevronDown, BsBarChartSteps} from 
 import { FiPhone, FiShare } from 'react-icons/fi';
 import { IoSettingsOutline } from 'react-icons/io5';
 import styles from "./../../scss/design.module.scss";
-import TooltiipPJ from "../common/Tooltip";
+import TooltipCustom from "../common/Tooltip";
 import { Button, Dropdown, Input, Menu, Space } from "antd";
 import { AiOutlineBug, AiOutlineBuild } from "react-icons/ai";
 
@@ -36,12 +36,12 @@ function KanbanHeader() {
       </div>
       <div className={styles.section_right}>
         <Input placeholder="Search board"/>
-        <TooltiipPJ title="Share board">
+        <TooltipCustom title="Share board">
           <span className={styles.headerActionIcon}><FiShare/></span>
-        </TooltiipPJ>
-        <TooltiipPJ title="Board settings">
+        </TooltipCustom>
+        <TooltipCustom title="Board settings">
           <span className={styles.headerActionIcon}><IoSettingsOutline/></span>
-        </TooltiipPJ>
+        </TooltipCustom>
         <Dropdown overlay={dropdownMenu}>
           <Button type="primary">
             <Space>

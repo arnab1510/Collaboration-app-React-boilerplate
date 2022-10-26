@@ -8,7 +8,7 @@ import { Input } from 'antd';
 import cx from "classnames";
 import { useRef, useState } from 'react';
 import DocEditor from '../assets/components/vault/docEditor';
-import TooltiipPJ from '../assets/components/common/Tooltip';
+import TooltipCustom from '../assets/components/common/Tooltip';
 import DocMenuBar from '../assets/components/vault/docMenuBar';
 
 function VaultDoc() {
@@ -65,12 +65,12 @@ function VaultDoc() {
                     <div className={cx(styles.flexRightHeader)}>
                         <Input placeholder="New document" bordered={false} />
                         <div className={styles.section_right}>
-                        <TooltiipPJ title="Share document">
+                        <TooltipCustom title="Share document">
                             <span className={styles.headerActionIcon}><FiShare/></span>
-                        </TooltiipPJ>
-                        <TooltiipPJ title="Search Vault">
+                        </TooltipCustom>
+                        <TooltipCustom title="Search Vault">
                             <span className={styles.headerActionIcon}><HiOutlineSearch/></span>
-                        </TooltiipPJ>
+                        </TooltipCustom>
                         </div>
                     </div>
                     <DocMenuBar editor={editorData} />

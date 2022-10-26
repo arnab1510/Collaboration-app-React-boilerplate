@@ -4,7 +4,7 @@ import { BsCameraVideo, BsBoxArrowUpRight, BsChevronDown, BsBarChartSteps} from 
 import { FiPhone, FiShare } from 'react-icons/fi';
 import { IoSettingsOutline } from 'react-icons/io5';
 import styles from "./../../scss/design.module.scss";
-import TooltiipPJ from "../common/Tooltip";
+import TooltipCustom from "../common/Tooltip";
 import { Button, Dropdown, Input, Menu, Space } from "antd";
 import { AiOutlineBug, AiOutlineBuild } from "react-icons/ai";
 
@@ -36,12 +36,12 @@ function RoadmapHeader() {
       </div>
       <div className={styles.section_right}>
         <Input placeholder="Search ProdJam" style={{ width: '340px' }}/>
-        <TooltiipPJ title="Share roadmap">
+        <TooltipCustom title="Share roadmap">
           <span className={styles.headerActionIcon}><FiShare/></span>
-        </TooltiipPJ>
-        <TooltiipPJ title="Roadmap settings">
+        </TooltipCustom>
+        <TooltipCustom title="Roadmap settings">
           <span className={styles.headerActionIcon}><IoSettingsOutline/></span>
-        </TooltiipPJ>
+        </TooltipCustom>
         <Dropdown overlay={dropdownMenu}>
           <Button type="primary">
             <Space>

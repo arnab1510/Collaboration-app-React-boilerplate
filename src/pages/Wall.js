@@ -1,7 +1,8 @@
 import cx from 'classnames';
 import React from 'react';
-import NewPost from '../assets/components/wall/newPost';
+import NewPost from '../assets/components/wall/postCards/newPost';
 import PostCard from '../assets/components/wall/postCards/postCard';
+import RightSection from '../assets/components/wall/rightSection/rightSection';
 import WallHeader from '../assets/components/wall/wallHeader';
 import styles from '../assets/scss/design.module.scss';
 
@@ -30,6 +31,9 @@ function Wall() {
                             <PostCard post={post} index={index}/>
                         )
                     })}
+                </div>
+                <div className={styles.wall_right_container}>
+                    <RightSection/>
                 </div>
             </div>
         </div>

@@ -1,13 +1,10 @@
-import cx from "classnames";
-import React from "react";
-import { HiDocumentText, HiOutlineDocumentText, HiPhotograph, HiVideoCamera } from 'react-icons/hi';
-import { FiPhone } from 'react-icons/fi';
-import styles from "./../../scss/design.module.scss";
-import TooltiipPJ from "../common/Tooltip";
-import { Button, Input } from "antd";
-import CustomModal from "../common/Modal";
-import { useState } from "react";
+import { Button } from "antd";
 import TextArea from "antd/lib/input/TextArea";
+import cx from "classnames";
+import React, { useState } from "react";
+import { HiDocumentText, HiOutlineDocumentText, HiPhotograph, HiVideoCamera } from 'react-icons/hi';
+import CustomModal from "../../common/Modal";
+import styles from "./../../../scss/design.module.scss";
 
 function NewPost() {
 

@@ -7,7 +7,7 @@ import like from '../../../images/like.svg';
 import sad from '../../../images/sad.svg';
 import laugh from '../../../images/laugh.svg';
 import shocked from '../../../images/shocked.svg';
-import TooltiipPJ from "../../common/Tooltip";
+import TooltipCustom from "../../common/Tooltip";
 import {FiShare} from 'react-icons/fi';
 import {GoThumbsup} from 'react-icons/go';
 import { Popover } from "antd";
@@ -25,9 +25,9 @@ function PostFooter() {
 
   const emojiRender = (data, index) => {
     return (
-      <TooltiipPJ title={data.name}>
+      <TooltipCustom title={data.name}>
         <img key={index} className={styles.emojiRow_emoji} src={data.src} alt={data.name}/>
-      </TooltiipPJ>
+      </TooltipCustom>
     )
   };
 
@@ -46,7 +46,7 @@ function PostFooter() {
       <Popover content={emojiList}>
         <div className={styles.postCard_cardFooter_reactBtn}><GoThumbsup/><span>React</span></div>
       </Popover>
-      <div className={styles.postCard_cardFooter_shareBtn}>
+      <div className={cx(styles.button, styles.button_no_back)}>
         <FiShare/><span>Share</span>
       </div>
     </div>

@@ -6,7 +6,7 @@ import { HiOutlineSearch } from 'react-icons/hi';
 import { IoMdAdd } from 'react-icons/io';
 import CustomTextArea from '../assets/components/common/CustomTextArea';
 import CustomModal from '../assets/components/common/Modal';
-import TooltiipPJ from '../assets/components/common/Tooltip';
+import TooltipCustom from '../assets/components/common/Tooltip';
 import UploadArea from '../assets/components/common/UploadArea';
 import FeatureHeader from '../assets/components/features/featureHeader';
 import styles from '../assets/scss/design.module.scss';
@@ -227,9 +227,9 @@ function Features() {
                   <span className={styles.frameworkTagRow}>
                     {frameworks.length!==0 ? frameworks.map((item,index) => {
                       return (
-                        <TooltiipPJ title={item.desc}>
+                        <TooltipCustom title={item.desc}>
                           <span onClick={() => selectPriority(index)} className={cx(styles.frameworkTag, item.selected?styles.selected:null)} key={index}>{item.name}</span>
-                        </TooltiipPJ>
+                        </TooltipCustom>
                       )
                     }) : null}
                   </span>

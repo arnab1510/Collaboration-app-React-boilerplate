@@ -11,7 +11,7 @@ import ChatTypeSection from '../../chat/chatTypeSection';
 import CustomModal from "../../common/Modal";
 import styles from "../../../../assets/scss/design.module.scss";
 import { priorityTag } from "../../../../services/common";
-import TooltiipPJ from "../../common/Tooltip";
+import TooltipCustom from "../../common/Tooltip";
 
 function TaskCard({task, index, snapshot, provided}) {
 
@@ -170,9 +170,9 @@ function TaskCard({task, index, snapshot, provided}) {
                         </p>
                     }
                     datetime={
-                        <TooltiipPJ title={<Moment format="DD MMM YYYY, hh:mm A"></Moment>}>
+                        <TooltipCustom title={<Moment format="DD MMM YYYY, hh:mm A"></Moment>}>
                             <span><Moment fromNow></Moment></span>
-                        </TooltiipPJ>
+                        </TooltipCustom>
                     }
                 />
                 <Comment
@@ -213,12 +213,12 @@ function TaskCard({task, index, snapshot, provided}) {
                         <div className={styles.taskTitle}>{task.title}</div>
                     </span>
                     <div className={styles.section_right}>
-                        <TooltiipPJ title={"Copy "+createType+" link"}>
+                        <TooltipCustom title={"Copy "+createType+" link"}>
                             <span onClick={() => copyLink()} className={styles.headerActionIcon}><MdContentCopy/></span>
-                        </TooltiipPJ>
-                        <TooltiipPJ title={"Options"}>
+                        </TooltipCustom>
+                        <TooltipCustom title={"Options"}>
                             <span className={styles.headerActionIcon}><HiOutlineDotsVertical/></span>
-                        </TooltiipPJ>
+                        </TooltipCustom>
                         <span className={styles.headerActionIcon}><MdClose/></span>
                     </div>
                 </div>
@@ -282,7 +282,7 @@ function TaskCard({task, index, snapshot, provided}) {
     return (
         <>
             {taskDetailsModal()}
-            <div onClick={() => openTaskDrawer(task)} className={styles.kanbanItem} style={{...provided.draggableProps.style, opacity: snapshot.isDragging ? '0.5' : '1', transform: snapshot.isDragging ? "transform: rotate(35deg)" : null}} ref={provided.innerRef} {...provided.dragHandleProps} {...provided.draggableProps}>
+            <div onClick={() => openTaskDrawer(task)} className={cx(styles.customCard, styles.kanbanItem)} style={{...provided.draggableProps.style, opacity: snapshot.isDragging ? '0.5' : '1', transform: snapshot.isDragging ? "transform: rotate(35deg)" : null}} ref={provided.innerRef} {...provided.dragHandleProps} {...provided.draggableProps}>
                 <div className={styles.taskTitle}>{task.title}</div>
                 <div className={styles.taskDesc}>{task.description}</div>
                 <div className={styles.taskTagRow}>

@@ -27,19 +27,19 @@
 }
 .section_right {
     @include flexbox($display: flex, $alignItems: center, $justifyContent: center, $columnGap: 10px);
-    .headerActionIcon {
-        @include flexbox($display: flex, $alignItems: center, $justifyContent: center);
-        padding: 10px;
-        border-radius: 100px;
-        border: 1px solid $black4;
+}
+.headerActionIcon {
+    @include flexbox($display: flex, $alignItems: center, $justifyContent: center);
+    padding: 10px;
+    border-radius: 100px;
+    border: 1px solid $black4;
+    @include transition;
+    cursor: pointer;
+    &:hover {
+        background-color: $primary;
+        border: 1px solid $primary;
+        color: white;
         @include transition;
-        cursor: pointer;
-        &:hover {
-            background-color: $primary;
-            border: 1px solid $primary;
-            color: white;
-            @include transition;
-        }
     }
 }
 

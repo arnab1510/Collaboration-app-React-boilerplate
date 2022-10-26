@@ -98,3 +98,31 @@
       @include transition;
   }
 }
+.button {
+  padding: 7px 14px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  column-gap: 6px;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: $primary;
+  color: white;
+  @include transition;
+  &:hover {
+    background-color: $primaryDark;
+    @include transition;
+  }
+} 
+.button_no_back {
+  background-color: transparent;
+  color: $black2;
+  &:hover {
+    background-color: $greyButtonBackground;
+  }
+}
+.customCard {
+  padding: 14px 16px;
+  border-radius: 8px;
+  background-color: white;
+}

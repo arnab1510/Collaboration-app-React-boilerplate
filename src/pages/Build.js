@@ -9,7 +9,7 @@ import { IoHandRightOutline, IoShapesOutline, IoTextOutline } from 'react-icons/
 import { MdHorizontalRule } from 'react-icons/md';
 import { RiAppsLine, RiSubtractFill, RiAddLine } from 'react-icons/ri';
 import { Arrow, Layer, Line, Rect, Stage, Transformer } from 'react-konva';
-import TooltiipPJ from '../assets/components/common/Tooltip';
+import TooltipCustom from '../assets/components/common/Tooltip';
 import styles from '../assets/scss/design.module.scss';
 
 function Home() {
@@ -256,15 +256,15 @@ function Home() {
             <div className={cx(styles.flexRightHeader)}>
                 <Input placeholder="New document" bordered={false} />
                 <div className={styles.section_right}>
-                  <TooltiipPJ title="Download PNG">
+                  <TooltipCustom title="Download PNG">
                       <span className={styles.headerActionIcon}><BsDownload/></span>
-                  </TooltiipPJ>
-                  <TooltiipPJ title="Share document">
+                  </TooltipCustom>
+                  <TooltipCustom title="Share document">
                       <span className={styles.headerActionIcon}><FiShare/></span>
-                  </TooltiipPJ>
-                  <TooltiipPJ title="Search Vault">
+                  </TooltipCustom>
+                  <TooltipCustom title="Search Vault">
                       <span className={styles.headerActionIcon}><HiOutlineSearch/></span>
-                  </TooltiipPJ>
+                  </TooltipCustom>
                 </div>
             </div>
           </div>

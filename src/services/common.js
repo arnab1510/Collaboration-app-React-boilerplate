@@ -4,7 +4,7 @@ import { postDataOptions } from './backendService';
 import { AiFillFire, AiOutlineExclamation } from 'react-icons/ai';
 import { HiOutlineMenuAlt4 } from 'react-icons/hi';
 import { FiChevronDown } from 'react-icons/fi';
-import TooltiipPJ from '../assets/components/common/Tooltip';
+import TooltipCustom from '../assets/components/common/Tooltip';
 import styles from '../assets/scss/design.module.scss';
 
 // APIs
@@ -34,16 +34,16 @@ export const priorityTag = (value) => {
 	}
 	else if (value===2) {
 		return (
-			// <TooltiipPJ title="Medium">
+			// <TooltipCustom title="Medium">
 				<span className={styles.priorityTag} style={{color: '#ef9b00'}}><HiOutlineMenuAlt4/>Medium</span>
-			// </TooltiipPJ>
+			// </TooltipCustom>
 		)
 	}
 	else if (value===3) {
 		return (
-			// <TooltiipPJ title="Low">
+			// <TooltipCustom title="Low">
 				<span className={styles.priorityTag} style={{color: 'green'}}><FiChevronDown/>Low</span>
-			// </TooltiipPJ>
+			// </TooltipCustom>
 		)
 	}
 };

@@ -75,12 +75,21 @@
 
 //Post Card
 .postCard {
-    padding: 14px;
-    border-radius: 8px;
-    background-color: white;
     .postCard_header {
-        @include flexbox($display: flex, $direction: row, $alignItems: center, $columnGap: 14px); 
+        @include flexbox($display: flex, $direction: row, $alignItems: center, $justifyContent: space-between); 
         margin-bottom: 16px;
+        &_left {
+            @include flexbox($display: flex, $direction: row, $alignItems: center, $columnGap: 14px); 
+        }
+        .headerActionIcon {
+            border: none;
+            border: 1px solid white;
+            &:hover {
+                background-color: $greyButtonBackground;
+                border: 1px solid $greyButtonBackground;
+                color: $black2;
+            }
+        }
     }
     &_userName {
         font-weight: 600;
@@ -101,19 +110,6 @@
             @include flexbox($display: flex, $direction: row, $alignItems: center, $columnGap: 6px);
             cursor: pointer;
             color: $black2;
-        }
-        &_shareBtn {
-            padding: 7px 14px;
-            @include flexbox($display: flex, $direction: row, $alignItems: center, $columnGap: 6px);
-            border-radius: 6px;
-            cursor: pointer;
-            color: $black2;
-            @include transition;
-            &:hover {
-                background-color: $primary;
-                color: white;
-                @include transition;
-            }
         }
     }
 }
@@ -244,6 +240,77 @@
         svg {
             height: 20px;
             width: 20px;
+        }
+    }
+}
+
+.wall_right_container {
+    overflow: scroll;
+    height: calc(100vh - 56px);
+    padding-bottom: 20px;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+.todoContainer {
+    padding: 0px;
+    max-height: 380px;
+    &_header {
+        padding: 14px 16px;
+        font-weight: 500;
+        @include flexbox($display: flex, $alignItems: center, $justifyContent: space-between);
+        padding-bottom: 10px;
+        border-bottom: 1px solid #e3e3e3;
+        &_right {
+            @include flexbox($display: flex, $alignItems: center, $columnGap: 8px);
+        }
+    }
+}
+.todoList {
+    @include flexbox($display: flex, $direction: column, $rowGap: 12px);
+    padding: 14px 16px;
+}
+.todoItem {
+    @include flexbox($display: flex, $justifyContent: space-between, $columnGap: 12px);
+    border-bottom: 1px solid $greyButtonBackground;
+    padding-bottom: 8px;
+    cursor: pointer;
+    &:last-child {
+        border-bottom: none;
+    }
+    &_left {
+        @include flexbox($display: flex, $columnGap: 6px);
+    }
+    &_data {
+        @include flexbox($display: flex, $direction: column, $columnGap: 6px);
+        &_date {
+            @include flexbox($display: flex, $direction: column, $columnGap: 8px, $alignItems: end);
+           color: $black4;
+           font-size: 13px;
+        }
+        &_priority {
+            margin-top: 3px;
+            font-size: 13px;
+            font-weight: 500;
+            @include flexbox($display: flex, $alignItems: center, $columnGap: 5px);
+            svg {
+                font-size: 8px;
+            }
+            opacity: 0.7;
+        }
+    }
+    &_done {
+        svg {
+            cursor: pointer;
+            font-size: 20px;
+            color: $black2;
+            @include transition;
+            &:hover {
+                color: $success;
+                @include transition;
+            }
         }
     }
 }
