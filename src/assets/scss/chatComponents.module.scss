@@ -42,6 +42,10 @@
         @include transition;
     }
 }
+.notifIcon {
+    cursor: pointer;
+    font-size: 21px;
+}
 
 //Chat Content
 .chatContent {

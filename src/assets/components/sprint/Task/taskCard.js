@@ -1,4 +1,5 @@
-import { Avatar, Button, Comment, InputNumber, message, Select, Tabs, Tag, Timeline } from "antd";
+import { Avatar, Button, InputNumber, message, Select, Tabs, Tag, Timeline } from "antd";
+import { Comment } from '@ant-design/compatible';
 import cx from "classnames";
 import React, { useState } from "react";
 import { AiOutlineBug, AiOutlineInfoCircle } from "react-icons/ai";
