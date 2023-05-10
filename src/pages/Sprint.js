@@ -1,6 +1,6 @@
 import { Button } from 'antd';
 import cx from 'classnames';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import { BiCheckDouble } from 'react-icons/bi';
 import { BsFilter } from 'react-icons/bs';

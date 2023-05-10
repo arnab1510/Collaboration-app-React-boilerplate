@@ -1,8 +1,7 @@
-import cx from "classnames";
-import React, { useRef, useState } from "react";
-import styles from "./../../../scss/design.module.scss";
-import {BsFileEarmarkPdfFill, BsFileZipFill} from 'react-icons/bs';
+import React from "react";
+import { BsFileEarmarkPdfFill, BsFileZipFill } from 'react-icons/bs';
 import { FiDownload } from "react-icons/fi";
+import styles from "./../../../scss/design.module.scss";
 
 function AttachmentComponent(props) {
 

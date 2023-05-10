@@ -14,7 +14,7 @@ import Underline from '@tiptap/extension-underline';
 import { EditorContent, useEditor } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import cx from 'classnames';
-import React, { useEffect } from 'react';
+import React from 'react';
 import styles from '../../../assets/scss/design.module.scss';
 import DocMenuBar from '../vault/docMenuBar';
 

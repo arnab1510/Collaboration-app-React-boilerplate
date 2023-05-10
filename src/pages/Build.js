@@ -18,7 +18,7 @@ function Home() {
   const [lines, setLines] = React.useState([]);
   const [selectedId, selectShape] = React.useState(null);
   const [rectangles, setRect] = React.useState([]);
-  const [drawLine, setDrawLine] = React.useState(false);
+  // const [drawLine, setDrawLine] = React.useState(false);
   const isDrawing = React.useRef(false);
   const stageRef = React.useRef(null);
   const shapeRef = React.useRef();
@@ -268,7 +268,7 @@ function Home() {
                 </div>
             </div>
           </div>
-          <div className={styles.excalidrawWrapper} style={{ cursor: cursor }}>
+          <div className={styles.buildWrapper} style={{ cursor: cursor }}>
             <div className={styles.designToolbar}>
               {iconOption(<HiCursorClick/>, 'select', 'toolSelect')}
               {iconOption(<MdHorizontalRule/>, 'line', 'toolSelect')}

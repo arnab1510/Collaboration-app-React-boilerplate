@@ -1,5 +1,5 @@
-import { Avatar, Button, InputNumber, message, Select, Tabs, Tag, Timeline } from "antd";
-import { Comment } from '@ant-design/compatible';
+import { Avatar, InputNumber, message, Select, Tabs, Tag, Timeline } from "antd";
+// import { Comment } from '@ant-design/compatible';
 import cx from "classnames";
 import React, { useState } from "react";
 import { AiOutlineBug, AiOutlineInfoCircle } from "react-icons/ai";
@@ -7,18 +7,16 @@ import { BiComment } from "react-icons/bi";
 import { BsFillBookmarkFill, BsTextLeft } from 'react-icons/bs';
 import { HiOutlineDotsVertical } from "react-icons/hi";
 import { MdClose, MdContentCopy } from 'react-icons/md';
-import Moment from "react-moment";
-import ChatTypeSection from '../../chat/chatTypeSection';
-import CustomModal from "../../common/Modal";
 import styles from "../../../../assets/scss/design.module.scss";
 import { priorityTag } from "../../../../services/common";
+import CustomModal from "../../common/Modal";
 import TooltipCustom from "../../common/Tooltip";
 
 function TaskCard({task, index, snapshot, provided}) {
 
     const { Option } = Select;
     const [taskDetailsVisible, setTaskDetailsVisible] = useState(false);
-    const [createType, setCreateType] = useState('Feature');
+    const [createType] = useState('Feature');
     const [taskDetails, setTaskDetails] = useState(null);
     const [editing, setEditing] = useState(null);
     const { TabPane } = Tabs;
@@ -159,7 +157,7 @@ function TaskCard({task, index, snapshot, provided}) {
     const commentSection = () => {
         return (
             <>
-                <Comment
+                {/* <Comment
                     // actions={[<span key="comment-basic-reply-to">Reply to</span>]}
                     author={<a>Han Solo</a>}
                     avatar={<Avatar src="https://joeschmoe.io/api/v1/random" alt="Han Solo" />}
@@ -187,7 +185,7 @@ function TaskCard({task, index, snapshot, provided}) {
                             </div>
                         </>
                     }
-                />
+                /> */}
             </>
         );
     };

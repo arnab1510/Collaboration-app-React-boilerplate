@@ -1,12 +1,12 @@
+import { Button, Dropdown, Input, Menu, Space } from "antd";
 import cx from "classnames";
 import React from "react";
-import { BsCameraVideo, BsBoxArrowUpRight, BsChevronDown, BsBarChartSteps} from 'react-icons/bs';
-import { FiPhone, FiShare } from 'react-icons/fi';
-import { IoSettingsOutline } from 'react-icons/io5';
-import styles from "./../../scss/design.module.scss";
-import TooltipCustom from "../common/Tooltip";
-import { Button, Dropdown, Input, Menu, Space } from "antd";
 import { AiOutlineBug, AiOutlineBuild } from "react-icons/ai";
+import { BsBarChartSteps, BsChevronDown } from 'react-icons/bs';
+import { FiShare } from 'react-icons/fi';
+import { IoSettingsOutline } from 'react-icons/io5';
+import TooltipCustom from "../common/Tooltip";
+import styles from "./../../scss/design.module.scss";
 
 function RoadmapHeader() {
 

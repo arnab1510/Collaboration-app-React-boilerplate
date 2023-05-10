@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import RoadmapBoard from '../assets/components/roadmap/roadmapBoard';
 import RoadmapHeader from '../assets/components/roadmap/roadmapHeader';
 import styles from '../assets/scss/design.module.scss';

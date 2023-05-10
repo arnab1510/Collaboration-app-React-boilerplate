@@ -1,11 +1,7 @@
-import cx from "classnames";
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
+import { Draggable } from 'react-beautiful-dnd';
 import styles from "../../../assets/scss/design.module.scss";
-import {FiSearch,FiLogIn} from 'react-icons/fi';
-import {MdOutlineMobileFriendly} from 'react-icons/md';
-import {BsBriefcase} from 'react-icons/bs';
 import TaskCard from "./Task/taskCard";
-import { Draggable, Droppable } from 'react-beautiful-dnd';
 
 function Column({section, provided, index}) {
 

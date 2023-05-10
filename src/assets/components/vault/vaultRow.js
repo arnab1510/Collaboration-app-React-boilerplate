@@ -1,9 +1,7 @@
 import cx from "classnames";
 import React from "react";
-import { BsChevronRight} from 'react-icons/bs';
-import { FiMoreVertical } from 'react-icons/fi';
+import { BsChevronRight } from 'react-icons/bs';
 import styles from "./../../scss/design.module.scss";
-import DocIcon from "../../images/doc_icon.svg";
 import { VaultCard } from "./vaultCards";
 
 function VaultRow({items,title}) {

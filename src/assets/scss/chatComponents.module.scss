@@ -44,7 +44,7 @@
 }
 .notifIcon {
     cursor: pointer;
-    font-size: 21px;
+    @include typography($size: 21px);
 }
 
 //Chat Content
@@ -52,16 +52,24 @@
     overflow-y: auto;
     flex:auto;
     @include scroll_hover;
-    padding: 16px;
+    @include padding($all: 16px);
 }
 .chat_container {
     height: 100%;
     display: flex;
-    margin: 0;
+    @include margin($all: 0px);
 	flex-flow: column nowrap;
 }
 .chat_fixed {
     flex:none;
+}
+.chatBubble{
+    background-color: #EAECFF;
+    @include padding($rectangle: 8px 16px);
+    border-radius: 8px;
+    @include margin($bottom: 10px);
+    width: fit-content;
+    max-width: 30vw;
 }
 
 //Chat Type Section

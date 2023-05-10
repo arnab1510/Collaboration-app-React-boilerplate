@@ -1,12 +1,11 @@
 import cx from "classnames";
-import React, { useRef, useState } from "react";
-import { ImAttachment} from 'react-icons/im';
+import Picker from 'emoji-picker-react';
+import React, { useState } from "react";
+import { ImAttachment } from 'react-icons/im';
 import { VscSmiley } from 'react-icons/vsc';
-import styles from "./../../scss/design.module.scss";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import "quill-mention";
-import Picker from 'emoji-picker-react';
+import styles from "./../../scss/design.module.scss";
 
 function Editor() {
 

@@ -1,17 +1,11 @@
 import cx from "classnames";
 import React from "react";
-import { HiDocumentText, HiOutlineDocumentText, HiPhotograph, HiVideoCamera } from 'react-icons/hi';
-import { FaGlobeAfrica } from 'react-icons/fa';
 import styles from "./../../../scss/design.module.scss";
-import TooltipCustom from "../../common/Tooltip";
-import { Button, Input } from "antd";
-import CustomModal from "../../common/Modal";
-import { useState } from "react";
-import PostCardHeader from "./postCardHeader";
-import TextComponent from "./textCardComponent";
-import PostFooter from "./postFooter";
-import ImageComponent from "./imageCardComponent";
 import AttachmentComponent from "./attachmentComponent";
+import ImageComponent from "./imageCardComponent";
+import PostCardHeader from "./postCardHeader";
+import PostFooter from "./postFooter";
+import TextComponent from "./textCardComponent";
 
 function PostCard(props) {
 

@@ -1,19 +1,7 @@
-import cx from "classnames";
-import React, { useEffect } from "react";
-import { BsChevronRight } from 'react-icons/bs';
-import styles from "./../../scss/design.module.scss";
-import { EditorContent, useEditor, BubbleMenu } from '@tiptap/react';
-import StarterKit from '@tiptap/starter-kit';
-import FloatingMenu from '@tiptap/extension-floating-menu'
-import Underline from '@tiptap/extension-underline';
-import Highlight from '@tiptap/extension-highlight';
-import TextStyle from '@tiptap/extension-text-style'
 import { Color } from '@tiptap/extension-color';
-import Mention from '@tiptap/extension-mention';
-import Collaboration from '@tiptap/extension-collaboration';
-import { WebrtcProvider } from 'y-webrtc';
-import * as Y from 'yjs';
+import Highlight from '@tiptap/extension-highlight';
 import Link from '@tiptap/extension-link';
+import Mention from '@tiptap/extension-mention';
 import Table from '@tiptap/extension-table';
 import TableCell from '@tiptap/extension-table-cell';
 import TableHeader from '@tiptap/extension-table-header';
@@ -21,11 +9,17 @@ import TableRow from '@tiptap/extension-table-row';
 import TaskItem from '@tiptap/extension-task-item';
 import TaskList from '@tiptap/extension-task-list';
 import TextAlign from '@tiptap/extension-text-align';
+import TextStyle from '@tiptap/extension-text-style';
+import Underline from '@tiptap/extension-underline';
+import { BubbleMenu, EditorContent, useEditor } from '@tiptap/react';
+import StarterKit from '@tiptap/starter-kit';
+import cx from "classnames";
+import React, { useEffect } from "react";
+import styles from "./../../scss/design.module.scss";
+import Placeholder from '@tiptap/extension-placeholder'
 
 function DocEditor(props) {
 
-  // const ydoc = new Y.Doc();
-  // const provider = new WebrtcProvider('tiptap-collaboration-extension', ydoc);
   const editor = useEditor({
     extensions: [
       StarterKit.configure({
@@ -57,6 +51,10 @@ function DocEditor(props) {
       TextAlign.configure({
         types: ['heading', 'paragraph'],
       }),
+      Placeholder.configure({
+        placeholder: 'Start typing here…',
+        emptyEditorClass: 'is-editor-empty',
+      })
       // Collaboration.configure({
       //   document: provider.doc,
       // })
@@ -69,7 +67,7 @@ function DocEditor(props) {
   }, [editor]);
 
   return (
-    <div className={cx(styles.editorPage, 'editorPage')}>
+    <div className={cx(styles.editorPage)}>
       {editor && <BubbleMenu editor={editor} tippyOptions={{ duration: 100 }}>
         <button
           onClick={() => editor.chain().focus().toggleBold().run()}

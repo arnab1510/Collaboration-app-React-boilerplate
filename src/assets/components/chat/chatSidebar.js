@@ -1,6 +1,6 @@
 import cx from "classnames";
-import React, { useEffect, useState } from "react";
-import {FiChevronsLeft} from 'react-icons/fi';
+import React, { useState } from "react";
+import { FiChevronsLeft } from 'react-icons/fi';
 import { useNavigate, useParams } from "react-router-dom";
 import styles from "./../../scss/design.module.scss";
 
@@ -8,12 +8,12 @@ function ChatSidebar(props) {
     
     // const { isCMEWebinar, courseSlug, chapterIdProps } = props;
     const chatItems = [
-        {userID: 123, image: 'https://picsum.photos/310', name: 'Rishabh Ray', lastChat: 'sdf', status: 'active', },
-        {userID: 1515, image: 'https://picsum.photos/320', name: 'Rishabh Ray', lastChat: 'sdf', status: 'away'},
-        {userID: 23, image: 'https://picsum.photos/330', name: 'Rishabh Ray', lastChat: 'sdf', status: 'offline'},
-        {userID: 474, image: 'https://picsum.photos/340', name: 'Rishabh Ray', lastChat: 'sdf', status: 'busy'},
-        {userID: 93, image: 'https://picsum.photos/350', name: 'Rishabh Ray', lastChat: 'sdf', status: 'presenting'},
-        {userID: 151, image: 'https://picsum.photos/360', name: 'Rishabh Ray', lastChat: 'sdf', status: 'focusing'}
+        {userID: 123, image: 'https://picsum.photos/310', name: 'Rishabh Ray', lastChat: 'Lorem ipsum', status: 'active', },
+        {userID: 1515, image: 'https://picsum.photos/320', name: 'Rishabh Ray', lastChat: 'dummy sit dor', status: 'away'},
+        {userID: 23, image: 'https://picsum.photos/330', name: 'Rishabh Ray', lastChat: 'Hey, how are you?', status: 'offline'},
+        {userID: 474, image: 'https://picsum.photos/340', name: 'Rishabh Ray', lastChat: 'yes it is done', status: 'busy'},
+        {userID: 93, image: 'https://picsum.photos/350', name: 'Rishabh Ray', lastChat: "sure, let's talk then", status: 'presenting'},
+        {userID: 151, image: 'https://picsum.photos/360', name: 'Rishabh Ray', lastChat: 'i am OOO', status: 'focusing'}
     ];
     const history = useNavigate();
     let { user_id } = useParams();

@@ -1,9 +1,8 @@
 import cx from "classnames";
 import React from "react";
-import { BsCameraVideo, BsBoxArrowUpRight} from 'react-icons/bs';
-import { FiPhone } from 'react-icons/fi';
-import styles from "./../../scss/design.module.scss";
+import { BsCameraVideo } from 'react-icons/bs';
 import TooltipCustom from "../common/Tooltip";
+import styles from "./../../scss/design.module.scss";
 
 function FeatureHeader() {
 

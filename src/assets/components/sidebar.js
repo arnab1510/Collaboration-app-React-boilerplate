@@ -20,7 +20,7 @@ function Sidebar() {
 
   const PMsidebar = [
     {id: 1, name: 'Wall', url: '/wall', icon: <BsFileRichtext/>},
-    {id: 2, name: 'Chat', url: '/chat', icon: <IoChatbubbleEllipsesOutline/>},
+    {id: 2, name: 'Chat', url: '/chat/123', icon: <IoChatbubbleEllipsesOutline/>},
     {id: 3, name: 'Sprint', url: '/sprint', icon: <BsClockHistory/>},
     {id: 4, name: 'Roadmap', url: '/roadmap', icon: <VscNotebook/>},
     {id: 5, name: 'Features', url: '/features', icon: <BsListUl/>},
@@ -37,7 +37,7 @@ function Sidebar() {
   return (
     <div className={styles.mainSidebarFixed}>
       <div style={{textAlign: 'center'}}>
-        <img src={logo_white}/>
+        <img alt="logo-white" src={logo_white}/>
       </div>
       <div className={styles.sidebarContainer}>
         {PMsidebar.map((item, index) => {

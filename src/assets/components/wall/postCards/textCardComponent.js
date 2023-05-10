@@ -1,15 +1,15 @@
 import cx from "classnames";
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import styles from "./../../../scss/design.module.scss";
 
 function TextComponent(props) {
 
   const { data } = props;
-  const [clamped, setClamped] = useState(true);
+  const [clamped] = useState(true);
 
   return (
     <div>
-      <span className={cx(clamped && styles.clamp)}>
+      <span className={cx(clamped && styles.clamp, styles.postContent)}>
         {data.content}
       </span>
       {/* {clamped && (

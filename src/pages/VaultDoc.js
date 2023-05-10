@@ -1,22 +1,22 @@
+import { useEditor } from '@tiptap/react';
+import StarterKit from '@tiptap/starter-kit';
 import styles from '../assets/scss/design.module.scss';
-import { useEditor, EditorContent } from '@tiptap/react'
-import StarterKit from '@tiptap/starter-kit'
 // import Picker from 'emoji-picker-react';
-import { FiShare } from 'react-icons/fi';
-import { HiOutlineSearch } from 'react-icons/hi';
 import { Input } from 'antd';
 import cx from "classnames";
-import { useRef, useState } from 'react';
-import DocEditor from '../assets/components/vault/docEditor';
+import { useState } from 'react';
+import { FiShare } from 'react-icons/fi';
+import { HiOutlineSearch } from 'react-icons/hi';
 import TooltipCustom from '../assets/components/common/Tooltip';
+import DocEditor from '../assets/components/vault/docEditor';
 import DocMenuBar from '../assets/components/vault/docMenuBar';
 
 function VaultDoc() {
 
-    const [value, setValue] = useState('');
+    // const [value, setValue] = useState('');
     const [editorData, setEditorData] = useState(null);
     const [chosenEmoji, setChosenEmoji] = useState(null);
-    const [showEmojiPicker, setShowEmojiPicker] = useState(false);
+    // const [showEmojiPicker, setShowEmojiPicker] = useState(false);
     
     
     const editor = useEditor({

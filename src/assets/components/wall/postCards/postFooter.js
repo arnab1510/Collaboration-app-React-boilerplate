@@ -1,16 +1,16 @@
+import { Popover } from "antd";
 import cx from "classnames";
-import React, { useRef, useState } from "react";
-import styles from "./../../../scss/design.module.scss";
+import React from "react";
+import { FiShare } from 'react-icons/fi';
+import { GoThumbsup } from 'react-icons/go';
 import clap from '../../../images/clap.svg';
 import love from '../../../images/heart.svg';
+import laugh from '../../../images/laugh.svg';
 import like from '../../../images/like.svg';
 import sad from '../../../images/sad.svg';
-import laugh from '../../../images/laugh.svg';
 import shocked from '../../../images/shocked.svg';
 import TooltipCustom from "../../common/Tooltip";
-import {FiShare} from 'react-icons/fi';
-import {GoThumbsup} from 'react-icons/go';
-import { Popover } from "antd";
+import styles from "./../../../scss/design.module.scss";
 
 function PostFooter() {
 

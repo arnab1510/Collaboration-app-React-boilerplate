@@ -8,6 +8,7 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-color: #F7F7F7;
+    font-size: 14px;
     // overflow: hidden;
 }
 
@@ -33,7 +34,12 @@ code {
 .editorClassName {
     background: white;
 }
-
+.ant-btn-primary {
+  box-shadow: none;
+}
+.ProseMirror-focused {
+  outline: none;
+}
 .ant-card {
     box-shadow: 0px 9px 59px 0px rgba(0, 0, 0, 0.08);
     -webkit-box-shadow: 0px 9px 59px 0px rgba(0, 0, 0, 0.08);
@@ -48,16 +54,6 @@ code {
 }
 .ant-form-item-label > label {
   font-size: 13px;
-}
-.ProseMirror {
-  &:focus-visible {
-    outline: none;
-  }
-}
-.editorPage .ProseMirror {
-    min-height: 1200px;
-    border-radius: 12px;
-    padding: 28px 36px;
 }
 .textAreaInput {
   border: 1px solid lightgrey;
@@ -159,9 +155,9 @@ code {
   border-radius: 8px;
   overflow: hidden;
 }
-.ant-modal-body, .ant-modal-header {
-  padding: 18px;
-}
+// .ant-modal-body, .ant-modal-header {
+//   padding: 18px;
+// }
 // .ant-modal-body {
 //   max-height: 86vh;
 //   overflow: scroll;

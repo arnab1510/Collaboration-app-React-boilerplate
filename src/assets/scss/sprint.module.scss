@@ -231,7 +231,6 @@
         object-fit: cover;
         margin-right: 6px;
     }
-    font-size: 14px;
 }
 .timelineItem {
     @include flexbox($display: flex, $columnGap: 20px);

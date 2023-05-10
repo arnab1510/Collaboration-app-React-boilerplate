@@ -1,11 +1,10 @@
 import axios from 'axios';
-import { BASE_URL } from './environment';
-import { postDataOptions } from './backendService';
 import { AiFillFire, AiOutlineExclamation } from 'react-icons/ai';
-import { HiOutlineMenuAlt4 } from 'react-icons/hi';
 import { FiChevronDown } from 'react-icons/fi';
-import TooltipCustom from '../assets/components/common/Tooltip';
+import { HiOutlineMenuAlt4 } from 'react-icons/hi';
 import styles from '../assets/scss/design.module.scss';
+import { postDataOptions } from './backendService';
+import { BASE_URL } from './environment';
 
 // APIs
 const FILE_UPLOAD = 'upload';

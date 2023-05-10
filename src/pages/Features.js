@@ -15,7 +15,6 @@ function Features() {
 
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
   const [addFeatureVisible, setAddFeatureVisible] = useState(false);
-  const [loading, setLoading] = useState(false);
   const children = [];
   const [frameworks, setFrameworks] = useState([    
     {id: 0, name: 'Effort', desc: 'Lorem ipsum por amit', selected: false},
@@ -34,14 +33,14 @@ function Features() {
     console.log(`checked = ${e.target.checked}`);
   };
 
-  const start = () => {
-    setLoading(true);
+  // const start = () => {
+  //   setLoading(true);
 
-    setTimeout(() => {
-      setSelectedRowKeys([]);
-      setLoading(false);
-    }, 1000);
-  };
+  //   setTimeout(() => {
+  //     setSelectedRowKeys([]);
+  //     setLoading(false);
+  //   }, 1000);
+  // };
 
   const onSelectChange = (newSelectedRowKeys) => {
     console.log('selectedRowKeys changed: ', selectedRowKeys);

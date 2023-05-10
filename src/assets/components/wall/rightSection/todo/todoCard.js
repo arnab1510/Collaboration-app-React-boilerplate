@@ -1,10 +1,8 @@
+import { Collapse } from "antd";
 import cx from "classnames";
 import React from "react";
-import { BsChevronUp, BsCircle, BsFillCircleFill } from 'react-icons/bs';
-import { BiCheckDouble } from 'react-icons/bi';
+import { BsChevronUp, BsFillCircleFill } from 'react-icons/bs';
 import styles from "./../../../../scss/design.module.scss";
-import TooltipCustom from "../../../common/Tooltip";
-import { Collapse } from "antd";
 
 function TodoCard() {
 

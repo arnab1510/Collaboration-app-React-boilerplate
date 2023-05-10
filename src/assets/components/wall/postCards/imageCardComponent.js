@@ -1,7 +1,5 @@
 import { Image } from "antd";
-import cx from "classnames";
-import React, { useRef, useState } from "react";
-import styles from "./../../../scss/design.module.scss";
+import React, { useState } from "react";
 
 function ImageComponent(props) {
 
